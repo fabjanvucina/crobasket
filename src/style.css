@@ -1,0 +1,69 @@
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(./fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: Roboto-Bold;
+  src: url(./fonts/Roboto-Bold.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+body {
+  background-color: #363333;
+  color: #f6e9e9;
+  font-family: Roboto-Regular, sans-serif;
+}
+
+.hoverable:hover {
+  color: #ddadad;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  border-bottom: 1px solid #272121;
+}
+
+.logo {
+  padding-left: 2vw;
+  height: 30px;
+}
+
+.logo:hover {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.login-container {
+  display: flex;
+  position: relative;
+  padding: 6px;
+  margin-right: 2vw;
+  margin-bottom: 6px;
+  background: #363333;
+  border-radius: 60px;
+  transition: 0.2s;
+}
+
+.login-container:hover::before {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px #e16428;
+}
+
+.login-container:hover {
+  color: #e16428;
+  box-shadow: 0 0 5px #e16428;
+  text-shadow: 0 0 5px #e16428;
+}
+
+.login-icon {
+  margin-left: 5px;
+  padding-bottom: 5px;
+  height: 20px;
+}
