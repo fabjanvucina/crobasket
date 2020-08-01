@@ -1,1 +1,1 @@
-<img src="src/img/crobasket-logo.jpg" />
+<img src="src/img/crobasket_logo.jpg" />
