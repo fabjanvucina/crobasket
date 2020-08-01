@@ -2,4 +2,4 @@
 
 ## The ultimate connection between basketball players.
 
-### Join a team. Invite players. Simple as that.
+## Join a team. Invite players. Simple as that.
