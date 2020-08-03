@@ -1,0 +1,112 @@
+/*  
+  background-image: url(./img/basketball.png);
+  background-repeat: repeat-x;
+  background-size: 50px 50px;
+  background-position: 25% 50%; 
+*/
+
+* {
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  background-color: #363333;
+  color: #f6e9e9;
+  font-family: Roboto, sans-serif;
+  min-height: 200px;
+}
+
+.hoverable:hover {
+  color: #ddadad;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 10.3vh;
+  max-height: 80px;
+  min-height: 40px;
+  border-bottom: 0.2vh solid #000000;
+  background-color: #272121;
+  font-size: max(min(2.76vh, 20px), 12px);
+}
+
+.menu {
+  display: none;
+}
+
+.logo {
+  margin-top: max(2.5vh, 10px);
+  padding-left: 2vw;
+  height: 5.2vh;
+  max-height: 35px;
+  min-height: 20px;
+}
+
+.logo:hover {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.options-container {
+  display: flex;
+  margin: min(15px, max(2vh, 10px)) 20vw 0 5vw;
+}
+
+.options-container-hidden {
+  display: none;
+}
+
+.option {
+  margin: 0 25px max(1.9vh, 6px) 0;
+}
+
+.login-container {
+  display: flex;
+  margin: min(15px, max(2vh, 10px)) 25px max(1.9vh, 6px) 0;
+}
+
+.tab {
+  position: relative;
+  padding: min(10px, max(1.3vh, 3px));
+  background: #272121;
+  border-radius: 60px;
+  transition: 0.2s;
+  border: 1px solid #272121;
+}
+
+.tab:hover::before {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px #e16428;
+  border: 1px solid #e16428;
+}
+
+.tab:hover {
+  color: #e16428;
+  box-shadow: 0 0 5px #e16428;
+  text-shadow: 0 0 5px #e16428;
+  border: 1px solid #e16428;
+}
+
+.login {
+  padding-left: 3px;
+}
+
+.login-hidden {
+  display: none;
+}
+
+.user {
+  padding-left: 3px;
+}
+
+.user-hidden {
+  display: none;
+}
+
+#login-icon {
+  margin-left: 0.625vw;
+  font-size: min(max(3.2vh, 15px), 24px);
+}
