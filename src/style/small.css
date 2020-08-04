@@ -10,25 +10,35 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-.hoverable:hover {
-  color: #ddadad;
-}
-
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: 10.3vh;
   min-height: 40px;
   border-bottom: 1px solid #000000;
   background-color: #272121;
 }
 
-.menu {
-  display: inline-block;
+/* .menu {
+  display: none;
+} */
+
+#menu-icon {
+  font-size: min(max(3.2vh, 22px), 24px);
+  color: #f6e9e9;
 }
 
-#menu {
+#menu-icon:hover {
+  color: #e16428;
+}
+
+.drawer {
+  background-color: #272121;
   color: #f6e9e9;
+}
+
+.drawer-item {
+  text-align: center;
 }
 
 .logo {
@@ -47,24 +57,12 @@ body {
 
 .tab {
   position: relative;
-  padding: 6px;
   background: #272121;
-  border-radius: 60px;
   transition: 0.2s;
-  border: 1px solid #272121;
-}
-
-.tab:hover::before {
-  transform: scale(1.2);
-  box-shadow: 0 0 15px #e16428;
-  border: 1px solid #e16428;
 }
 
 .tab:hover {
   color: #e16428;
-  box-shadow: 0 0 5px #e16428;
-  text-shadow: 0 0 5px #e16428;
-  border: 1px solid #e16428;
 }
 
 .options-container {
@@ -80,17 +78,13 @@ body {
 }
 
 .login-container {
-  display: none;
-}
-
-.login-icon {
-  margin-left: 10px;
-  height: 20px;
+  margin: min(15px, max(2vh, 5px)) 25px max(1.9vh, 6px) 10px;
+  position: relative;
+  padding: min(10px, max(1.3vh, 3px));
 }
 
 .login {
-  padding-top: 2px;
-  padding-left: 2px;
+  display: none;
 }
 
 .login-hidden {
@@ -98,10 +92,14 @@ body {
 }
 
 .user {
-  padding-top: 2px;
-  padding-left: 2px;
+  display: none;
 }
 
 .user-hidden {
   display: none;
+}
+
+#login-icon {
+  margin-left: 0.625vw;
+  font-size: min(max(3.2vh, 22px), 24px);
 }
