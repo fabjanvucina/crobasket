@@ -1,12 +1,12 @@
 import React from "react";
-import { Router, Link } from "@reach/router"; //eslint-disable-line
+import { Link } from "@reach/router"; //eslint-disable-line
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-const MenuDrawer = () => {
+const MenuDrawer = ({ hideMenu }) => {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -44,7 +44,11 @@ const MenuDrawer = () => {
 
   const anchor = "bottom";
   return (
-    <div className="menu login-container">
+    <div
+      className={
+        hideMenu === true ? "menu login-container hide" : "menu login-container"
+      }
+    >
       <MenuIcon
         fontSize="large"
         id="menu-icon"

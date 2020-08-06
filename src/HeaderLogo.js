@@ -1,8 +1,15 @@
 import React from "react";
 import logo from "./img/crobasket_logo.jpg";
 
-const HeaderLogo = () => {
-  return <img src={logo} className="logo" alt="logo" id="logo" />;
+const HeaderLogo = ({ logoCenter }) => {
+  return (
+    <img
+      src={logo}
+      className={logoCenter === true ? "logo-center" : "logo"}
+      alt="logo"
+      id="logo"
+    />
+  );
 };
 
 export default HeaderLogo;

@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
@@ -17,11 +19,28 @@
       media="screen and (min-width: 850px)"
       href="./style/normal.css"
     />
-
     <title>CR🏀BASKET</title>
   </head>
   <body>
     <div id="root">Not rendered</div>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDwxZVm6GF6e-EkSES9aoWFDbMm66EKABs",
+        authDomain: "crobasket-a8660.firebaseapp.com",
+        databaseURL: "https://crobasket-a8660.firebaseio.com",
+        projectId: "crobasket-a8660",
+        storageBucket: "crobasket-a8660.appspot.com",
+        messagingSenderId: "952400360271",
+        appId: "1:952400360271:web:d628d2ef8a35e68e994b3a",
+        measurementId: "G-V66X8FJV9Z"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
     <script src="./App.js"></script>
   </body>
 </html>

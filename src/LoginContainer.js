@@ -1,17 +1,28 @@
 import React from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { Link } from "@reach/router"; //eslint-disable-line
 
-const LoginContainer = ({ loggedIn }) => {
+const LoginContainer = ({ loggedIn, hideLogin }) => {
   return (
-    <div id="login-container" className="login-container tab">
-      <span className={loggedIn === false ? "login" : "login-hidden"}>
-        LOGIN
-      </span>
-      <span className={loggedIn === true ? "user" : "user-hidden"}>
-        John Doe
-      </span>
-      <AccountCircleIcon id="login-icon" />
-    </div>
+    <Link to="/login" className="link">
+      <div
+        id="login-container"
+        className={
+          hideLogin === true
+            ? "login-container tab hide"
+            : "login-container tab"
+        }
+      >
+        <span className={loggedIn === false ? "login" : "login hide"}>
+          Prijavi se
+        </span>
+
+        <span className={loggedIn === true ? "user" : "user hide"}>
+          John Doe
+        </span>
+        <AccountCircleIcon id="login-icon" />
+      </div>
+    </Link>
   );
 };
 
