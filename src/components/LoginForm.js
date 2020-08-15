@@ -10,9 +10,10 @@ const LoginForm = () => {
           <input
             type="text"
             name="email"
-            id="username"
+            id="emailLogin"
             placeholder=""
             autoComplete="off"
+            required
           />
           <span className="separator"> </span>
         </div>
@@ -22,17 +23,19 @@ const LoginForm = () => {
           <input
             type="password"
             name="password"
-            id="password"
+            id="passwordLogin"
             placeholder=""
-            autoComplete="off"
+            autoComplete="new-password"
+            required
           />
           <span className="separator"> </span>
         </div>
 
         <div className="form-bottom">
           <input
+            className="submit"
             type="submit"
-            id="submit"
+            id="loginButton"
             value="Prijavi se"
             onClick={(e) => {
               e.preventDefault();
@@ -40,7 +43,7 @@ const LoginForm = () => {
           />
 
           <span className="signin">
-            <Link to="/signin" className="link signin">
+            <Link to="/registracija" className="link signin">
               Nemaš račun? Izradi ga ovdje!
             </Link>
           </span>

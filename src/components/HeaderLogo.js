@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./img/crobasket_logo.jpg";
+import logo from "../img/crobasket_logo.jpg";
 
 const HeaderLogo = ({ logoCenter }) => {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
 import Header from "./Header";
-import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <>
       <Header
@@ -13,9 +13,9 @@ const SignIn = () => {
         hideMenu={true}
         logoCenter={true}
       />
-      <SignInForm />
+      <SignUpForm />
     </>
   );
 };
 
-export default SignIn;
+export default SignUp;

@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useCallback, useContext } from "react"; //eslint-disable-line
+import { navigate } from "@reach/router"; //eslint-disable-line
+import { signup } from "../authMetods.js";
 
-const SignInForm = () => {
+const SignUpForm = () => {
   return (
     <div className="form-signin">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          signup();
+        }}
+      >
         <div className="text-input">
           <label htmlFor="name">Ime</label>
           <input
             type="text"
             name="name"
-            id="name"
+            id="nameSignup"
             placeholder=""
-            autoComplete="off"
+            autoComplete="new-password"
+            required
           />
           <span className="separator"> </span>
         </div>
@@ -20,10 +28,11 @@ const SignInForm = () => {
           <label htmlFor="lastname">Prezime</label>
           <input
             type="text"
-            name="lastname"
-            id="lastname"
+            name="surname"
+            id="surnameSignup"
             placeholder=""
-            autoComplete="off"
+            autoComplete="new-password"
+            required
           />
           <span className="separator"> </span>
         </div>
@@ -33,9 +42,10 @@ const SignInForm = () => {
           <input
             type="text"
             name="email"
-            id="username"
+            id="emailSignup"
             placeholder=""
             autoComplete="off"
+            required
           />
           <span className="separator"> </span>
         </div>
@@ -45,21 +55,20 @@ const SignInForm = () => {
           <input
             type="password"
             name="password"
-            id="password"
+            id="passwordSignup"
             placeholder=""
             autoComplete="off"
+            required
           />
           <span className="separator"> </span>
         </div>
 
         <div className="form-bottom-signin">
           <input
+            className="submit"
             type="submit"
-            id="submit"
+            id="signupButton"
             value="Izradi račun"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
           />
         </div>
       </form>
@@ -67,4 +76,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

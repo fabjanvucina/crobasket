@@ -190,10 +190,17 @@ body {
   outline-style: none;
 }
 
-#submit {
+#loginButton {
   margin-right: 5px;
 }
-#submit:hover {
+#loginButton:hover {
+  background-color: #bc4f1a;
+}
+
+#signupButton {
+  margin-right: 5px;
+}
+#signupButton:hover {
   background-color: #bc4f1a;
 }
 

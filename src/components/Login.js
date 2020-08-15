@@ -8,7 +8,6 @@ const Login = () => {
     <>
       <Header
         showOptions={false}
-        loggedIn={false}
         hideLogin={true}
         hideMenu={true}
         logoCenter={true}

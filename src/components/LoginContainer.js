@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react"; //eslint-disable-line
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "@reach/router"; //eslint-disable-line
 
 const LoginContainer = ({ loggedIn, hideLogin }) => {
   return (
-    <Link to="/login" className="link">
+    <Link to="/prijava" className="link">
       <div
         id="login-container"
         className={
