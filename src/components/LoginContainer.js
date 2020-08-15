@@ -1,8 +1,21 @@
-import React, { useContext } from "react"; //eslint-disable-line
+import React from "react"; //eslint-disable-line
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "@reach/router"; //eslint-disable-line
+import app from "../firebase";
 
-const LoginContainer = ({ loggedIn, hideLogin }) => {
+const LoginContainer = ({ hideLogin }) => {
+  app.auth().onAuthStateChanged(function (user) {
+    console.log("auth state changed");
+
+    if (user) {
+      document.getElementById(
+        "displayName"
+      ).innerHTML = app.auth().currentUser.displayName;
+    } else {
+      document.getElementById("displayName").innerHTML = "Prijavi se";
+    }
+  });
+
   return (
     <Link to="/prijava" className="link">
       <div
@@ -13,13 +26,7 @@ const LoginContainer = ({ loggedIn, hideLogin }) => {
             : "login-container tab"
         }
       >
-        <span className={loggedIn === false ? "login" : "login hide"}>
-          Prijavi se
-        </span>
-
-        <span className={loggedIn === true ? "user" : "user hide"}>
-          John Doe
-        </span>
+        <span className="user" id="displayName"></span>
         <AccountCircleIcon id="login-icon" />
       </div>
     </Link>

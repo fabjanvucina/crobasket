@@ -1,9 +1,9 @@
-import React, { useState, useContext, createContext } from "react"; //eslint-disable-line
+import React from "react";
 import { render } from "react-dom";
 import { Router, Link } from "@reach/router"; //eslint-disable-line
 import Welcome from "./Welcome";
 import Login from "./Login";
-import SignUp from "./SignUp";
+import Register from "./Register";
 import Cities from "./Cities";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
       <Router>
         <Welcome path="/" />
         <Login path="/prijava" />
-        <SignUp path="/registracija" />
+        <Register path="/registracija" />
         <Cities path="/gradovi" />
       </Router>
     </React.StrictMode>

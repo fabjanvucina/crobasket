@@ -2,8 +2,6 @@ import * as firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
-import { navigate } from "@reach/router"; //eslint-disable-line
-//var validator = require("email-validator");
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

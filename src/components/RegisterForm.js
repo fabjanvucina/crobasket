@@ -1,14 +1,15 @@
-import React, { useCallback, useContext } from "react"; //eslint-disable-line
-import { navigate } from "@reach/router"; //eslint-disable-line
-import { signup } from "../authMetods.js";
+import React from "react";
+import { navigate } from "@reach/router";
+import { register } from "../authMetods.js";
 
-const SignUpForm = () => {
+const RegisterForm = () => {
   return (
     <div className="form-signin">
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          signup();
+          await register();
+          navigate("/");
         }}
       >
         <div className="text-input">
@@ -76,4 +77,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default RegisterForm;
