@@ -1,0 +1,15 @@
+.separator {
+  height: 3px;
+  width: 100%;
+  background: #e16428;
+  display: block;
+  transform: scaleX(0) translateY(-2px);
+  transform-origin: 50%;
+  opacity: 0;
+  transition: all 0.15s linear;
+}
+
+* :focus {
+  outline-color: transparent;
+  outline-style: none;
+}

@@ -204,14 +204,14 @@ body {
   background-color: #bc4f1a;
 }
 
-.signin {
+.registerLink {
   font-size: 0.7rem;
   margin: 10px 0px 0 1px;
   text-decoration: underline;
   text-align: left;
 }
 
-.signin:hover {
+.registerLink:hover {
   color: #e2b9b9;
   transition: 0.2s;
 }

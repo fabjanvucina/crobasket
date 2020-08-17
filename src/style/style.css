@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  background-color: #363333;
+  color: #f6e9e9;
+  font-family: Roboto, sans-serif;
+  min-height: 200px;
+}

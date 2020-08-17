@@ -5,6 +5,10 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import "../style/LoginContainer.css";
+import "../style/Tab.css";
+import "../style/Hide.css";
+import "../style/MenuDrawer.css";
 
 const MenuDrawer = ({ hideMenu }) => {
   const [state, setState] = React.useState({

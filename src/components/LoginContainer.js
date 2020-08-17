@@ -2,6 +2,9 @@ import React from "react"; //eslint-disable-line
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "@reach/router"; //eslint-disable-line
 import app from "../firebase";
+import "../style/LoginContainer.css";
+import "../style/Tab.css";
+import "../style/Hide.css";
 
 const LoginContainer = ({ hideLogin }) => {
   app.auth().onAuthStateChanged(function (user) {

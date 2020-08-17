@@ -1,6 +1,8 @@
 import React from "react";
 import { navigate } from "@reach/router";
-import { register } from "../authMetods.js";
+import { register } from "../authMethods.js";
+import "../style/RegisterForm.css";
+import "../style/Separator.css";
 
 const RegisterForm = () => {
   return (

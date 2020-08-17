@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
+import "../style/OptionsContainer.css";
+import "../style/Tab.css";
+import "../style/Hide.css";
 
 const OptionsContainer = ({ showOptions }) => {
   return (

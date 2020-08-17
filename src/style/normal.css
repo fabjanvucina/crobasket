@@ -181,7 +181,7 @@ body {
   outline-style: none;
 }
 
-.signin {
+.registerLink {
   font-size: 0.9rem;
   margin-top: 10px;
   margin-right: 5px;
@@ -190,7 +190,7 @@ body {
   color: #f6e9e9;
 }
 
-.signin:hover {
+.registerLink:hover {
   color: #e2b9b9;
   transition: 0.2s;
 }

@@ -5,6 +5,7 @@ import Welcome from "./Welcome";
 import Login from "./Login";
 import Register from "./Register";
 import Cities from "./Cities";
+import "../style/style.css";
 
 const App = () => {
   return (

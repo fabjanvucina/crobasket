@@ -4,6 +4,8 @@ import MenuDrawer from "./MenuDrawer";
 import HeaderLogo from "./HeaderLogo";
 import OptionsContainer from "./OptionsContainer";
 import LoginContainer from "./LoginContainer";
+import "../style/Header.css";
+import "../style/Link.css";
 
 const Header = (props) => {
   return (
@@ -13,7 +15,7 @@ const Header = (props) => {
         <HeaderLogo logoCenter={props.logoCenter} />
       </Link>
       <OptionsContainer showOptions={props.showOptions} />
-      <LoginContainer loggedIn={props.loggedIn} hideLogin={props.hideLogin} />
+      <LoginContainer hideLogin={props.hideLogin} />
     </div>
   );
 };

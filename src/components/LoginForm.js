@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
+import "../style/LoginForm.css";
+import "../style/Separator.css";
 
 const LoginForm = () => {
   return (
@@ -42,8 +44,8 @@ const LoginForm = () => {
             }}
           />
 
-          <span className="signin">
-            <Link to="/registracija" className="link signin">
+          <span className="registerLink">
+            <Link to="/registracija" className="link registerLink">
               Nemaš račun? Izradi ga ovdje!
             </Link>
           </span>
