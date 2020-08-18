@@ -1,23 +1,32 @@
-import React from "react"; //eslint-disable-line
+import React, { useContext, useEffect } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Link } from "@reach/router"; //eslint-disable-line
+import { Link } from "@reach/router";
 import app from "../firebase";
+import UserContext from "../UserContext";
 import "../style/LoginContainer.css";
 import "../style/Tab.css";
 import "../style/Hide.css";
 
 const LoginContainer = ({ hideLogin }) => {
-  app.auth().onAuthStateChanged(function (user) {
-    console.log("auth state changed");
+  const [user, setUser] = useContext(UserContext);
 
-    if (user) {
-      document.getElementById(
-        "displayName"
-      ).innerHTML = app.auth().currentUser.displayName;
-    } else {
-      document.getElementById("displayName").innerHTML = "Prijavi se";
-    }
-  });
+  useEffect(() => {
+    app.auth().onAuthStateChanged(function (user) {
+      console.log("auth state changed");
+
+      if (user) {
+        setUser({
+          isAuthenticated: true,
+          displayName: app.auth().currentUser.displayName
+        });
+      } else {
+        setUser({
+          isAuthenticated: false,
+          displayName: ""
+        });
+      }
+    });
+  }, [setUser]);
 
   return (
     <Link to="/prijava" className="link">
@@ -29,7 +38,9 @@ const LoginContainer = ({ hideLogin }) => {
             : "login-container tab"
         }
       >
-        <span className="user" id="displayName"></span>
+        <span className="user" id="displayName">
+          {user.isAuthenticated ? user.displayName : "Prijavi se"}
+        </span>
         <AccountCircleIcon id="login-icon" />
       </div>
     </Link>
