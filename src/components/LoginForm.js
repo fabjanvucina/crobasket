@@ -11,7 +11,9 @@ const LoginForm = () => {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await login();
+          const email = document.getElementById("emailLogin");
+          const password = document.getElementById("passwordLogin");
+          await login(email, password);
         }}
       >
         <div className="text-input">

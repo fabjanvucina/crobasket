@@ -10,7 +10,11 @@ const RegisterForm = () => {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await register();
+          const name = document.getElementById("nameSignup");
+          const surname = document.getElementById("surnameSignup");
+          const email = document.getElementById("emailSignup");
+          const password = document.getElementById("passwordSignup");
+          await register(name, surname, email, password);
         }}
       >
         <div className="text-input">
