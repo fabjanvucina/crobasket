@@ -10,17 +10,27 @@ export async function register() {
 
   const displayName = name.value + " " + surname.value;
 
-  await auth
-    .createUserWithEmailAndPassword(email.value, password.value)
-    .then(() => {
-      console.log("Registration successful");
-      navigate("/");
-    })
-    .catch((e) => {
-      email.value = "";
-      password.value = "";
-      alert(e.message);
-    });
+  // Await example
+  try {
+    await auth.createUserWithEmailAndPassword(email.value, password.value);
+    console.log("Registration successful");
+    navigate("/");
+  } catch (e) {
+    email.value = "";
+    password.value = "";
+    alert(e.message);
+  }
+  // await auth
+  //   .createUserWithEmailAndPassword(email.value, password.value)
+  //   .then(() => {
+  //     console.log("Registration successful");
+  //     navigate("/");
+  //   })
+  //   .catch((e) => {
+  //     email.value = "";
+  //     password.value = "";
+  //     alert(e.message);
+  //   });
 
   await auth.currentUser.updateProfile({ displayName: displayName });
 }
