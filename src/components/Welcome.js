@@ -5,9 +5,9 @@ import Header from "./Header";
 const Welcome = () => {
   return (
     <Header
-      showOptions={true}
+      hideOptions={true}
+      hideMenu={true}
       hideLogin={false}
-      hideMenu={false}
       logoCenter={false}
     />
   );

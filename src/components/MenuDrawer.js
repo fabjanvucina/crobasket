@@ -48,11 +48,7 @@ const MenuDrawer = ({ hideMenu }) => {
 
   const anchor = "bottom";
   return (
-    <div
-      className={
-        hideMenu === true ? "menu login-container hide" : "menu login-container"
-      }
-    >
+    <div className="menu login-container">
       <MenuIcon
         fontSize="large"
         id="menu-icon"
