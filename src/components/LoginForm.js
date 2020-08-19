@@ -1,12 +1,19 @@
 import React from "react";
 import { Link } from "@reach/router";
+import { navigate } from "@reach/router"; //eslint-disable-line
+import { login } from "../authMethods.js";
 import "../style/LoginForm.css";
 import "../style/Separator.css";
 
 const LoginForm = () => {
   return (
     <div className="form">
-      <form>
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          await login();
+        }}
+      >
         <div className="text-input">
           <label htmlFor="email">Email</label>
           <input
@@ -39,9 +46,6 @@ const LoginForm = () => {
             type="submit"
             id="loginButton"
             value="Prijavi se"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
           />
 
           <span className="registerLink">

@@ -1,5 +1,5 @@
 import React from "react";
-import { navigate } from "@reach/router";
+import { navigate } from "@reach/router"; //eslint-disable-line
 import { register } from "../authMethods.js";
 import "../style/RegisterForm.css";
 import "../style/Separator.css";
@@ -11,7 +11,6 @@ const RegisterForm = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await register();
-          navigate("/");
         }}
       >
         <div className="text-input">

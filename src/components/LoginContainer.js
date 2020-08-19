@@ -11,7 +11,7 @@ const LoginContainer = ({ hideLogin }) => {
   const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(function (user) {
+    app.auth().onAuthStateChanged((user) => {
       console.log("auth state changed");
 
       if (user) {

@@ -1,36 +1,44 @@
+import { navigate } from "@reach/router";
 import app from "./firebase";
 const auth = app.auth();
 
 export async function register() {
-  const name = document.getElementById("nameSignup").value;
-  const surname = document.getElementById("surnameSignup").value;
-  const email = document.getElementById("emailSignup").value;
-  const password = document.getElementById("passwordSignup").value;
+  const name = document.getElementById("nameSignup");
+  const surname = document.getElementById("surnameSignup");
+  const email = document.getElementById("emailSignup");
+  const password = document.getElementById("passwordSignup");
 
-  const displayName = name + " " + surname;
-  console.log(displayName);
-  console.log(email, password);
+  const displayName = name.value + " " + surname.value;
 
   await auth
-    .createUserWithEmailAndPassword(email, password)
-    .then("Registration succesful")
+    .createUserWithEmailAndPassword(email.value, password.value)
+    .then(() => {
+      console.log("Registration successful");
+      navigate("/");
+    })
     .catch((e) => {
-      console.log(e.message);
+      email.value = "";
+      password.value = "";
+      alert(e.message);
     });
 
   await auth.currentUser.updateProfile({ displayName: displayName });
 }
 
 export async function login() {
-  const email = document.getElementById("emailLogin").value;
-  const password = document.getElementById("passwordLogin").value;
-  console.log(email, password);
+  const email = document.getElementById("emailLogin");
+  const password = document.getElementById("passwordLogin");
 
-  auth
-    .signInWithEmailAndPassword(email, password)
-    .then("Login succesful")
+  await auth
+    .signInWithEmailAndPassword(email.value, password.value)
+    .then(() => {
+      console.log("login successful");
+      navigate("/");
+    })
     .catch((e) => {
-      console.log(e.message);
+      email.value = "";
+      password.value = "";
+      alert(e.message);
     });
 }
 
@@ -38,7 +46,3 @@ export async function logout() {
   console.log("User has been logged out");
   auth.signOut();
 }
-
-/* export async function getCurrentUser() {
-  return auth.currentUser.displayName;
-} */
