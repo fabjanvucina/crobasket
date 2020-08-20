@@ -3,6 +3,8 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "@reach/router";
 import app from "../firebase";
 import UserContext from "../UserContext";
+import LoggedInDisplay from "./LoggedInDisplay";
+import LoggedOutDisplay from "./LoggedOutDisplay";
 import "../style/LoginContainer.css";
 import "../style/Tab.css";
 import "../style/Hide.css";
@@ -38,9 +40,11 @@ const LoginContainer = ({ hideLogin }) => {
             : "login-container tab"
         }
       >
-        <span className="user" id="displayName">
-          {user.isAuthenticated ? user.displayName : "Prijavi se"}
-        </span>
+        {user.isAuthenticated ? (
+          <LoggedInDisplay displayName={user.displayName} />
+        ) : (
+          <LoggedOutDisplay />
+        )}
         <AccountCircleIcon id="login-icon" />
       </div>
     </Link>
