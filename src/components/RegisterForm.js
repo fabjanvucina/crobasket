@@ -23,6 +23,7 @@ const RegisterForm = () => {
           <input
             type="text"
             name="name"
+            value={name}
             id="nameSignup"
             placeholder=""
             autoComplete="new-password"
@@ -37,6 +38,7 @@ const RegisterForm = () => {
           <input
             type="text"
             name="surname"
+            value={surname}
             id="surnameSignup"
             placeholder=""
             autoComplete="new-password"
@@ -51,6 +53,7 @@ const RegisterForm = () => {
           <input
             type="text"
             name="email"
+            value={email}
             id="emailSignup"
             placeholder=""
             autoComplete="off"
@@ -65,6 +68,7 @@ const RegisterForm = () => {
           <input
             type="password"
             name="password"
+            value={password}
             id="passwordSignup"
             placeholder=""
             autoComplete="off"

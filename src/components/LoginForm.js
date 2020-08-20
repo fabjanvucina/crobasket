@@ -22,6 +22,7 @@ const LoginForm = () => {
           <input
             type="text"
             name="email"
+            value={email}
             id="emailLogin"
             placeholder=""
             autoComplete="off"
@@ -36,6 +37,7 @@ const LoginForm = () => {
           <input
             type="password"
             name="password"
+            value={password}
             id="passwordLogin"
             placeholder=""
             autoComplete="new-password"
