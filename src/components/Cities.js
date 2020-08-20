@@ -15,3 +15,10 @@ const Cities = () => {
 };
 
 export default Cities;
+
+/*
+TODO: wait for issue resolve and refactor branch merge 
+      merge header optimisation branch
+      create profile component and conditionally link to it
+      implement bootleg logout
+*/

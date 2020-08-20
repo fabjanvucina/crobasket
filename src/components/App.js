@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { render } from "react-dom";
 import { Router, Link } from "@reach/router"; //eslint-disable-line
 import Welcome from "./Welcome";
 import Login from "./Login";
 import Register from "./Register";
 import Cities from "./Cities";
+import UserContext from "../UserContext";
 import "../style/style.css";
 
 const App = () => {
+  const userHook = useState({ isAuthenticated: false, displayName: "" });
   return (
     <React.StrictMode>
-      <Router>
-        <Welcome path="/" />
-        <Login path="/prijava" />
-        <Register path="/registracija" />
-        <Cities path="/gradovi" />
-      </Router>
+      <UserContext.Provider value={userHook}>
+        <Router>
+          <Welcome path="/" />
+          <Login path="/prijava" />
+          <Register path="/registracija" />
+          <Cities path="/gradovi" />
+        </Router>
+      </UserContext.Provider>
     </React.StrictMode>
   );
 };

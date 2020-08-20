@@ -6,7 +6,6 @@ const Welcome = () => {
   return (
     <Header
       showOptions={true}
-      loggedIn={false}
       hideLogin={false}
       hideMenu={false}
       logoCenter={false}
