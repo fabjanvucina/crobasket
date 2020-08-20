@@ -5,6 +5,7 @@ import Welcome from "./Welcome";
 import Login from "./Login";
 import Register from "./Register";
 import Cities from "./Cities";
+import Profile from "./Profile";
 import UserContext from "../UserContext";
 import "../style/style.css";
 
@@ -17,6 +18,7 @@ const App = () => {
           <Welcome path="/" />
           <Login path="/prijava" />
           <Register path="/registracija" />
+          <Profile path="/profil" />
           <Cities path="/gradovi" />
         </Router>
       </UserContext.Provider>

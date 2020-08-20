@@ -37,6 +37,11 @@ export async function login(email, password, setEmail, setPassword) {
 }
 
 export async function logout() {
-  console.log("User has been logged out");
-  auth.signOut();
+  try {
+    await auth.signOut();
+    console.log("User has been logged out");
+    navigate("/");
+  } catch (e) {
+    alert(e.message);
+  }
 }

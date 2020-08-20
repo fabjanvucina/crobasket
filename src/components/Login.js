@@ -7,9 +7,9 @@ const Login = () => {
   return (
     <>
       <Header
-        showOptions={false}
-        hideLogin={true}
+        hideOptions={true}
         hideMenu={true}
+        hideLogin={true}
         logoCenter={true}
       />
       <LoginForm />

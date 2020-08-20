@@ -6,8 +6,8 @@ const Welcome = () => {
   return (
     <Header
       hideOptions={true}
-      hideLogin={false}
       hideMenu={true}
+      hideLogin={false}
       logoCenter={false}
     />
   );

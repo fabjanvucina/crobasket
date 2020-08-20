@@ -7,10 +7,9 @@ const Register = () => {
   return (
     <>
       <Header
-        showOptions={false}
-        loggedIn={false}
-        hideLogin={true}
+        hideOptions={true}
         hideMenu={true}
+        hideLogin={true}
         logoCenter={true}
       />
       <RegisterForm />

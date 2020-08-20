@@ -31,7 +31,7 @@ const LoginContainer = ({ hideLogin }) => {
   }, [setUser]);
 
   return (
-    <Link to="/prijava" className="link">
+    <Link to={user.isAuthenticated ? "/profil" : "/prijava"} className="link">
       <div
         id="login-container"
         className={
