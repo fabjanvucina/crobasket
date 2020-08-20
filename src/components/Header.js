@@ -10,7 +10,7 @@ import "../style/Link.css";
 const Header = ({ logoCenter, hideMenu, showOptions, hideLogin }) => {
   return (
     <div className={logoCenter === true ? "header-center" : "header"}>
-      <MenuDrawer hideMenu={hideMenu} />
+      {hideMenu === true ? <div className="menu"></div> : <MenuDrawer />}
       <Link to="/">
         <HeaderLogo logoCenter={logoCenter} />
       </Link>
