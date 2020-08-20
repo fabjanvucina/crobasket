@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "@reach/router";
 import { navigate } from "@reach/router"; //eslint-disable-line
 import { login } from "../authMethods.js";
@@ -6,14 +6,15 @@ import "../style/LoginForm.css";
 import "../style/Separator.css";
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="form">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          const email = document.getElementById("emailLogin");
-          const password = document.getElementById("passwordLogin");
-          await login(email, password);
+          await login(email, password, setEmail, setPassword);
         }}
       >
         <div className="text-input">
@@ -25,6 +26,7 @@ const LoginForm = () => {
             placeholder=""
             autoComplete="off"
             required
+            onChange={(e) => setEmail(e.target.value)}
           />
           <span className="separator"> </span>
         </div>
@@ -38,6 +40,7 @@ const LoginForm = () => {
             placeholder=""
             autoComplete="new-password"
             required
+            onChange={(e) => setPassword(e.target.value)}
           />
           <span className="separator"> </span>
         </div>
