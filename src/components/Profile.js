@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
 import Header from "./Header";
-import { logout } from "../authMethods.js";
+import { logout } from "../firebase/authMethods.js";
 import "../style/Profile.css";
 
 const Profile = () => {

@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import app from "./firebase";
+import app from "./firebase.js";
 const auth = app.auth();
 
 export async function register(
