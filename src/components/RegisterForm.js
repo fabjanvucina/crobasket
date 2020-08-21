@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { navigate } from "@reach/router"; //eslint-disable-line
-import { register } from "../authMethods.js";
+import { register } from "../firebase/authMethods.js";
 import "../style/RegisterForm.css";
 import "../style/Separator.css";
 

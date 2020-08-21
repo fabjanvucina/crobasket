@@ -6,7 +6,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Cities from "./Cities";
 import Profile from "./Profile";
-import UserContext from "../UserContext";
+import UserContext from "../contexts/UserContext";
 import "../style/style.css";
 
 const App = () => {
