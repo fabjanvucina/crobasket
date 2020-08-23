@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "@reach/router"; //eslint-disable-line
+import { Link, navigate } from "@reach/router"; //eslint-disable-line
 import City from "../components//City";
 import HometownContext from "../contexts/HometownContext";
 import { getCities } from "../firebase/crudMethods.js";
@@ -20,6 +20,7 @@ const CitiesContainer = () => {
 
   useEffect(() => {
     setHometown("");
+    console.log("reseted hometown");
   }, [setHometown]);
 
   return (
@@ -32,6 +33,7 @@ const CitiesContainer = () => {
           onClick={() => {
             console.log("called setHometown(" + city.id + ")");
             setHometown(city.id);
+            navigate("/");
           }}
         />
       ))}
