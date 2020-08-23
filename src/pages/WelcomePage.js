@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
-import Header from "./Header";
+import HeaderContainer from "../containers/HeaderContainer";
 
 const WelcomePage = () => {
   return (
-    <Header
+    <HeaderContainer
       hideOptions={true}
       hideMenu={true}
       hideLogin={false}

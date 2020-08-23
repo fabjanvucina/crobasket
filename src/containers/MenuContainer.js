@@ -5,12 +5,12 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import "../style/LoginTab.css";
+import "../style/LoginContainer.css";
 import "../style/Tab.css";
 import "../style/Hide.css";
-import "../style/MenuDrawer.css";
+import "../style/MenuContainer.css";
 
-const MenuDrawer = ({ hideMenu }) => {
+const MenuContainer = ({ hideMenu }) => {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -71,4 +71,4 @@ const MenuDrawer = ({ hideMenu }) => {
   );
 };
 
-export default MenuDrawer;
+export default MenuContainer;

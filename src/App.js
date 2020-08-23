@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { Router, Link } from "@reach/router"; //eslint-disable-line
-import WelcomePage from "./WelcomePage";
-import LoginPage from "./LoginPage";
-import RegisterPage from "./RegisterPage";
-import CitiesPage from "./CitiesPage";
-import ProfilePage from "./ProfilePage";
-import UserContext from "../contexts/UserContext";
-import HometownContext from "../contexts/HometownContext";
-import "../style/style.css";
+import WelcomePage from "./pages/WelcomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import CitiesPage from "./pages/CitiesPage";
+import ProfilePage from "./pages/ProfilePage";
+import UserContext from "./contexts/UserContext";
+import HometownContext from "./contexts/HometownContext";
+import "./style/style.css";
 
 const App = () => {
   const userHook = useState({ isAuthenticated: false, displayName: "" });

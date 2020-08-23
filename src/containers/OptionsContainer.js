@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
-import "../style/OptionsTab.css";
+import "../style/OptionsContainer.css";
 import "../style/Tab.css";
 import "../style/Hide.css";
 
-const OptionsTab = ({ hideOptions }) => {
+const OptionsContainer = ({ hideOptions }) => {
   return (
     <div
       id="options-container"
@@ -18,4 +18,4 @@ const OptionsTab = ({ hideOptions }) => {
   );
 };
 
-export default OptionsTab;
+export default OptionsContainer;

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
-import Header from "./Header";
-import Title from "../components//Title";
-import CitiesContainer from "./CitiesContainer";
+import HeaderContainer from "../containers/HeaderContainer";
+import CitiesContainer from "../containers/CitiesContainer";
+import Title from "../components/Title";
 
 const CitiesPage = () => {
   return (
     <>
-      <Header
+      <HeaderContainer
         hideOptions={true}
         hideMenu={true}
         hideLogin={true}

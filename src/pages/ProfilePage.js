@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
-import Header from "./Header";
+import HeaderContainer from "../containers/HeaderContainer";
 import { logout } from "../firebase/authMethods.js";
 import "../style/ProfilePage.css";
 
 const ProfilePage = () => {
   return (
     <>
-      <Header
+      <HeaderContainer
         hideOptions={false}
         hideMenu={false}
         hideLogin={true}
