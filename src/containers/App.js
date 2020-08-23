@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { Router, Link } from "@reach/router"; //eslint-disable-line
-import Welcome from "./Welcome";
-import Login from "./Login";
-import Register from "./Register";
-import Cities from "./Cities";
-import Profile from "./Profile";
+import WelcomePage from "./WelcomePage";
+import LoginPage from "./LoginPage";
+import RegisterPage from "./RegisterPage";
+import CitiesPage from "./CitiesPage";
+import ProfilePage from "./ProfilePage";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
 import "../style/style.css";
@@ -18,11 +18,11 @@ const App = () => {
       <UserContext.Provider value={userHook}>
         <HometownContext.Provider value={hometownHook}>
           <Router>
-            <Welcome path="/" />
-            <Login path="/prijava" />
-            <Register path="/registracija" />
-            <Profile path="/profil" />
-            <Cities path="/gradovi" />
+            <WelcomePage path="/" />
+            <LoginPage path="/prijava" />
+            <RegisterPage path="/registracija" />
+            <ProfilePage path="/profil" />
+            <CitiesPage path="/gradovi" />
           </Router>
         </HometownContext.Provider>
       </UserContext.Provider>

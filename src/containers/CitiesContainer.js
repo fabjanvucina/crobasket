@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
-import City from "./City";
+import City from "../components//City";
 import HometownContext from "../contexts/HometownContext";
 import { getCities } from "../firebase/crudMethods.js";
 import "../style/CitiesContainer.css";

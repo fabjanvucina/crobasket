@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
-import RegisterForm from "./RegisterForm";
+import RegisterForm from "../components//RegisterForm";
 
-const Register = () => {
+const RegisterPage = () => {
   return (
     <>
       <RegisterForm />
@@ -10,4 +10,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

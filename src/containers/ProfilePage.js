@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
 import Header from "./Header";
 import { logout } from "../firebase/authMethods.js";
-import "../style/Profile.css";
+import "../style/ProfilePage.css";
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <>
       <Header
@@ -22,4 +22,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
 import Header from "./Header";
-import Title from "./Title";
+import Title from "../components//Title";
 import CitiesContainer from "./CitiesContainer";
 
-const Cities = () => {
+const CitiesPage = () => {
   return (
     <>
       <Header
@@ -19,4 +19,4 @@ const Cities = () => {
   );
 };
 
-export default Cities;
+export default CitiesPage;

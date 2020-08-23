@@ -3,13 +3,13 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "@reach/router";
 import app from "../firebase/firebase.js";
 import UserContext from "../contexts/UserContext";
-import LoggedInDisplay from "./LoggedInDisplay";
-import LoggedOutDisplay from "./LoggedOutDisplay";
-import "../style/LoginContainer.css";
+import LoggedInDisplay from "../components//LoggedInDisplay";
+import LoggedOutDisplay from "../components//LoggedOutDisplay";
+import "../style/LoginTab.css";
 import "../style/Tab.css";
 import "../style/Hide.css";
 
-const LoginContainer = ({ hideLogin }) => {
+const LoginTab = ({ hideLogin }) => {
   const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
@@ -49,4 +49,4 @@ const LoginContainer = ({ hideLogin }) => {
   );
 };
 
-export default LoginContainer;
+export default LoginTab;

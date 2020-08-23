@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
-import LoginForm from "./LoginForm";
+import LoginForm from "../components/LoginForm";
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <>
       <LoginForm />
@@ -10,4 +10,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

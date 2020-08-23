@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
 import Header from "./Header";
 
-const Welcome = () => {
+const WelcomePage = () => {
   return (
     <Header
       hideOptions={true}
@@ -13,4 +13,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default WelcomePage;
