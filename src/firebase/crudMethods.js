@@ -3,8 +3,7 @@ const db = app.firestore();
 
 export async function getCities() {
   try {
-    let snapshot = [];
-    snapshot = await db.collection("cities").get();
+    const snapshot = await db.collection("cities").get();
     console.log("Fetched cities");
     return snapshot.docs;
   } catch (e) {

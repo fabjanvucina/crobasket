@@ -4,8 +4,6 @@
 
 @media only screen and (min-width: 850px) {
   .form {
-    /* width: 31.25vw;
-        min-width: 400px; */
     width: 400px;
     background-color: #272121;
     border: 2px solid black;

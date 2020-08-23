@@ -16,7 +16,7 @@ export async function register(
     await auth.createUserWithEmailAndPassword(email, password);
     console.log("Registration successful");
     await auth.currentUser.updateProfile({ displayName: displayName });
-    navigate("/");
+    navigate("/gradovi");
   } catch (e) {
     setEmail("");
     setPassword("");
@@ -28,7 +28,7 @@ export async function login(email, password, setEmail, setPassword) {
   try {
     await auth.signInWithEmailAndPassword(email, password);
     console.log("Login successful");
-    navigate("/");
+    navigate("/gradovi");
   } catch (e) {
     setEmail("");
     setPassword("");

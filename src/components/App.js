@@ -7,20 +7,24 @@ import Register from "./Register";
 import Cities from "./Cities";
 import Profile from "./Profile";
 import UserContext from "../contexts/UserContext";
+import HometownContext from "../contexts/HometownContext";
 import "../style/style.css";
 
 const App = () => {
   const userHook = useState({ isAuthenticated: false, displayName: "" });
+  const hometownHook = useState("");
   return (
     <React.StrictMode>
       <UserContext.Provider value={userHook}>
-        <Router>
-          <Welcome path="/" />
-          <Login path="/prijava" />
-          <Register path="/registracija" />
-          <Profile path="/profil" />
-          <Cities path="/gradovi" />
-        </Router>
+        <HometownContext.Provider value={hometownHook}>
+          <Router>
+            <Welcome path="/" />
+            <Login path="/prijava" />
+            <Register path="/registracija" />
+            <Profile path="/profil" />
+            <Cities path="/gradovi" />
+          </Router>
+        </HometownContext.Provider>
       </UserContext.Provider>
     </React.StrictMode>
   );

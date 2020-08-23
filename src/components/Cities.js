@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
 import Header from "./Header";
 import Title from "./Title";
-import CitiesContainer from "./CitiesContainer"; //eslint-disable-line
+import CitiesContainer from "./CitiesContainer";
 
 const Cities = () => {
   return (
