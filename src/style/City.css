@@ -1,0 +1,33 @@
+@media only screen and (min-width: 850px) {
+  .city {
+    display: inline-block;
+    width: 25vw;
+    height: 25vw;
+    margin: 0 2vw 10vw 2vw;
+    background-color: red;
+    transition: transform 0.4s;
+    border-radius: 20px;
+  }
+
+  .city:hover {
+    transform: scale(1.1);
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .city {
+    display: block;
+    width: 40vw;
+    height: 40vw;
+    min-width: 300px;
+    min-height: 300px;
+    margin: 0 auto 80px auto;
+    background-color: red;
+    transition: transform 0.4s;
+    border-radius: 20px;
+  }
+
+  .city:hover {
+    transform: scale(1.1);
+  }
+}

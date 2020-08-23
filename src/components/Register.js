@@ -10,7 +10,7 @@ const Register = () => {
         hideOptions={true}
         hideMenu={true}
         hideLogin={true}
-        logoCenter={true}
+        logoCenter={false}
       />
       <RegisterForm />
     </>

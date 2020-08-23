@@ -7,12 +7,12 @@ import LoginContainer from "./LoginContainer";
 import "../style/Header.css";
 import "../style/Link.css";
 
-const Header = ({ logoCenter, hideMenu, hideOptions, hideLogin }) => {
+const Header = ({ hideMenu, hideOptions, hideLogin }) => {
   return (
-    <div className={logoCenter === true ? "header-center" : "header"}>
-      {hideMenu === true ? <div className="menu"></div> : <MenuDrawer />}
+    <div className="header">
+      <MenuDrawer hideMenu={hideMenu} />
       <Link to="/">
-        <HeaderLogo logoCenter={logoCenter} />
+        <HeaderLogo />
       </Link>
       <OptionsContainer hideOptions={hideOptions} />
       <LoginContainer hideLogin={hideLogin} />

@@ -1,15 +1,21 @@
 import React from "react";
 import { Link } from "@reach/router"; //eslint-disable-line
 import Header from "./Header";
+import Title from "./Title";
+import CitiesContainer from "./CitiesContainer"; //eslint-disable-line
 
 const Cities = () => {
   return (
-    <Header
-      hideOptions={true}
-      hideMenu={true}
-      hideLogin={false}
-      logoCenter={false}
-    />
+    <>
+      <Header
+        hideOptions={true}
+        hideMenu={true}
+        hideLogin={true}
+        logoCenter={false}
+      />
+      <Title value="Odaberi grad" />
+      <CitiesContainer />
+    </>
   );
 };
 

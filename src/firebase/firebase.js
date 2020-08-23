@@ -18,6 +18,5 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics(); //eslint-disable-line
-//const db = firebase.firestore();
 
 export default app;
