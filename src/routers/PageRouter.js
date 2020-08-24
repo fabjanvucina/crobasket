@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import app from "../firebase/firebase.js";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,8 +14,25 @@ import ProfilePage from "../pages/ProfilePage";
 import UserContext from "../contexts/UserContext";
 
 const PageRouter = () => {
-  const [user] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
   console.log("is authenticated:", user.isAuthenticated);
+
+  useEffect(() => {
+    app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser({
+          isAuthenticated: true,
+          displayName: app.auth().currentUser.displayName
+        });
+      } else {
+        setUser({
+          isAuthenticated: false,
+          displayName: ""
+        });
+      }
+    });
+  }, [setUser]);
+
   return (
     <Router>
       <Switch>
