@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import app from "../firebase/firebase.js";
 import UserContext from "../contexts/UserContext";
-import LoggedInDisplay from "./LoggedInDisplay";
-import LoggedOutDisplay from "./LoggedOutDisplay";
+import LoggedInDisplay from "../components/LoggedInDisplay";
+import LoggedOutDisplay from "../components/LoggedOutDisplay";
 import "../style/LoginContainer.css";
 import "../style/Tab.css";
 import "../style/Hide.css";
@@ -14,8 +14,6 @@ const LoginContainer = ({ hideLogin }) => {
 
   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
-      console.log("auth state changed");
-
       if (user) {
         setUser({
           isAuthenticated: true,

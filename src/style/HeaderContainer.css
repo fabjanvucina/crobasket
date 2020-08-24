@@ -10,33 +10,12 @@
     background-color: #272121;
     font-size: max(min(2.76vh, 20px), 12px);
   }
-
-  .header-center {
-    position: sticky;
-    display: flex;
-    justify-content: center;
-    height: 10.3vh;
-    max-height: 80px;
-    min-height: 40px;
-    border-bottom: 0.2vh solid black;
-    background-color: #272121;
-    font-size: max(min(2.76vh, 20px), 12px);
-  }
 }
 
 @media only screen and (max-width: 850px) {
   .header {
     display: flex;
     justify-content: space-between;
-    height: 10.3vh;
-    min-height: 40px;
-    border-bottom: 1px solid #000000;
-    background-color: #272121;
-  }
-
-  .header-center {
-    display: flex;
-    justify-content: center;
     height: 10.3vh;
     min-height: 40px;
     border-bottom: 1px solid #000000;

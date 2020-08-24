@@ -10,8 +10,6 @@
 
 @media only screen and (min-width: 850px) {
   .form-signin {
-    /* width: 31.25vw;
-        min-width: 400px; */
     width: 25vw;
     min-width: 400px;
     background-color: #272121;
@@ -20,7 +18,7 @@
     padding: 20px;
     margin: 0 auto;
     text-align: left;
-    margin-top: 10vh;
+    margin-top: 15vh;
   }
 
   .form-signin label {
