@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../firebase/authMethods.js";
 import "../style/LoginForm.css";
 import "../style/Separator.css";
 
 const LoginForm = () => {
+  let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,6 +15,9 @@ const LoginForm = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await login(email, password, setEmail, setPassword);
+          console.log("finished login");
+          history.push("/gradovi");
+          console.log("shouldve pushed gradovi");
         }}
       >
         <div className="text-input">

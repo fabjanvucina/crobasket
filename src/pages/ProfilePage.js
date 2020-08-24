@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "@reach/router"; //eslint-disable-line
+import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
 import { logout } from "../firebase/authMethods.js";
 import "../style/ProfilePage.css";
 
 const ProfilePage = () => {
+  let history = useHistory();
+
   return (
     <>
       <HeaderContainer
@@ -14,7 +16,13 @@ const ProfilePage = () => {
         logoCenter={false}
       />
       <div id="logoutDiv">
-        <button id="logoutButton" onClick={() => logout()}>
+        <button
+          id="logoutButton"
+          onClick={async () => {
+            await logout();
+            history.push("/");
+          }}
+        >
           LOGOUT
         </button>
       </div>

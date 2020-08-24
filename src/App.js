@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
-import { Router, Link } from "@reach/router"; //eslint-disable-line
-import WelcomePage from "./pages/WelcomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import CitiesPage from "./pages/CitiesPage";
-import ProfilePage from "./pages/ProfilePage";
 import UserContext from "./contexts/UserContext";
 import HometownContext from "./contexts/HometownContext";
+import PageRouter from "./routers/PageRouter";
 import "./style/style.css";
 
 const App = () => {
@@ -17,13 +12,7 @@ const App = () => {
     <React.StrictMode>
       <UserContext.Provider value={userHook}>
         <HometownContext.Provider value={hometownHook}>
-          <Router>
-            <WelcomePage path="/" />
-            <LoginPage path="/prijava" />
-            <RegisterPage path="/registracija" />
-            <ProfilePage path="/profil" />
-            <CitiesPage path="/gradovi" />
-          </Router>
+          <PageRouter />
         </HometownContext.Provider>
       </UserContext.Provider>
     </React.StrictMode>

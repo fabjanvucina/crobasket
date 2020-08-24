@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import { register } from "../firebase/authMethods.js";
 import "../style/RegisterForm.css";
 import "../style/Separator.css";
 
 const RegisterForm = () => {
+  let history = useHistory();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +17,7 @@ const RegisterForm = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await register(name, surname, email, password, setEmail, setPassword);
+          history.push("/gradovi");
         }}
       >
         <div className="text-input">

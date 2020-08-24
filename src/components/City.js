@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@reach/router"; //eslint-disable-line
+import { Link } from "react-router-dom"; //eslint-disable-line
 import "../style/City.css";
 
 const City = ({ name, imgSrc, onClick }) => {

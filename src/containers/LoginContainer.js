@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import app from "../firebase/firebase.js";
 import UserContext from "../contexts/UserContext";
 import LoggedInDisplay from "../components/LoggedInDisplay";

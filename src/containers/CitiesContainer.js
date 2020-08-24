@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, navigate } from "@reach/router"; //eslint-disable-line
+import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import City from "../components//City";
 import HometownContext from "../contexts/HometownContext";
 import { getCities } from "../firebase/crudMethods.js";
 import "../style/CitiesContainer.css";
 
 const CitiesContainer = () => {
+  let history = useHistory();
   const [cities, setCities] = useState([]);
   const [hometown, setHometown] = useContext(HometownContext); //eslint-disable-line
 
@@ -33,7 +34,7 @@ const CitiesContainer = () => {
           onClick={() => {
             console.log("called setHometown(" + city.id + ")");
             setHometown(city.id);
-            navigate("/");
+            history.push("/profil");
           }}
         />
       ))}
