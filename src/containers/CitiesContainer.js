@@ -21,7 +21,6 @@ const CitiesContainer = () => {
 
   useEffect(() => {
     setHometown("");
-    console.log("reseted hometown");
   }, [setHometown]);
 
   return (
@@ -32,7 +31,6 @@ const CitiesContainer = () => {
           name={city.data().displayName}
           imgSrc={city.data().imgUrl}
           onClick={() => {
-            console.log("called setHometown(" + city.id + ")");
             setHometown(city.id);
             history.push("/profil");
           }}

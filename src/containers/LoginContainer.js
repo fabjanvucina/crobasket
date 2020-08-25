@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react"; //eslint-disable-line
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "react-router-dom";
-import app from "../firebase/firebase.js";
+import app from "../firebase/firebase.js"; //eslint-disable-line
 import UserContext from "../contexts/UserContext";
 import LoggedInDisplay from "../components/LoggedInDisplay";
 import LoggedOutDisplay from "../components/LoggedOutDisplay";
@@ -10,9 +10,9 @@ import "../style/Tab.css";
 import "../style/Hide.css";
 
 const LoginContainer = ({ hideLogin }) => {
-  const [user, setUser] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext); //eslint-disable-line
 
-  useEffect(() => {
+  /*   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser({
@@ -26,7 +26,7 @@ const LoginContainer = ({ hideLogin }) => {
         });
       }
     });
-  }, [setUser]);
+  }, [setUser]); */
 
   return (
     <Link to={user.isAuthenticated ? "/profil" : "/prijava"} className="link">

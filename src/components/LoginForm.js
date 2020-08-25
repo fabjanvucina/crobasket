@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 import { login } from "../firebase/authMethods.js";
 import "../style/LoginForm.css";
 import "../style/Separator.css";
@@ -8,6 +10,7 @@ const LoginForm = () => {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useContext(UserContext); //eslint-disable-line
 
   return (
     <div className="form">
@@ -15,9 +18,11 @@ const LoginForm = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await login(email, password, setEmail, setPassword);
-          console.log("finished login");
+          /* setUser({
+            isAuthenticated: true,
+            displayName: app.auth().currentUser.displayName
+          }); */
           history.push("/gradovi");
-          console.log("shouldve pushed gradovi");
         }}
       >
         <div className="text-input">

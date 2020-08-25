@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import app from "../firebase/firebase.js";
+import React, { useContext, useEffect } from "react"; //eslint-disable-line
+import app from "../firebase/firebase.js"; //eslint-disable-line
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,6 +19,7 @@ const PageRouter = () => {
 
   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
+      console.log("auth state changed");
       if (user) {
         setUser({
           isAuthenticated: true,

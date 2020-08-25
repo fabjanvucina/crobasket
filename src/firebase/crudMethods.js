@@ -7,7 +7,6 @@ export async function getCities() {
       .collection("cities")
       .orderBy("populationRank")
       .get();
-    console.log("Fetched cities");
     return snapshot.docs;
   } catch (e) {
     console.log(e.message);

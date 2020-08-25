@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
+import app from "../firebase/firebase.js"; //eslint-disable-line
+import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
 import "../style/RegisterForm.css";
 import "../style/Separator.css";
@@ -10,6 +12,7 @@ const RegisterForm = () => {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useContext(UserContext); //eslint-disable-line
 
   return (
     <div className="form-signin">
@@ -17,6 +20,10 @@ const RegisterForm = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await register(name, surname, email, password, setEmail, setPassword);
+          /* setUser({
+            isAuthenticated: true,
+            displayName: app.auth().currentUser.displayName
+          }); */
           history.push("/gradovi");
         }}
       >
