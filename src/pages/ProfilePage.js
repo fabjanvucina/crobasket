@@ -24,10 +24,10 @@ const ProfilePage = () => {
           id="logoutButton"
           onClick={async () => {
             await logout();
-            /* setUser({
+            setUser({
               isAuthenticated: false,
               displayName: ""
-            }); */
+            });
             history.push("/");
           }}
         >

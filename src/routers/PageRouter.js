@@ -14,13 +14,13 @@ import ProfilePage from "../pages/ProfilePage";
 import UserContext from "../contexts/UserContext";
 
 const PageRouter = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext); //eslint-disable-line
   console.log("is authenticated:", user.isAuthenticated);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged((user) => {
+    app.auth().onAuthStateChanged((/* user */) => {
       console.log("auth state changed");
-      if (user) {
+      /* if (user) {
         setUser({
           isAuthenticated: true,
           displayName: app.auth().currentUser.displayName
@@ -30,7 +30,7 @@ const PageRouter = () => {
           isAuthenticated: false,
           displayName: ""
         });
-      }
+      } */
     });
   }, [setUser]);
 

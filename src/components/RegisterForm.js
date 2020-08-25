@@ -20,10 +20,10 @@ const RegisterForm = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await register(name, surname, email, password, setEmail, setPassword);
-          /* setUser({
+          setUser({
             isAuthenticated: true,
             displayName: app.auth().currentUser.displayName
-          }); */
+          });
           history.push("/gradovi");
         }}
       >

@@ -9,8 +9,8 @@ import "./style/style.css";
 const App = () => {
   const [user] = useContext(UserContext);
   const userHook = useState({
-    isAuthenticated: user ? true : false,
-    displayName: user ? user.displayName : ""
+    isAuthenticated: user.isAuthenticated,
+    displayName: user.displayName
   });
   const hometownHook = useState("");
 

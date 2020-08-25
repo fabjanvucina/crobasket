@@ -18,10 +18,10 @@ const LoginForm = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await login(email, password, setEmail, setPassword);
-          /* setUser({
+          setUser({
             isAuthenticated: true,
             displayName: app.auth().currentUser.displayName
-          }); */
+          });
           history.push("/gradovi");
         }}
       >
