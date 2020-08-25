@@ -18,8 +18,9 @@ const PageRouter = () => {
   console.log("is authenticated:", user.isAuthenticated);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged((/* user */) => {
+    app.auth().onAuthStateChanged((user) => {
       console.log("auth state changed");
+      console.log(user);
       /* if (user) {
         setUser({
           isAuthenticated: true,
@@ -32,7 +33,7 @@ const PageRouter = () => {
         });
       } */
     });
-  }, [setUser]);
+  }, [user]);
 
   return (
     <Router>
