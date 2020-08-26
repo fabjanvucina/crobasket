@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
+import { useHistory } from "react-router-dom";
 import City from "../components//City";
 import HometownContext from "../contexts/HometownContext";
 import { getCities } from "../firebase/crudMethods.js";

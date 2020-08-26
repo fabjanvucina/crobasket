@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import app from "../firebase/firebase.js"; //eslint-disable-line
+import { useHistory } from "react-router-dom";
+import app from "../firebase/firebase.js";
 import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
 import "../style/RegisterForm.css";
@@ -12,11 +12,18 @@ const handleRegistration = async (
   email,
   password,
   setEmail,
-  setPassword
+  setPassword,
+  setUser,
+  history
 ) => {
   await register(name, surname, email, password, setEmail, setPassword);
-  localStorage.setItem("isAuthenicated", true);
+  localStorage.setItem("isAuthenticated", true);
   localStorage.setItem("displayName", app.auth().currentUser.displayName);
+  setUser({
+    isAuthenticated: true,
+    displayName: app.auth().currentUser.displayName
+  });
+  history.push("/gradovi");
 };
 
 const RegisterForm = () => {
@@ -25,7 +32,7 @@ const RegisterForm = () => {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const authState = useContext(UserContext); //eslint-disable-line
+  const [user, setUser] = useContext(UserContext); //eslint-disable-line
 
   return (
     <div className="form-signin">
@@ -38,14 +45,10 @@ const RegisterForm = () => {
             email,
             password,
             setEmail,
-            setPassword
+            setPassword,
+            setUser,
+            history
           );
-          /*  await register(name, surname, email, password, setEmail, setPassword);
-          setUser({
-            isAuthenticated: true,
-            displayName: app.auth().currentUser.displayName
-          }); */
-          history.push("/gradovi");
         }}
       >
         <div className="text-input">

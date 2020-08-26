@@ -1,32 +1,23 @@
-import React, { useState, useContext } from "react"; //eslint-disable-line
-import app from "./firebase/firebase.js"; //eslint-disable-line
+import React, { useState } from "react";
 import { render } from "react-dom";
-import UserContext from "./contexts/UserContext"; //eslint-disable-line
+import UserContext from "./contexts/UserContext";
 import HometownContext from "./contexts/HometownContext";
 import PageRouter from "./routers/PageRouter";
 import "./style/style.css";
 
 const App = () => {
-  /* const [user] = useContext(UserContext);
+  const isAuthenticated = localStorage.getItem("isAuthenticated"); //on app render, instead of user state, we're reading from localStorage which persists regardless of refresh
+  const displayName = localStorage.getItem("displayName");
   const userHook = useState({
-    isAuthenticated: user.isAuthenticated ? true : false,
-    displayName: user.displayName ? user.displayName : ""
-  }); */
-  let authState = {};
-  if (localStorage.getItem("isAuthenticated")) {
-    authState = {
-      isAuthenticated: true,
-      displayName: localStorage.getItem("displayName")
-    };
-  } else {
-    authState = { isAuthenticated: false, displayName: "" };
-  }
-
+    isAuthenticated: isAuthenticated ? true : false,
+    displayName: isAuthenticated ? displayName : ""
+  });
   const hometownHook = useState("");
+  console.log("is authenticated: ", isAuthenticated ? true : false);
 
   return (
     <React.StrictMode>
-      <UserContext.Provider value={authState}>
+      <UserContext.Provider value={userHook}>
         <HometownContext.Provider value={hometownHook}>
           <PageRouter />
         </HometownContext.Provider>

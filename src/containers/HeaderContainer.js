@@ -9,12 +9,12 @@ import "../style/HeaderContainer.css";
 import "../style/Link.css";
 
 const HeaderContainer = ({ hideMenu, hideOptions, hideLogin }) => {
-  const authState = useContext(UserContext);
+  const [user] = useContext(UserContext);
 
   return (
     <div className="header">
       <MenuContainer hideMenu={hideMenu} />
-      <Link to={authState.isAuthenticated ? "/gradovi" : "/"}>
+      <Link to={user.isAuthenticated ? "/gradovi" : "/"}>
         <HeaderLogo />
       </Link>
       <OptionsContainer hideOptions={hideOptions} />
