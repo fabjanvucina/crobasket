@@ -30,6 +30,7 @@ const LoginForm = () => {
             "displayName",
             app.auth().currentUser.displayName
           );*/
+          authState.isAuthenticated = true;
           console.log("about to push /gradovi");
           history.push("/gradovi");
           console.log("should've pushed /gradovi");
