@@ -10,7 +10,7 @@ import "../style/Tab.css";
 import "../style/Hide.css";
 
 const LoginContainer = ({ hideLogin }) => {
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
+  const authState = useContext(UserContext); //eslint-disable-line
 
   /*   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
@@ -29,7 +29,10 @@ const LoginContainer = ({ hideLogin }) => {
   }, [setUser]); */
 
   return (
-    <Link to={user.isAuthenticated ? "/profil" : "/prijava"} className="link">
+    <Link
+      to={authState.isAuthenticated ? "/profil" : "/prijava"}
+      className="link"
+    >
       <div
         id="login-container"
         className={
@@ -38,8 +41,8 @@ const LoginContainer = ({ hideLogin }) => {
             : "login-container tab"
         }
       >
-        {user.isAuthenticated ? (
-          <LoggedInDisplay displayName={user.displayName} />
+        {authState.isAuthenticated ? (
+          <LoggedInDisplay displayName={authState.displayName} />
         ) : (
           <LoggedOutDisplay />
         )}

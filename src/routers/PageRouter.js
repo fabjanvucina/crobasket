@@ -14,14 +14,14 @@ import ProfilePage from "../pages/ProfilePage";
 import UserContext from "../contexts/UserContext";
 
 const PageRouter = () => {
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
-  console.log("is authenticated:", user.isAuthenticated);
+  const authState = useContext(UserContext); //eslint-disable-line
+  console.log("is authenticated:", authState.isAuthenticated);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged((user) => {
+    app.auth().onAuthStateChanged((/* user */) => {
       console.log("auth state changed");
-      console.log(user);
-      /* if (user) {
+      /* console.log(user);
+      if (user) {
         setUser({
           isAuthenticated: true,
           displayName: app.auth().currentUser.displayName
@@ -33,29 +33,49 @@ const PageRouter = () => {
         });
       } */
     });
-  }, [user]);
+  }, [authState]);
 
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          {user.isAuthenticated ? <Redirect to="/profil" /> : <WelcomePage />}
+          {authState.isAuthenticated ? (
+            <Redirect to="/profil" />
+          ) : (
+            <WelcomePage />
+          )}
         </Route>
 
         <Route exact path="/prijava">
-          {user.isAuthenticated ? <Redirect to="/profil" /> : <LoginPage />}
+          {authState.isAuthenticated ? (
+            <Redirect to="/profil" />
+          ) : (
+            <LoginPage />
+          )}
         </Route>
 
         <Route exact path="/registracija">
-          {user.isAuthenticated ? <Redirect to="/profil" /> : <RegisterPage />}
+          {authState.isAuthenticated ? (
+            <Redirect to="/profil" />
+          ) : (
+            <RegisterPage />
+          )}
         </Route>
 
         <Route exact path="/profil">
-          {user.isAuthenticated ? <ProfilePage /> : <Redirect to="/prijava" />}
+          {authState.isAuthenticated ? (
+            <ProfilePage />
+          ) : (
+            <Redirect to="/prijava" />
+          )}
         </Route>
 
         <Route exact path="/gradovi">
-          {user.isAuthenticated ? <CitiesPage /> : <Redirect to="/prijava" />}
+          {authState.isAuthenticated ? (
+            <CitiesPage />
+          ) : (
+            <Redirect to="/prijava" />
+          )}
         </Route>
 
         {/* <WelcomePage path="/" />

@@ -6,23 +6,33 @@ import { login } from "../firebase/authMethods.js";
 import "../style/LoginForm.css";
 import "../style/Separator.css";
 
+const handleLogin = async (email, password, setEmail, setPassword) => {
+  await login(email, password, setEmail, setPassword);
+  localStorage.setItem("isAuthenicated", true);
+  localStorage.setItem("displayName", app.auth().currentUser.displayName);
+};
+
 const LoginForm = () => {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
+  const authState = useContext(UserContext); //eslint-disable-line
 
   return (
     <div className="form">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await login(email, password, setEmail, setPassword);
-          setUser({
-            isAuthenticated: true,
-            displayName: app.auth().currentUser.displayName
-          });
+          await handleLogin(email, password, setEmail, setPassword);
+          /* await login(email, password, setEmail, setPassword);
+          localStorage.setItem("isAuthenicated", true);
+          localStorage.setItem(
+            "displayName",
+            app.auth().currentUser.displayName
+          );*/
+          console.log("about to push /gradovi");
           history.push("/gradovi");
+          console.log("should've pushed /gradovi");
         }}
       >
         <div className="text-input">

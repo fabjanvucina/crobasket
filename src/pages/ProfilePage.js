@@ -6,6 +6,12 @@ import UserContext from "../contexts/UserContext";
 import { logout } from "../firebase/authMethods.js";
 import "../style/ProfilePage.css";
 
+const handleLogout = async () => {
+  await logout();
+  localStorage.setItem("isAuthenicated", false);
+  localStorage.setItem("displayName", "");
+};
+
 const ProfilePage = () => {
   let history = useHistory();
   const [user, setUser] = useContext(UserContext); //eslint-disable-line
@@ -23,11 +29,12 @@ const ProfilePage = () => {
         <button
           id="logoutButton"
           onClick={async () => {
-            await logout();
+            await handleLogout();
+            /* await logout();
             setUser({
               isAuthenticated: false,
               displayName: ""
-            });
+            }); */
             history.push("/");
           }}
         >
