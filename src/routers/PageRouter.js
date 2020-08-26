@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react"; //eslint-disable-line
-import app from "../firebase/firebase.js"; //eslint-disable-line
+import React, { useContext, useEffect } from "react";
+import app from "../firebase/firebase.js";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,22 +15,10 @@ import UserContext from "../contexts/UserContext";
 
 const PageRouter = () => {
   const [user, setUser] = useContext(UserContext);
-  console.log("is authenticated:", user.isAuthenticated);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged((user) => {
+    app.auth().onAuthStateChanged(() => {
       console.log("auth state changed");
-      if (user) {
-        setUser({
-          isAuthenticated: true,
-          displayName: app.auth().currentUser.displayName
-        });
-      } else {
-        setUser({
-          isAuthenticated: false,
-          displayName: ""
-        });
-      }
     });
   }, [setUser]);
 
@@ -56,12 +44,6 @@ const PageRouter = () => {
         <Route exact path="/gradovi">
           {user.isAuthenticated ? <CitiesPage /> : <Redirect to="/prijava" />}
         </Route>
-
-        {/* <WelcomePage path="/" />
-        <LoginPage path="/prijava" />
-        <RegisterPage path="/registracija" />
-        <ProfilePage path="/profil" />
-        <CitiesPage path="/gradovi" /> */}
       </Switch>
     </Router>
   );

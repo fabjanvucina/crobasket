@@ -10,23 +10,7 @@ import "../style/Tab.css";
 import "../style/Hide.css";
 
 const LoginContainer = ({ hideLogin }) => {
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
-
-  /*   useEffect(() => {
-    app.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser({
-          isAuthenticated: true,
-          displayName: app.auth().currentUser.displayName
-        });
-      } else {
-        setUser({
-          isAuthenticated: false,
-          displayName: ""
-        });
-      }
-    });
-  }, [setUser]); */
+  const [user] = useContext(UserContext); //eslint-disable-line
 
   return (
     <Link to={user.isAuthenticated ? "/profil" : "/prijava"} className="link">
