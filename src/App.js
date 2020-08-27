@@ -8,11 +8,12 @@ import "./style/style.css";
 const App = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated"); //on app render, instead of user state, we're reading from localStorage which persists regardless of refresh
   const displayName = localStorage.getItem("displayName");
+  const hometown = localStorage.getItem("hometown");
   const userHook = useState({
     isAuthenticated: isAuthenticated ? true : false,
     displayName: isAuthenticated ? displayName : ""
   });
-  const hometownHook = useState("");
+  const hometownHook = useState(hometown ? hometown : "");
   console.log("is authenticated: ", isAuthenticated ? true : false);
 
   return (

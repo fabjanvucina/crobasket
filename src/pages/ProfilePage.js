@@ -8,8 +8,9 @@ import "../style/ProfilePage.css";
 
 const handleLogout = async (setUser, history) => {
   await logout();
-  localStorage.setItem("isAuthenticated", false);
-  localStorage.setItem("displayName", "");
+  localStorage.removeItem("isAuthenticated");
+  localStorage.removeItem("displayName");
+  localStorage.removeItem("hometown");
   setUser({
     isAuthenticated: false,
     displayName: ""

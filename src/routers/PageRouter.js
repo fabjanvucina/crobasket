@@ -12,9 +12,21 @@ import RegisterPage from "../pages/RegisterPage";
 import CitiesPage from "../pages/CitiesPage";
 import ProfilePage from "../pages/ProfilePage";
 import UserContext from "../contexts/UserContext";
+import HometownContext from "../contexts/HometownContext";
+
+const profileRedirect = (isAuthenticated, hometown) => {
+  if (!isAuthenticated) {
+    return <Redirect to="/prijava" />;
+  } else if (hometown === "") {
+    return <Redirect to="/gradovi" />;
+  } else {
+    return <ProfilePage />;
+  }
+};
 
 const PageRouter = () => {
   const [user, setUser] = useContext(UserContext);
+  const [hometown] = useContext(HometownContext);
 
   useEffect(() => {
     app.auth().onAuthStateChanged(() => {
@@ -38,7 +50,7 @@ const PageRouter = () => {
         </Route>
 
         <Route exact path="/profil">
-          {user.isAuthenticated ? <ProfilePage /> : <Redirect to="/prijava" />}
+          {profileRedirect(user.isAuthenticated, hometown)}
         </Route>
 
         <Route exact path="/gradovi">
