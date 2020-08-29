@@ -14,6 +14,7 @@ export async function register(
   try {
     await auth.createUserWithEmailAndPassword(email, password);
     await auth.currentUser.updateProfile({ displayName: displayName });
+    return auth.currentUser.uid;
   } catch (e) {
     setEmail("");
     setPassword("");

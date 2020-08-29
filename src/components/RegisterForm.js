@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import app from "../firebase/firebase.js";
 import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
+import { addUser } from "../firebase/crudMethods.js";
 import "../style/RegisterForm.css";
 import "../style/Separator.css";
 
@@ -16,7 +17,15 @@ const handleRegistration = async (
   setUser,
   history
 ) => {
-  await register(name, surname, email, password, setEmail, setPassword);
+  const uid = await register(
+    name,
+    surname,
+    email,
+    password,
+    setEmail,
+    setPassword
+  );
+  await addUser(name, surname, uid);
   localStorage.setItem("isAuthenticated", true);
   localStorage.setItem("displayName", app.auth().currentUser.displayName);
   setUser({

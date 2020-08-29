@@ -12,3 +12,14 @@ export async function getCities() {
     console.log(e.message);
   }
 }
+
+export async function addUser(name, surname, uid) {
+  try {
+    await db.collection("users").doc(uid).set({
+      name: name,
+      surname: surname
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
