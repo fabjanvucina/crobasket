@@ -1,9 +1,5 @@
-#loginButton:hover {
-  background-color: #bc4f1a;
-}
-
 @media only screen and (min-width: 850px) {
-  .form {
+  .inviteForm {
     width: 600px;
     background-color: #272121;
     border: 2px solid black;
@@ -11,45 +7,10 @@
     padding: 20px;
     margin: 0 auto;
     text-align: left;
-    margin-top: 15vh;
-  }
-  .form label {
-    display: block;
-    text-align: left;
-    color: #f6e9e9;
-    font-size: 1em;
-  }
-  .form form .text-input {
-    overflow: hidden;
-    margin-bottom: 0.875em;
+    margin-top: 12vh;
   }
 
-  .form form input[type="text"],
-  .form form input[type="password"] {
-    width: 100%;
-    padding: 1em 0 12px 4px;
-    background: none;
-    color: #f6e9e9;
-    font-size: 1.2em;
-    font-weight: 400;
-    border: none;
-    border-bottom: 1px solid grey;
-    /*Some sibling magic happens */
-  }
-  .form form input[type="text"]:focus + .separator,
-  .form form input[type="password"]:focus + .separator {
-    transform: scaleX(1) translateY(-2px);
-    opacity: 1;
-  }
-
-  option {
-    background-color: #272121;
-  }
-  option:hover {
-    background-color: #363333;
-  }
-
-  .form form input[type="submit"] {
+  #inviteButton {
     color: #f6e9e9;
     background: #e16428;
     padding: 1em 1.4em;
@@ -58,14 +19,15 @@
     border-radius: 60px;
   }
 
+  #inviteButton:hover {
+    background-color: #bc4f1a;
+  }
+
   .form-bottom {
     margin-top: 1.25em;
     display: flex;
+    flex-direction: row;
     justify-content: center;
-  }
-
-  .test {
-    color: wheat;
   }
 }
 
@@ -79,59 +41,5 @@
     margin: 0 auto;
     text-align: left;
     margin-top: 20vh;
-  }
-  .form label {
-    display: block;
-    text-align: left;
-    color: #f6e9e9;
-    font-size: 1em;
-  }
-  .form form .text-input {
-    overflow: hidden;
-    margin-bottom: 0.875em;
-  }
-  .form form input[type="text"],
-  .form form input[type="password"] {
-    width: 100%;
-    padding: 1em 0 12px;
-    padding-left: 0;
-    background: none;
-    color: #f6e9e9;
-    font-size: 1.2em;
-    font-weight: 400;
-    border: none;
-    border-bottom: 1px solid grey;
-    /*Some sibling magic happens */
-  }
-  .form form input[type="text"]:focus + .separator,
-  .form form input[type="password"]:focus + .separator {
-    transform: scaleX(1) translateY(-2px);
-    opacity: 1;
-  }
-  .form form input[type="submit"] {
-    color: #f6e9e9;
-    background: #e16428;
-    padding: 1em 1em;
-    font-size: 1em;
-    border: none;
-    border-radius: 60px;
-  }
-
-  .form-bottom {
-    margin-top: 1.25em;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .registerLink {
-    font-size: 0.7rem;
-    margin: 10px 0px 0 1px;
-    text-decoration: underline;
-    text-align: left;
-  }
-
-  .registerLink:hover {
-    color: #e2b9b9;
-    transition: 0.2s;
   }
 }

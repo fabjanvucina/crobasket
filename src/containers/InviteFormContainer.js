@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react"; //eslint-disable-line
 import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import UserContext from "../contexts/UserContext"; //eslint-disable-line
-import { Form, Input, Select, DatePicker, InputNumber, Switch } from "antd";
+import { Form, Select, DatePicker, InputNumber, Switch } from "antd";
+import "../style/InviteFormContainer.css";
 
 const InviteFormContainer = () => {
   /*  let history = useHistory(); //eslint-disable-line
@@ -20,13 +21,13 @@ const InviteFormContainer = () => {
   };
 
   return (
-    <>
+    <div className="inviteForm">
       <Form
         labelCol={{
-          span: 4
+          span: 5
         }}
         wrapperCol={{
-          span: 14
+          span: 17
         }}
         layout="horizontal"
         initialValues={{
@@ -35,34 +36,51 @@ const InviteFormContainer = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <Form.Item label="Input">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Select">
+        <Form.Item label="Kvart">
           <Select>
-            <Select.Option value="demo">Demo</Select.Option>
+            <Select.Option value="trstenik">Trstenik</Select.Option>
+            <Select.Option value="split3">Split 3</Select.Option>
+            <Select.Option value="blatine">Blatine</Select.Option>
+            <Select.Option value="mertojak">Mertojak</Select.Option>
+            <Select.Option value="gripe">Gripe</Select.Option>
+            <Select.Option value="pujanke">Pujanke</Select.Option>
+            <Select.Option value="pojisan">Pojišan</Select.Option>
+            <Select.Option value="manus">Manuš</Select.Option>
+            <Select.Option value="meje">Meje</Select.Option>
           </Select>
         </Form.Item>
 
-        <Form.Item label="DatePicker">
-          <DatePicker />
+        <Form.Item label="Datum">
+          <DatePicker format="DD/MM/YYYY" />
         </Form.Item>
-        <Form.Item label="InputNumber">
-          <InputNumber />
+
+        <Form.Item label="Vrijeme">
+          <Select>
+            <Select.Option value="0600">06:00</Select.Option>
+            <Select.Option value="0630">06:30</Select.Option>
+            <Select.Option value="0700">07:00</Select.Option>
+            <Select.Option value="0730">07:30</Select.Option>
+            <Select.Option value="0800">08:00</Select.Option>
+            <Select.Option value="0830">08:30</Select.Option>
+            <Select.Option value="0900">09:00</Select.Option>
+            <Select.Option value="0930">09:30</Select.Option>
+            <Select.Option value="1000">10:00</Select.Option>
+          </Select>
         </Form.Item>
-        <Form.Item label="Switch">
-          <Switch />
+
+        <Form.Item label="Nedostaje igrača">
+          <InputNumber min="0" max="9" />
         </Form.Item>
       </Form>
       <div className="form-bottom">
         <input
           className="submit"
           type="submit"
-          id="loginButton"
+          id="inviteButton"
           value="Objavi"
         />
       </div>
-    </>
+    </div>
   );
 };
 
