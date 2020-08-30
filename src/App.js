@@ -6,9 +6,10 @@ import PageRouter from "./routers/PageRouter";
 import "./style/style.css";
 
 const App = () => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated"); //on app render, instead of user state, we're reading from localStorage which persists regardless of refresh
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
   const displayName = localStorage.getItem("displayName");
   const hometown = localStorage.getItem("hometown");
+
   const userHook = useState({
     isAuthenticated: isAuthenticated ? true : false,
     displayName: isAuthenticated ? displayName : ""
@@ -17,13 +18,13 @@ const App = () => {
   console.log("is authenticated: ", isAuthenticated ? true : false);
 
   return (
-    <React.StrictMode>
-      <UserContext.Provider value={userHook}>
-        <HometownContext.Provider value={hometownHook}>
-          <PageRouter />
-        </HometownContext.Provider>
-      </UserContext.Provider>
-    </React.StrictMode>
+    /* <React.StrictMode> */
+    <UserContext.Provider value={userHook}>
+      <HometownContext.Provider value={hometownHook}>
+        <PageRouter />
+      </HometownContext.Provider>
+    </UserContext.Provider>
+    /* </React.StrictMode> */
   );
 };
 

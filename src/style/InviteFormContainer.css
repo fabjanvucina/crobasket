@@ -4,14 +4,14 @@
 
 @media only screen and (min-width: 850px) {
   .form {
-    width: 400px;
+    width: 600px;
     background-color: #272121;
     border: 2px solid black;
     border-radius: 40px;
     padding: 20px;
     margin: 0 auto;
     text-align: left;
-    margin-top: 20vh;
+    margin-top: 15vh;
   }
   .form label {
     display: block;
@@ -42,6 +42,13 @@
     opacity: 1;
   }
 
+  option {
+    background-color: #272121;
+  }
+  option:hover {
+    background-color: #363333;
+  }
+
   .form form input[type="submit"] {
     color: #f6e9e9;
     background: #e16428;
@@ -54,21 +61,11 @@
   .form-bottom {
     margin-top: 1.25em;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
 
-  .registerLink {
-    font-size: 0.9rem;
-    margin-top: 10px;
-    margin-right: 5px;
-    padding-top: 5px;
-    text-decoration: underline;
-    color: #f6e9e9;
-  }
-
-  .registerLink:hover {
-    color: #e2b9b9;
-    transition: 0.2s;
+  .test {
+    color: wheat;
   }
 }
 

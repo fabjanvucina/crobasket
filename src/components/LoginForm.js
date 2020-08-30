@@ -3,8 +3,8 @@ import app from "../firebase/firebase.js";
 import { Link, useHistory } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import { login } from "../firebase/authMethods.js";
-import "../style/LoginForm.css";
-import "../style/Separator.css";
+/* import "../style/LoginForm.css";
+ */ import "../style/Separator.css";
 
 const handleLogin = async (
   email,

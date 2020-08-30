@@ -23,3 +23,10 @@ export async function addUser(name, surname, uid) {
     console.log(e.message);
   }
 }
+
+/* export async function createInvite() {
+  try {
+  } catch (e) {
+    console.log(e.message);
+  }
+} */

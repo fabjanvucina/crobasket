@@ -4,12 +4,7 @@ import HeaderContainer from "../containers/HeaderContainer";
 
 const WelcomePage = () => {
   return (
-    <HeaderContainer
-      hideOptions={true}
-      hideMenu={true}
-      hideLogin={false}
-      logoCenter={false}
-    />
+    <HeaderContainer hideOptions={true} hideMenu={true} hideLogin={false} />
   );
 };
 
