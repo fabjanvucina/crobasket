@@ -50,6 +50,10 @@ const InviteFormContainer = () => {
           </Select>
         </Form.Item>
 
+        <Form.Item label="Nedostaje igrača">
+          <InputNumber min="0" max="9" />
+        </Form.Item>
+
         <Form.Item label="Datum">
           <DatePicker format="DD/MM/YYYY" />
         </Form.Item>
@@ -66,10 +70,6 @@ const InviteFormContainer = () => {
             <Select.Option value="0930">09:30</Select.Option>
             <Select.Option value="1000">10:00</Select.Option>
           </Select>
-        </Form.Item>
-
-        <Form.Item label="Nedostaje igrača">
-          <InputNumber min="0" max="9" />
         </Form.Item>
       </Form>
       <div className="form-bottom">
