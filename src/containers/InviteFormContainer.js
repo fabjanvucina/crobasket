@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react"; //eslint-disable-line
 import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import UserContext from "../contexts/UserContext"; //eslint-disable-line
-import { Form, Select, DatePicker, InputNumber, Switch } from "antd";
+import { Form, Select, DatePicker, InputNumber, Slider } from "antd";
 import "../style/InviteFormContainer.css";
 
 const InviteFormContainer = () => {
@@ -24,10 +24,10 @@ const InviteFormContainer = () => {
     <div className="inviteForm">
       <Form
         labelCol={{
-          span: 5
+          span: 6
         }}
         wrapperCol={{
-          span: 17
+          span: 15
         }}
         layout="horizontal"
         initialValues={{

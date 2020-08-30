@@ -9,4 +9,5 @@ body {
   color: #f6e9e9;
   font-family: Roboto, sans-serif;
   min-height: 200px;
+  line-height: initial;
 }
