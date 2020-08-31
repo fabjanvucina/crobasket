@@ -10,6 +10,7 @@ import "../style/Separator.css";
 const handleRegistration = async (
   name,
   surname,
+  phoneNumber,
   email,
   password,
   setEmail,
@@ -20,17 +21,20 @@ const handleRegistration = async (
   const uid = await register(
     name,
     surname,
+    phoneNumber,
     email,
     password,
     setEmail,
     setPassword
   );
-  await addUser(name, surname, uid);
+  await addUser(name, surname, phoneNumber, uid);
   localStorage.setItem("isAuthenticated", true);
   localStorage.setItem("displayName", app.auth().currentUser.displayName);
+  localStorage.setItem("phoneNumber", phoneNumber);
   setUser({
     isAuthenticated: true,
-    displayName: app.auth().currentUser.displayName
+    displayName: app.auth().currentUser.displayName,
+    phoneNumber: phoneNumber
   });
   history.push("/gradovi");
 };
@@ -39,6 +43,7 @@ const RegisterForm = () => {
   let history = useHistory();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useContext(UserContext); //eslint-disable-line
@@ -51,6 +56,7 @@ const RegisterForm = () => {
           await handleRegistration(
             name,
             surname,
+            phoneNumber,
             email,
             password,
             setEmail,
@@ -86,6 +92,21 @@ const RegisterForm = () => {
             autoComplete="new-password"
             required
             onChange={(e) => setSurname(e.target.value)}
+          />
+          <span className="separator"> </span>
+        </div>
+
+        <div className="text-input">
+          <label htmlFor="number">Broj mobitela</label>
+          <input
+            type="text"
+            name="number"
+            value={phoneNumber}
+            id="numberSignup"
+            placeholder=""
+            autoComplete="new-password"
+            required
+            onChange={(e) => setPhoneNumber(e.target.value)}
           />
           <span className="separator"> </span>
         </div>

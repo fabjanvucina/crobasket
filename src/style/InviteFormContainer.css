@@ -16,6 +16,7 @@
   div.ant-input-number {
     border: none !important;
     border-bottom: 1px solid #363333 !important;
+    margin-left: 5px !important;
   }
 
   div.ant-select-selector:hover,

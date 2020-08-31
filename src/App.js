@@ -9,11 +9,13 @@ import "./style/style.css";
 const App = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   const displayName = localStorage.getItem("displayName");
+  const uid = localStorage.getItem("uid");
   const hometown = localStorage.getItem("hometown");
 
   const userHook = useState({
     isAuthenticated: isAuthenticated ? true : false,
-    displayName: isAuthenticated ? displayName : ""
+    displayName: isAuthenticated ? displayName : "",
+    uid: isAuthenticated ? uid : ""
   });
   const hometownHook = useState(hometown ? hometown : "");
   console.log("is authenticated: ", isAuthenticated ? true : false);

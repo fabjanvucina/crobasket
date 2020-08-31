@@ -11,9 +11,11 @@ const handleLogout = async (setUser, history) => {
   localStorage.removeItem("isAuthenticated");
   localStorage.removeItem("displayName");
   localStorage.removeItem("hometown");
+  localStorage.removeItem("phoneNumber");
   setUser({
     isAuthenticated: false,
-    displayName: ""
+    displayName: "",
+    phoneNumber: ""
   });
   history.push("/");
 };
@@ -28,7 +30,6 @@ const ProfilePage = () => {
         hideOptions={false}
         hideMenu={false}
         hideLogin={true}
-        logoCenter={false}
         createActive={false}
         showActive={false}
       />

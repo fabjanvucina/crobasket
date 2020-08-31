@@ -4,6 +4,7 @@ const auth = app.auth();
 export async function register(
   name,
   surname,
+  phoneNumber,
   email,
   password,
   setEmail,
@@ -13,7 +14,10 @@ export async function register(
 
   try {
     await auth.createUserWithEmailAndPassword(email, password);
-    await auth.currentUser.updateProfile({ displayName: displayName });
+    await auth.currentUser.updateProfile({
+      displayName: displayName,
+      phoneNumber: phoneNumber
+    });
     return auth.currentUser.uid;
   } catch (e) {
     setEmail("");

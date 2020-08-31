@@ -1,18 +1,58 @@
-import React, { useState, useContext } from "react"; //eslint-disable-line
+import React, { useState, useContext, useEffect } from "react";
 import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import UserContext from "../contexts/UserContext"; //eslint-disable-line
 import { Form, Select, DatePicker, InputNumber } from "antd";
+import UserContext from "../contexts/UserContext";
+import HometownContext from "../contexts/HometownContext";
+import {
+  createInvite,
+  getNeighbourhoods,
+  getTimeSlots
+} from "../firebase/crudMethods.js";
+
 import "../style/InviteFormContainer.css";
 
-const InviteFormContainer = () => {
-  /*  let history = useHistory(); //eslint-disable-line
-  const [neighbourhood, setNeighbourhood] = useState(""); //eslint-disable-line
-  const [date, setDate] = useState(""); //eslint-disable-line
-  const [time, setTime] = useState(""); //eslint-disable-line
-  const [slot, setSlot] = useState(""); //eslint-disable-line
+const handleNewInvitation = async (
+  hometown,
+  neighbourhood,
+  invitees,
+  date,
+  timeSlot,
+  phoneNumber,
+  history
+) => {
+  await createInvite(
+    hometown,
+    neighbourhood,
+    invitees,
+    date,
+    timeSlot,
+    phoneNumber
+  );
+  history.push("/profil");
+};
 
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line */
+const InviteFormContainer = () => {
+  let history = useHistory();
+  const [fetchedNeighbourhoods, setFetchedNeighbourhoods] = useState([]);
+  const [fetchedTimeSlots, setFetchedTimeSlots] = useState([]);
+
+  const [neighbourhood, setNeighbourhood] = useState("");
+  const [invitees, setInvitees] = useState("");
+  const [date, setDate] = useState("");
+  const [timeSlot, setTimeSlot] = useState("");
+
+  const [user, setUser] = useContext(UserContext); //eslint-disable-line
+  const [hometown, setHometown] = useContext(HometownContext); //eslint-disable-line
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setFetchedNeighbourhoods(await getNeighbourhoods(hometown));
+      setFetchedTimeSlots(await getTimeSlots());
+    };
+
+    fetchData();
+  }, [hometown]);
 
   const [componentSize, setComponentSize] = useState("default");
 
@@ -23,6 +63,19 @@ const InviteFormContainer = () => {
   return (
     <div className="inviteForm">
       <Form
+        onFinish={async (e) => {
+          console.log("entered onFinish");
+          e.preventDefault();
+          await handleNewInvitation(
+            hometown,
+            neighbourhood,
+            invitees,
+            date,
+            timeSlot,
+            user.phoneNumber,
+            history
+          );
+        }}
         labelCol={{
           span: 6
         }}
@@ -36,39 +89,66 @@ const InviteFormContainer = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <Form.Item label="Kvart">
+        <Form.Item
+          label="Kvart"
+          name="neighbourhood"
+          rules={[{ required: true, message: "Molimo odaberite kvart!" }]}
+          onChange={(e) => setNeighbourhood(e.target.value)}
+        >
           <Select>
-            <Select.Option value="trstenik">Trstenik</Select.Option>
-            <Select.Option value="split3">Split 3</Select.Option>
-            <Select.Option value="blatine">Blatine</Select.Option>
-            <Select.Option value="mertojak">Mertojak</Select.Option>
-            <Select.Option value="gripe">Gripe</Select.Option>
-            <Select.Option value="pujanke">Pujanke</Select.Option>
-            <Select.Option value="pojisan">Pojišan</Select.Option>
-            <Select.Option value="manus">Manuš</Select.Option>
-            <Select.Option value="meje">Meje</Select.Option>
+            {fetchedNeighbourhoods.map((neighbourhood) => (
+              <Select.Option key={neighbourhood.id} value={neighbourhood.id}>
+                {neighbourhood.data().displayName}
+              </Select.Option>
+            ))}
           </Select>
         </Form.Item>
 
-        <Form.Item label="Nedostaje igrača">
+        <Form.Item
+          label="Nedostaje igrača"
+          name="invitees"
+          rules={[
+            {
+              required: true,
+              message: "Molimo unesite broj igrača koji Vam nedostaje!"
+            }
+          ]}
+          onChange={(e) => setInvitees(e.target.value)}
+        >
           <InputNumber min="0" max="9" />
         </Form.Item>
 
-        <Form.Item label="Datum">
-          <DatePicker format="DD/MM/YYYY" />
+        <Form.Item
+          label="Datum"
+          name="date"
+          rules={[
+            {
+              required: true,
+              message: "Molimo odaberite datum!"
+            }
+          ]}
+          onChange={(e) => setDate(e.target.value)}
+        >
+          <DatePicker format="DD/MM/YYYY" placeholder="" />
         </Form.Item>
 
-        <Form.Item label="Vrijeme">
+        <Form.Item
+          label="Vrijeme"
+          name="time"
+          rules={[
+            {
+              required: true,
+              message: "Molimo odaberite vrijeme!"
+            }
+          ]}
+          onChange={(e) => setTimeSlot(e.target.value)}
+        >
           <Select>
-            <Select.Option value="0600">06:00</Select.Option>
-            <Select.Option value="0630">06:30</Select.Option>
-            <Select.Option value="0700">07:00</Select.Option>
-            <Select.Option value="0730">07:30</Select.Option>
-            <Select.Option value="0800">08:00</Select.Option>
-            <Select.Option value="0830">08:30</Select.Option>
-            <Select.Option value="0900">09:00</Select.Option>
-            <Select.Option value="0930">09:30</Select.Option>
-            <Select.Option value="1000">10:00</Select.Option>
+            {fetchedTimeSlots.map((timeSlot) => (
+              <Select.Option key={timeSlot} value={timeSlot}>
+                {timeSlot}
+              </Select.Option>
+            ))}
           </Select>
         </Form.Item>
       </Form>
