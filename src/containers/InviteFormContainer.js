@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react"; //eslint-disable-line
 import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import UserContext from "../contexts/UserContext"; //eslint-disable-line
-import { Form, Select, DatePicker, InputNumber, Slider } from "antd";
+import { Form, Select, DatePicker, InputNumber } from "antd";
 import "../style/InviteFormContainer.css";
 
 const InviteFormContainer = () => {

@@ -10,7 +10,13 @@ const CreateInvitePage = () => {
 
   return (
     <>
-      <HeaderContainer hideOptions={false} hideMenu={false} hideLogin={false} />
+      <HeaderContainer
+        hideOptions={false}
+        hideMenu={false}
+        hideLogin={false}
+        createActive={true}
+        showActive={false}
+      />
       <InviteFormContainer />
     </>
   );

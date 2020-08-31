@@ -29,6 +29,8 @@ const ProfilePage = () => {
         hideMenu={false}
         hideLogin={true}
         logoCenter={false}
+        createActive={false}
+        showActive={false}
       />
       <Title value={user.displayName} />
       <div id="logoutDiv">

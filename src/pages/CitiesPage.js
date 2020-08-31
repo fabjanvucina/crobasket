@@ -7,7 +7,13 @@ import Title from "../components/Title";
 const CitiesPage = () => {
   return (
     <>
-      <HeaderContainer hideOptions={true} hideMenu={true} hideLogin={true} />
+      <HeaderContainer
+        hideOptions={true}
+        hideMenu={true}
+        hideLogin={true}
+        createActive={false}
+        showActive={false}
+      />
       <Title value="Odaberi grad" />
       <CitiesContainer />
     </>
