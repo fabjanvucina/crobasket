@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import { Form, Select, DatePicker, InputNumber } from "antd";
+import { Form, Select, DatePicker, InputNumber, Button } from "antd";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
 import {
@@ -153,15 +153,22 @@ const InviteFormContainer = () => {
         </Form.Item>
       </Form>
       <div className="form-bottom">
-        <input
-          className="submit"
-          type="submit"
-          id="inviteButton"
-          value="Objavi"
-        />
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Objavi
+          </Button>
+        </Form.Item>
       </div>
     </div>
   );
 };
 
 export default InviteFormContainer;
+{
+  /* <input
+          className="submit"
+          type="submit"
+          id="inviteButton"
+          value="Objavi"
+        /> */
+}

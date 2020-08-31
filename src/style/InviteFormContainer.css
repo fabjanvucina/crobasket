@@ -57,7 +57,7 @@
     color: #f6e9e9 !important;
   }
 
-  #inviteButton {
+  button.ant-btn.ant-btn-primary {
     color: #f6e9e9;
     background: #e16428;
     padding: 1em 1.4em;
@@ -66,12 +66,16 @@
     border-radius: 60px;
   }
 
-  #inviteButton:hover {
+  button.ant-btn.ant-btn-primary:hover {
     background-color: #bc4f1a;
   }
 
+  .ant-btn {
+    height: auto !important;
+  }
+
   .form-bottom {
-    margin-top: 1.25em;
+    margin-top: 1.5em;
     display: flex;
     flex-direction: row;
     justify-content: center;
