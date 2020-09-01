@@ -34,6 +34,7 @@ const handleNewInvitation = async (
 
 const InviteFormContainer = () => {
   let history = useHistory();
+
   const [fetchedNeighbourhoods, setFetchedNeighbourhoods] = useState([]);
   const [fetchedTimeSlots, setFetchedTimeSlots] = useState([]);
 
@@ -42,8 +43,8 @@ const InviteFormContainer = () => {
   const [date, setDate] = useState("");
   const [timeSlot, setTimeSlot] = useState("");
 
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
-  const [hometown, setHometown] = useContext(HometownContext); //eslint-disable-line
+  const [user] = useContext(UserContext);
+  const [hometown] = useContext(HometownContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +59,10 @@ const InviteFormContainer = () => {
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
+    console.log("current neighbourhood:", neighbourhood);
+    console.log("current invitees:", invitees);
+    console.log("current date:", date);
+    console.log("current timeSlot:", timeSlot);
   };
 
   return (
@@ -76,6 +81,7 @@ const InviteFormContainer = () => {
             history
           );
         }}
+        onFinishFailed={() => console.log("onFinishFailed")}
         labelCol={{
           span: 6
         }}
@@ -93,9 +99,11 @@ const InviteFormContainer = () => {
           label="Kvart"
           name="neighbourhood"
           rules={[{ required: true, message: "Molimo odaberite kvart!" }]}
-          onChange={(e) => setNeighbourhood(e.target.value)}
         >
-          <Select>
+          <Select
+            value={neighbourhood}
+            onChange={(value) => setNeighbourhood(value)}
+          >
             {fetchedNeighbourhoods.map((neighbourhood) => (
               <Select.Option key={neighbourhood.id} value={neighbourhood.id}>
                 {neighbourhood.data().displayName}
@@ -113,9 +121,13 @@ const InviteFormContainer = () => {
               message: "Molimo unesite broj igrača koji Vam nedostaje!"
             }
           ]}
-          onChange={(e) => setInvitees(e.target.value)}
         >
-          <InputNumber min="0" max="9" />
+          <InputNumber
+            min="0"
+            max="9"
+            value={invitees}
+            onChange={(value) => setInvitees(value)}
+          />
         </Form.Item>
 
         <Form.Item
@@ -127,23 +139,26 @@ const InviteFormContainer = () => {
               message: "Molimo odaberite datum!"
             }
           ]}
-          onChange={(e) => setDate(e.target.value)}
         >
-          <DatePicker format="DD/MM/YYYY" placeholder="" />
+          <DatePicker
+            format="DD/MM/YYYY"
+            placeholder=""
+            value={date}
+            onChange={(value) => setDate(value)}
+          />
         </Form.Item>
 
         <Form.Item
           label="Vrijeme"
-          name="time"
+          name="timeSlot"
           rules={[
             {
               required: true,
               message: "Molimo odaberite vrijeme!"
             }
           ]}
-          onChange={(e) => setTimeSlot(e.target.value)}
         >
-          <Select>
+          <Select value={timeSlot} onChange={(value) => setTimeSlot(value)}>
             {fetchedTimeSlots.map((timeSlot) => (
               <Select.Option key={timeSlot} value={timeSlot}>
                 {timeSlot}
