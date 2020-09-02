@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import app from "../firebase/firebase.js";
+import app from "../firebase/firebase.js"; //eslint-disable-line
 import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
 import { addUser } from "../firebase/crudMethods.js";
-import "../styles/components/RegisterForm.css";
+import "../styles/containers/RegisterFormContainer.css";
 import "../styles/misc/Separator.css";
 
 const handleRegistration = async (
@@ -28,13 +28,9 @@ const handleRegistration = async (
     setPassword
   );
   await addUser(name, surname, phoneNumber, uid);
-  localStorage.setItem("isAuthenticated", true);
-  localStorage.setItem("displayName", app.auth().currentUser.displayName);
-  localStorage.setItem("phoneNumber", phoneNumber);
-  localStorage.setItem("uid", uid);
   setUser({
     isAuthenticated: true,
-    displayName: app.auth().currentUser.displayName,
+    displayName: name + " " + surname,
     phoneNumber: phoneNumber,
     uid: uid
   });

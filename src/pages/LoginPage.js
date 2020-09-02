@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
-import LoginForm from "../components/LoginForm";
+import LoginFormContainer from "../containers/LoginFormContainer";
 
 const LoginPage = () => {
   return (
     <>
-      <LoginForm />
+      <LoginFormContainer />
     </>
   );
 };

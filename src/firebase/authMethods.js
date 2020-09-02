@@ -18,6 +18,10 @@ export async function register(
       displayName: displayName,
       phoneNumber: phoneNumber
     });
+    localStorage.setItem("isAuthenticated", true);
+    localStorage.setItem("displayName", auth.currentUser.displayName);
+    localStorage.setItem("phoneNumber", phoneNumber);
+    localStorage.setItem("uid", auth.currentUser.uid);
     return auth.currentUser.uid;
   } catch (e) {
     setEmail("");
@@ -29,6 +33,14 @@ export async function register(
 export async function login(email, password, setEmail, setPassword) {
   try {
     await auth.signInWithEmailAndPassword(email, password);
+    localStorage.setItem("isAuthenticated", true);
+    localStorage.setItem("displayName", auth.currentUser.displayName);
+    console.log(
+      "auth.currentUser.displayName in login crudMethods is",
+      auth.currentUser.displayName
+    );
+    localStorage.setItem("phoneNumber", auth.currentUser.phoneNumber);
+    localStorage.setItem("uid", auth.currentUser.uid);
   } catch (e) {
     setEmail("");
     setPassword("");

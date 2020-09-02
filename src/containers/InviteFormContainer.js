@@ -70,7 +70,7 @@ const InviteFormContainer = () => {
         }}
         onFinishFailed={() => console.log("onFinishFailed")}
         labelCol={{
-          span: 6
+          span: 7
         }}
         wrapperCol={{
           span: 15
