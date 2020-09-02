@@ -4,11 +4,7 @@ import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import { Form, Select, DatePicker, InputNumber, Button } from "antd";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
-import {
-  createInvite,
-  getNeighbourhoods,
-  getTimeSlots
-} from "../firebase/crudMethods.js";
+import { createInvite, getNeighbourhoods } from "../firebase/crudMethods.js";
 import "../style/InviteFormContainer.css";
 import moment from "moment";
 
@@ -40,7 +36,6 @@ const InviteFormContainer = () => {
   const [neighbourhood, setNeighbourhood] = useState("");
   const [invitees, setInvitees] = useState("");
   const [dateTime, setDateTime] = useState("");
-  /* const [timeSlot, setTimeSlot] = useState(""); */
 
   const [user] = useContext(UserContext);
   const [hometown] = useContext(HometownContext);
@@ -171,46 +166,6 @@ const InviteFormContainer = () => {
             showTime={{ defaultValue: moment("00:00", "HH:mm") }}
           />
         </Form.Item>
-
-        {/* <Form.Item
-          label="Vrijeme"
-          name="timeSlot"
-          rules={[
-            {
-              required: true,
-              message: "Molimo odaberite vrijeme!"
-            }
-          ]}
-        >
-          <TimePicker
-            format="HH:mm"
-            placeholder=""
-            value={timeSlot}
-            onChange={(value) => setTimeSlot(value.toISOString())}
-            disabledMinutes={() => {
-              const minutes = [];
-              for (let i = 0; i < 60; i++) {
-                if (i !== 0 && i !== 15 && i !== 30 && i !== 45) {
-                  minutes.push(i);
-                }
-              }
-
-              return minutes;
-            }}
-            disabledHours={() => {
-              const hours = [];
-              for (let i = 0; i < 24; i++) {
-                if (i <= 6 || i == 23) {
-                  hours.push(i);
-                }
-              }
-
-              return hours;
-            }}
-            hideDisabledOptions={true}
-            showNow={false}
-          />
-        </Form.Item> */}
 
         <div className="form-bottom">
           <Form.Item>
