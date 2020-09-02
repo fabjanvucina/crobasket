@@ -23,11 +23,11 @@
     overflow: hidden;
     margin-bottom: 0.875em;
   }
+
   .form form input[type="text"],
   .form form input[type="password"] {
     width: 100%;
-    padding: 1em 0 12px;
-    padding-left: 0;
+    padding: 1em 0 12px 4px;
     background: none;
     color: #f6e9e9;
     font-size: 1.2em;
@@ -41,6 +41,7 @@
     transform: scaleX(1) translateY(-2px);
     opacity: 1;
   }
+
   .form form input[type="submit"] {
     color: #f6e9e9;
     background: #e16428;

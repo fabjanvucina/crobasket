@@ -11,9 +11,13 @@ const handleLogout = async (setUser, history) => {
   localStorage.removeItem("isAuthenticated");
   localStorage.removeItem("displayName");
   localStorage.removeItem("hometown");
+  localStorage.removeItem("phoneNumber");
+  localStorage.removeItem("uid");
   setUser({
     isAuthenticated: false,
-    displayName: ""
+    displayName: "",
+    phoneNumber: "",
+    uid: ""
   });
   history.push("/");
 };
@@ -28,7 +32,8 @@ const ProfilePage = () => {
         hideOptions={false}
         hideMenu={false}
         hideLogin={true}
-        logoCenter={false}
+        createActive={false}
+        showActive={false}
       />
       <Title value={user.displayName} />
       <div id="logoutDiv">

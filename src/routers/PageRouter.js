@@ -11,6 +11,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CitiesPage from "../pages/CitiesPage";
 import ProfilePage from "../pages/ProfilePage";
+import CreateInvitePage from "../pages/CreateInvitePage";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
 
@@ -55,6 +56,14 @@ const PageRouter = () => {
 
         <Route exact path="/gradovi">
           {user.isAuthenticated ? <CitiesPage /> : <Redirect to="/prijava" />}
+        </Route>
+
+        <Route exact path="/pozivnica">
+          {user.isAuthenticated ? (
+            <CreateInvitePage />
+          ) : (
+            <Redirect to="/prijava" />
+          )}
         </Route>
       </Switch>
     </Router>

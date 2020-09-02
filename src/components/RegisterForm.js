@@ -3,12 +3,14 @@ import { useHistory } from "react-router-dom";
 import app from "../firebase/firebase.js";
 import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
+import { addUser } from "../firebase/crudMethods.js";
 import "../style/RegisterForm.css";
 import "../style/Separator.css";
 
 const handleRegistration = async (
   name,
   surname,
+  phoneNumber,
   email,
   password,
   setEmail,
@@ -16,12 +18,25 @@ const handleRegistration = async (
   setUser,
   history
 ) => {
-  await register(name, surname, email, password, setEmail, setPassword);
+  const uid = await register(
+    name,
+    surname,
+    phoneNumber,
+    email,
+    password,
+    setEmail,
+    setPassword
+  );
+  await addUser(name, surname, phoneNumber, uid);
   localStorage.setItem("isAuthenticated", true);
   localStorage.setItem("displayName", app.auth().currentUser.displayName);
+  localStorage.setItem("phoneNumber", phoneNumber);
+  localStorage.setItem("uid", uid);
   setUser({
     isAuthenticated: true,
-    displayName: app.auth().currentUser.displayName
+    displayName: app.auth().currentUser.displayName,
+    phoneNumber: phoneNumber,
+    uid: uid
   });
   history.push("/gradovi");
 };
@@ -30,6 +45,7 @@ const RegisterForm = () => {
   let history = useHistory();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useContext(UserContext); //eslint-disable-line
@@ -42,6 +58,7 @@ const RegisterForm = () => {
           await handleRegistration(
             name,
             surname,
+            phoneNumber,
             email,
             password,
             setEmail,
@@ -77,6 +94,21 @@ const RegisterForm = () => {
             autoComplete="new-password"
             required
             onChange={(e) => setSurname(e.target.value)}
+          />
+          <span className="separator"> </span>
+        </div>
+
+        <div className="text-input">
+          <label htmlFor="number">Broj mobitela</label>
+          <input
+            type="text"
+            name="number"
+            value={phoneNumber}
+            id="numberSignup"
+            placeholder=""
+            autoComplete="new-password"
+            required
+            onChange={(e) => setPhoneNumber(e.target.value)}
           />
           <span className="separator"> </span>
         </div>

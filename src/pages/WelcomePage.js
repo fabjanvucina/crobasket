@@ -8,7 +8,8 @@ const WelcomePage = () => {
       hideOptions={true}
       hideMenu={true}
       hideLogin={false}
-      logoCenter={false}
+      createActive={false}
+      showActive={false}
     />
   );
 };

@@ -7,13 +7,12 @@ import "../style/CitiesContainer.css";
 
 const CitiesContainer = () => {
   let history = useHistory();
-  const [cities, setCities] = useState([]);
+  const [fetchedCities, setFetchedCities] = useState([]);
   const [hometown, setHometown] = useContext(HometownContext); //eslint-disable-line
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedCities = await getCities();
-      setCities(fetchedCities);
+      setFetchedCities(await getCities());
     };
 
     fetchData();
@@ -26,7 +25,7 @@ const CitiesContainer = () => {
 
   return (
     <div className="display-cities">
-      {cities.map((city) => (
+      {fetchedCities.map((city) => (
         <City
           key={city.id}
           name={city.data().displayName}

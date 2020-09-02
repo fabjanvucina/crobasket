@@ -8,7 +8,13 @@ import UserContext from "../contexts/UserContext";
 import "../style/HeaderContainer.css";
 import "../style/Link.css";
 
-const HeaderContainer = ({ hideMenu, hideOptions, hideLogin }) => {
+const HeaderContainer = ({
+  hideMenu,
+  hideOptions,
+  hideLogin,
+  createActive,
+  showActive
+}) => {
   const [user] = useContext(UserContext);
 
   return (
@@ -17,7 +23,11 @@ const HeaderContainer = ({ hideMenu, hideOptions, hideLogin }) => {
       <Link to={user.isAuthenticated ? "/gradovi" : "/"}>
         <HeaderLogo />
       </Link>
-      <OptionsContainer hideOptions={hideOptions} />
+      <OptionsContainer
+        hideOptions={hideOptions}
+        createActive={createActive}
+        showActive={showActive}
+      />
       <LoginContainer hideLogin={hideLogin} />
     </div>
   );

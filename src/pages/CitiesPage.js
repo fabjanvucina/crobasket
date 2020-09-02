@@ -11,7 +11,8 @@ const CitiesPage = () => {
         hideOptions={true}
         hideMenu={true}
         hideLogin={true}
-        logoCenter={false}
+        createActive={false}
+        showActive={false}
       />
       <Title value="Odaberi grad" />
       <CitiesContainer />
