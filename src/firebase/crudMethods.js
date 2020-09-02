@@ -29,8 +29,7 @@ export async function createInvite(
   hometown,
   neighbourhood,
   invitees,
-  date,
-  timeSlot,
+  dateTime,
   phoneNumber,
   uid
 ) {
@@ -38,8 +37,7 @@ export async function createInvite(
     await db.collection("cities").doc(hometown).collection("invites").add({
       neighbourhood: neighbourhood,
       invitees: invitees,
-      date: date,
-      timeSlot: timeSlot,
+      dateTime: dateTime,
       phoneNumber: phoneNumber,
       uid: uid
     });

@@ -16,8 +16,7 @@ const handleNewInvitation = async (
   hometown,
   neighbourhood,
   invitees,
-  date,
-  timeSlot,
+  dateTime,
   phoneNumber,
   uid,
   history
@@ -26,8 +25,7 @@ const handleNewInvitation = async (
     hometown,
     neighbourhood,
     invitees,
-    date,
-    timeSlot,
+    dateTime,
     phoneNumber,
     uid
   );
@@ -38,12 +36,11 @@ const InviteFormContainer = () => {
   let history = useHistory();
 
   const [fetchedNeighbourhoods, setFetchedNeighbourhoods] = useState([]);
-  const [fetchedTimeSlots, setFetchedTimeSlots] = useState([]);
 
   const [neighbourhood, setNeighbourhood] = useState("");
   const [invitees, setInvitees] = useState("");
-  const [date, setDate] = useState("");
-  const [timeSlot, setTimeSlot] = useState("");
+  const [dateTime, setDateTime] = useState("");
+  /* const [timeSlot, setTimeSlot] = useState(""); */
 
   const [user] = useContext(UserContext);
   const [hometown] = useContext(HometownContext);
@@ -51,7 +48,6 @@ const InviteFormContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       setFetchedNeighbourhoods(await getNeighbourhoods(hometown));
-      setFetchedTimeSlots(await getTimeSlots());
     };
 
     fetchData();
@@ -61,10 +57,6 @@ const InviteFormContainer = () => {
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
-    console.log("current neighbourhood:", neighbourhood);
-    console.log("current invitees:", invitees);
-    console.log("current date:", date);
-    console.log("current timeSlot:", timeSlot);
   };
 
   return (
@@ -75,8 +67,7 @@ const InviteFormContainer = () => {
             hometown,
             neighbourhood,
             invitees,
-            date,
-            timeSlot,
+            dateTime,
             user.phoneNumber,
             user.uid,
             history
@@ -132,20 +123,20 @@ const InviteFormContainer = () => {
         </Form.Item>
 
         <Form.Item
-          label="Datum"
-          name="date"
+          label="Datum i vrijeme"
+          name="dateTime"
           rules={[
             {
               required: true,
-              message: "Molimo odaberite datum!"
+              message: "Molimo odaberite datum i vrijeme!"
             }
           ]}
         >
           <DatePicker
             format="DD/MM/YYYY HH:mm"
             placeholder=""
-            value={date}
-            onChange={(value) => setDate(value.toISOString())}
+            value={dateTime}
+            onChange={(value) => setDateTime(value.toISOString())}
             disabledSeconds={() => {
               const seconds = [];
               for (let i = 0; i < 60; i++) {
@@ -157,19 +148,31 @@ const InviteFormContainer = () => {
             disabledMinutes={() => {
               const minutes = [];
               for (let i = 0; i < 60; i++) {
-                if (i !== 30 && i !== 0) {
+                if (i !== 0 && i !== 15 && i !== 30 && i !== 45) {
                   minutes.push(i);
                 }
               }
 
               return minutes;
             }}
+            disabledHours={() => {
+              const hours = [];
+              for (let i = 0; i < 24; i++) {
+                if (i <= 6 || i == 23) {
+                  hours.push(i);
+                }
+              }
+
+              return hours;
+            }}
             hideDisabledOptions={true}
+            showNow={false}
+            showToday={true}
             showTime={{ defaultValue: moment("00:00", "HH:mm") }}
           />
         </Form.Item>
 
-        <Form.Item
+        {/* <Form.Item
           label="Vrijeme"
           name="timeSlot"
           rules={[
@@ -179,17 +182,35 @@ const InviteFormContainer = () => {
             }
           ]}
         >
-          <Select
+          <TimePicker
+            format="HH:mm"
+            placeholder=""
             value={timeSlot}
-            onChange={(moment) => setTimeSlot(moment.toString())}
-          >
-            {fetchedTimeSlots.map((timeSlot) => (
-              <Select.Option key={timeSlot} value={timeSlot}>
-                {timeSlot}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
+            onChange={(value) => setTimeSlot(value.toISOString())}
+            disabledMinutes={() => {
+              const minutes = [];
+              for (let i = 0; i < 60; i++) {
+                if (i !== 0 && i !== 15 && i !== 30 && i !== 45) {
+                  minutes.push(i);
+                }
+              }
+
+              return minutes;
+            }}
+            disabledHours={() => {
+              const hours = [];
+              for (let i = 0; i < 24; i++) {
+                if (i <= 6 || i == 23) {
+                  hours.push(i);
+                }
+              }
+
+              return hours;
+            }}
+            hideDisabledOptions={true}
+            showNow={false}
+          />
+        </Form.Item> */}
 
         <div className="form-bottom">
           <Form.Item>
