@@ -89,7 +89,7 @@ const InviteFormContainer = () => {
         >
           <Select
             value={neighbourhood}
-            onChange={(moment) => setNeighbourhood(moment.toString())}
+            onChange={(value) => setNeighbourhood(value.toString())}
           >
             {fetchedNeighbourhoods.map((neighbourhood) => (
               <Select.Option key={neighbourhood.id} value={neighbourhood.id}>
@@ -113,7 +113,7 @@ const InviteFormContainer = () => {
             min="0"
             max="9"
             value={invitees}
-            onChange={(moment) => setInvitees(moment.toString())}
+            onChange={(value) => setInvitees(value.toString())}
           />
         </Form.Item>
 
