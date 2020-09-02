@@ -5,7 +5,7 @@ import { Form, Select, DatePicker, InputNumber, Button } from "antd";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
 import { createInvite, getNeighbourhoods } from "../firebase/crudMethods.js";
-import "../style/InviteFormContainer.css";
+import "../styles/containers/InviteFormContainer.css";
 import moment from "moment";
 
 const handleNewInvitation = async (

@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/LoginStatusDisplay.css";
+import "../styles/components/LoginStatusDisplay.css";
 
 const LoggedOutDisplay = () => {
   return (

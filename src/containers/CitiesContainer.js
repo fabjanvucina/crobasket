@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import City from "../components/City";
 import HometownContext from "../contexts/HometownContext";
 import { getCities } from "../firebase/crudMethods.js";
-import "../style/CitiesContainer.css";
+import "../styles/containers/CitiesContainer.css";
 
 const CitiesContainer = () => {
   let history = useHistory();

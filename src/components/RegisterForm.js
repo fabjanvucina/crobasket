@@ -4,8 +4,8 @@ import app from "../firebase/firebase.js";
 import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
 import { addUser } from "../firebase/crudMethods.js";
-import "../style/RegisterForm.css";
-import "../style/Separator.css";
+import "../styles/components/RegisterForm.css";
+import "../styles/misc/Separator.css";
 
 const handleRegistration = async (
   name,
