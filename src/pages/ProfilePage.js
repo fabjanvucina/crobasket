@@ -12,10 +12,12 @@ const handleLogout = async (setUser, history) => {
   localStorage.removeItem("displayName");
   localStorage.removeItem("hometown");
   localStorage.removeItem("phoneNumber");
+  localStorage.removeItem("uid");
   setUser({
     isAuthenticated: false,
     displayName: "",
-    phoneNumber: ""
+    phoneNumber: "",
+    uid: ""
   });
   history.push("/");
 };

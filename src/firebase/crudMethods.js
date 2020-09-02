@@ -31,7 +31,8 @@ export async function createInvite(
   invitees,
   date,
   timeSlot,
-  phoneNumber
+  phoneNumber,
+  uid
 ) {
   try {
     await db.collection("cities").doc(hometown).collection("invites").add({
@@ -39,7 +40,8 @@ export async function createInvite(
       invitees: invitees,
       date: date,
       timeSlot: timeSlot,
-      phoneNumber: phoneNumber
+      phoneNumber: phoneNumber,
+      uid: uid
     });
   } catch (e) {
     console.log(e.message);

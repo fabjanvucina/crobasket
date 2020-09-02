@@ -31,10 +31,12 @@ const handleRegistration = async (
   localStorage.setItem("isAuthenticated", true);
   localStorage.setItem("displayName", app.auth().currentUser.displayName);
   localStorage.setItem("phoneNumber", phoneNumber);
+  localStorage.setItem("uid", uid);
   setUser({
     isAuthenticated: true,
     displayName: app.auth().currentUser.displayName,
-    phoneNumber: phoneNumber
+    phoneNumber: phoneNumber,
+    uid: uid
   });
   history.push("/gradovi");
 };

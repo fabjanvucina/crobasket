@@ -9,7 +9,6 @@ import {
   getNeighbourhoods,
   getTimeSlots
 } from "../firebase/crudMethods.js";
-
 import "../style/InviteFormContainer.css";
 
 const handleNewInvitation = async (
@@ -19,6 +18,7 @@ const handleNewInvitation = async (
   date,
   timeSlot,
   phoneNumber,
+  uid,
   history
 ) => {
   await createInvite(
@@ -27,7 +27,8 @@ const handleNewInvitation = async (
     invitees,
     date,
     timeSlot,
-    phoneNumber
+    phoneNumber,
+    uid
   );
   history.push("/profil");
 };
@@ -68,9 +69,7 @@ const InviteFormContainer = () => {
   return (
     <div className="inviteForm">
       <Form
-        onFinish={async (e) => {
-          console.log("entered onFinish");
-          e.preventDefault();
+        onFinish={async () => {
           await handleNewInvitation(
             hometown,
             neighbourhood,
@@ -78,6 +77,7 @@ const InviteFormContainer = () => {
             date,
             timeSlot,
             user.phoneNumber,
+            user.uid,
             history
           );
         }}
@@ -102,7 +102,7 @@ const InviteFormContainer = () => {
         >
           <Select
             value={neighbourhood}
-            onChange={(value) => setNeighbourhood(value)}
+            onChange={(moment) => setNeighbourhood(moment.toString())}
           >
             {fetchedNeighbourhoods.map((neighbourhood) => (
               <Select.Option key={neighbourhood.id} value={neighbourhood.id}>
@@ -126,7 +126,7 @@ const InviteFormContainer = () => {
             min="0"
             max="9"
             value={invitees}
-            onChange={(value) => setInvitees(value)}
+            onChange={(moment) => setInvitees(moment.toString())}
           />
         </Form.Item>
 
@@ -144,7 +144,7 @@ const InviteFormContainer = () => {
             format="DD/MM/YYYY"
             placeholder=""
             value={date}
-            onChange={(value) => setDate(value)}
+            onChange={(moment) => setDate(moment.toDate().toString())}
           />
         </Form.Item>
 
@@ -158,7 +158,10 @@ const InviteFormContainer = () => {
             }
           ]}
         >
-          <Select value={timeSlot} onChange={(value) => setTimeSlot(value)}>
+          <Select
+            value={timeSlot}
+            onChange={(moment) => setTimeSlot(moment.toString())}
+          >
             {fetchedTimeSlots.map((timeSlot) => (
               <Select.Option key={timeSlot} value={timeSlot}>
                 {timeSlot}
@@ -166,24 +169,17 @@ const InviteFormContainer = () => {
             ))}
           </Select>
         </Form.Item>
+
+        <div className="form-bottom">
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Objavi
+            </Button>
+          </Form.Item>
+        </div>
       </Form>
-      <div className="form-bottom">
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Objavi
-          </Button>
-        </Form.Item>
-      </div>
     </div>
   );
 };
 
 export default InviteFormContainer;
-{
-  /* <input
-          className="submit"
-          type="submit"
-          id="inviteButton"
-          value="Objavi"
-        /> */
-}
