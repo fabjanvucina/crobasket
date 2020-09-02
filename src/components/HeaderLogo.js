@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../img/crobasket_logo.jpg";
-import "../style/HeaderLogo.css";
+import "../styles/components/HeaderLogo.css";
 
 const HeaderLogo = () => {
   return <img src={logo} className="logo" alt="logo" id="logo" />;

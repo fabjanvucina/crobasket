@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../style/OptionsContainer.css";
-import "../style/Tab.css";
-import "../style/TabActive.css";
-import "../style/Hide.css";
-import "../style/Link.css";
+import "../styles/containers/OptionsContainer.css";
+import "../styles/misc/Tab.css";
+import "../styles/misc/TabActive.css";
+import "../styles/misc/Hide.css";
+import "../styles/misc/Link.css";
 
 const OptionsContainer = ({ hideOptions, createActive, showActive }) => {
   return (

@@ -4,7 +4,7 @@ import HeaderContainer from "../containers/HeaderContainer";
 import Title from "../components/Title";
 import UserContext from "../contexts/UserContext";
 import { logout } from "../firebase/authMethods.js";
-import "../style/ProfilePage.css";
+import "../styles/pages/ProfilePage.css";
 
 const handleLogout = async (setUser, history) => {
   await logout();

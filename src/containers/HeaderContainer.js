@@ -5,8 +5,8 @@ import HeaderLogo from "../components/HeaderLogo";
 import OptionsContainer from "./OptionsContainer";
 import LoginContainer from "./LoginContainer";
 import UserContext from "../contexts/UserContext";
-import "../style/HeaderContainer.css";
-import "../style/Link.css";
+import "../styles/containers/HeaderContainer.css";
+import "../styles/misc/Link.css";
 
 const HeaderContainer = ({
   hideMenu,
