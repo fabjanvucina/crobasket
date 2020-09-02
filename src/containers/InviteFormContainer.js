@@ -11,6 +11,7 @@ import {
 } from "../firebase/crudMethods.js";
 
 import "../style/InviteFormContainer.css";
+import moment from "moment";
 
 const handleNewInvitation = async (
   hometown,
@@ -141,10 +142,30 @@ const InviteFormContainer = () => {
           ]}
         >
           <DatePicker
-            format="DD/MM/YYYY"
+            format="DD/MM/YYYY HH:mm"
             placeholder=""
             value={date}
-            onChange={(value) => setDate(value)}
+            onChange={(value) => setDate(value.toISOString())}
+            disabledSeconds={() => {
+              const seconds = []
+              for (let i = 0; i < 60; i++) {
+                seconds.push(i);
+              }
+
+              return seconds;
+            }}
+            disabledMinutes={() => {
+              const minutes = []
+              for (let i = 0; i < 60; i++) {
+                if (i !== 30 && i !== 0) {
+                  minutes.push(i);
+                }
+              }
+
+              return minutes;
+            }}
+            hideDisabledOptions={true}
+            showTime={{ defaultValue: moment('00:00', 'HH:mm') }}
           />
         </Form.Item>
 
