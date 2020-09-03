@@ -1,41 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { Form, Input, Button } from "antd";
 import app from "../firebase/firebase.js"; //eslint-disable-line
 import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
-import { addUser } from "../firebase/crudMethods.js";
 import "../styles/containers/RegisterFormContainer.css";
 import "../styles/misc/Separator.css";
-
-const handleRegistration = async (
-  name,
-  surname,
-  phoneNumber,
-  email,
-  password,
-  setEmail,
-  setPassword,
-  setUser,
-  history
-) => {
-  const uid = await register(
-    name,
-    surname,
-    phoneNumber,
-    email,
-    password,
-    setEmail,
-    setPassword
-  );
-  await addUser(name, surname, phoneNumber, uid);
-  setUser({
-    isAuthenticated: true,
-    displayName: name + " " + surname,
-    phoneNumber: phoneNumber,
-    uid: uid
-  });
-  history.push("/gradovi");
-};
 
 const RegisterForm = () => {
   let history = useHistory();
@@ -47,11 +17,10 @@ const RegisterForm = () => {
   const [user, setUser] = useContext(UserContext); //eslint-disable-line
 
   return (
-    <div className="form-signin">
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          await handleRegistration(
+    <div className="registerForm">
+      <Form
+        onFinish={async () => {
+          await register(
             name,
             surname,
             phoneNumber,
@@ -63,91 +32,83 @@ const RegisterForm = () => {
             history
           );
         }}
+        labelCol={{
+          span: 6
+        }}
+        wrapperCol={{
+          span: 16
+        }}
+        layout="horizontal"
       >
-        <div className="text-input">
-          <label htmlFor="name">Ime</label>
-          <input
-            type="text"
-            name="name"
+        <Form.Item
+          label="Ime"
+          name="name"
+          rules={[{ required: true, message: "Molimo unesite svoje ime!" }]}
+        >
+          <Input
             value={name}
-            id="nameSignup"
-            placeholder=""
-            autoComplete="new-password"
-            required
-            onChange={(e) => setName(e.target.value)}
+            onChange={(value) => setName(value.toString().trim())}
+            autoComplete="newpassword"
           />
-          <span className="separator"> </span>
-        </div>
+        </Form.Item>
 
-        <div className="text-input">
-          <label htmlFor="lastname">Prezime</label>
-          <input
-            type="text"
-            name="surname"
+        <Form.Item
+          label="Prezime"
+          name="surname"
+          rules={[{ required: true, message: "Molimo unesite svoje prezime!" }]}
+        >
+          <Input
             value={surname}
-            id="surnameSignup"
-            placeholder=""
-            autoComplete="new-password"
-            required
-            onChange={(e) => setSurname(e.target.value)}
+            onChange={(value) => setSurname(value.toString().trim())}
+            autoComplete="newpassword"
           />
-          <span className="separator"> </span>
-        </div>
+        </Form.Item>
 
-        <div className="text-input">
-          <label htmlFor="number">Broj mobitela</label>
-          <input
-            type="text"
-            name="number"
+        <Form.Item
+          label="Broj mobitela"
+          name="cellNumber"
+          rules={[
+            { required: true, message: "Molimo unesite svoj broj mobitela!" }
+          ]}
+        >
+          <Input
             value={phoneNumber}
-            id="numberSignup"
-            placeholder=""
-            autoComplete="new-password"
-            required
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(value) => setPhoneNumber(value.toString().trim())}
+            autoComplete="off"
           />
-          <span className="separator"> </span>
-        </div>
+        </Form.Item>
 
-        <div className="text-input">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="email"
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: "Molimo unesite email adresu!" }]}
+        >
+          <Input
             value={email}
-            id="emailSignup"
-            placeholder=""
+            onChange={(value) => setEmail(value.toString().trim())}
             autoComplete="off"
-            required
-            onChange={(e) => setEmail(e.target.value)}
           />
-          <span className="separator"> </span>
-        </div>
+        </Form.Item>
 
-        <div className="text-input">
-          <label htmlFor="password">Lozinka</label>
-          <input
-            type="password"
-            name="password"
+        <Form.Item
+          label="Lozinka"
+          name="password"
+          rules={[{ required: true, message: "Molimo unesite lozinku!" }]}
+        >
+          <Input.Password
             value={password}
-            id="passwordSignup"
-            placeholder=""
-            autoComplete="off"
-            required
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(value) => setPassword(value.toString())}
           />
-          <span className="separator"> </span>
-        </div>
+        </Form.Item>
 
-        <div className="form-bottom-signin">
-          <input
-            className="submit"
-            type="submit"
-            id="signupButton"
-            value="Izradi račun"
-          />
+        <div className="form-bottom">
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Registriraj se
+            </Button>
+          </Form.Item>
         </div>
-      </form>
+      </Form>
     </div>
   );
 };

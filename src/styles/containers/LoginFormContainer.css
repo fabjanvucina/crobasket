@@ -1,74 +1,33 @@
-#loginButton:hover {
-  background-color: #bc4f1a;
-}
-
 @media only screen and (min-width: 850px) {
-  .form {
-    width: 600px;
+  .loginForm {
+    width: 500px;
     background-color: #272121;
     border-radius: 30px;
     padding: 20px;
     margin: 0 auto;
     text-align: left;
-    margin-top: 20vh;
+    margin-top: 18vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
-  .form label {
-    display: block;
-    text-align: left;
-    color: #f6e9e9;
-    font-size: 1em;
-  }
-  .form form .text-input {
-    overflow: hidden;
-    margin-bottom: 0.875em;
+
+  input#email.ant-input,
+  span.ant-input-password.ant-input-affix-wrapper {
+    border: none !important;
+    border-bottom: 1px solid #363333 !important;
+    border-radius: 0px;
+    padding-left: 5px !important;
   }
 
-  .form form input[type="text"],
-  .form form input[type="password"] {
-    width: 100%;
-    padding: 1em 0 12px 4px;
-    background: none;
-    color: #f6e9e9;
-    font-size: 1.2em;
-    font-weight: 400;
-    border: none;
-    border-bottom: 1px solid grey;
-    /*Some sibling magic happens */
-  }
-  .form form input[type="text"]:focus + .separator,
-  .form form input[type="password"]:focus + .separator {
-    transform: scaleX(1) translateY(-2px);
-    opacity: 1;
-  }
-
-  .form form input[type="submit"] {
-    color: #f6e9e9;
-    background: #e16428;
-    padding: 1em 1.4em;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 60px;
-  }
-
-  .form-bottom {
-    margin-top: 1.25em;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .registerLink {
-    font-size: 0.9rem;
-    margin-top: 10px;
-    margin-right: 5px;
-    padding-top: 5px;
-    text-decoration: underline;
-    color: #f6e9e9;
-  }
-
-  .registerLink:hover {
-    color: #e2b9b9;
-    transition: 0.2s;
+  input#email.ant-input:hover,
+  input#email.ant-input:focus,
+  span.ant-input-password.ant-input-affix-wrapper:hover,
+  span.ant-input-password.ant-input-affix-wrapper:focus,
+  span.ant-input-password.ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
+    border: none !important;
+    border-bottom: 1px solid #e16428 !important;
+    border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
   }
 }
 

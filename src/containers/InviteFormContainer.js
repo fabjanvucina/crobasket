@@ -68,7 +68,6 @@ const InviteFormContainer = () => {
             history
           );
         }}
-        onFinishFailed={() => console.log("onFinishFailed")}
         labelCol={{
           span: 7
         }}
