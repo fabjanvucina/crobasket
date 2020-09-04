@@ -51,6 +51,7 @@ const LoginForm = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value.toString())}
+            autoComplete="current-password"
           />
         </Form.Item>
 

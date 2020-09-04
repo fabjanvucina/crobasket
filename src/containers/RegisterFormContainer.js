@@ -72,9 +72,9 @@ const RegisterForm = () => {
           ]}
         >
           <Input
-            type="cellphone"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value.toString())}
+            autoComplete="tel-national"
           />
         </Form.Item>
 
