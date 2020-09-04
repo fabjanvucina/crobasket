@@ -33,9 +33,12 @@ const LoginForm = () => {
           rules={[{ required: true, message: "Molimo unesite email adresu!" }]}
         >
           <Input
+            type="email"
             value={email}
-            onChange={(value) => setEmail(value.toString().trim())}
-            autoComplete="off"
+            onChange={(e) => {
+              setEmail(e.target.value.toString().trim())
+            }
+            }
           />
         </Form.Item>
 
@@ -46,7 +49,7 @@ const LoginForm = () => {
         >
           <Input.Password
             value={password}
-            onChange={(value) => setPassword(value.toString())}
+            onChange={(e) => setPassword(e.target.value.toString())}
           />
         </Form.Item>
 

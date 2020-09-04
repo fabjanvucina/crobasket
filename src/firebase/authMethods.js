@@ -48,6 +48,7 @@ export async function login(
   history
 ) {
   try {
+    console.log(email)
     await auth.signInWithEmailAndPassword(email, password);
     const currUser = await getUser(auth.currentUser.uid);
 
