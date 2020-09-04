@@ -5,11 +5,11 @@ import app from "../firebase/firebase.js"; //eslint-disable-line
 import UserContext from "../contexts/UserContext";
 import LoggedInDisplay from "../components/LoggedInDisplay";
 import LoggedOutDisplay from "../components/LoggedOutDisplay";
-import "../styles/containers/LoginContainer.css";
+import "../styles/containers/LoginTabContainer.css";
 import "../styles/misc/Tab.css";
 import "../styles/misc/Hide.css";
 
-const LoginContainer = ({ hideLogin }) => {
+const LoginTabContainer = ({ hideLogin }) => {
   const [user] = useContext(UserContext); //eslint-disable-line
 
   return (
@@ -33,4 +33,4 @@ const LoginContainer = ({ hideLogin }) => {
   );
 };
 
-export default LoginContainer;
+export default LoginTabContainer;

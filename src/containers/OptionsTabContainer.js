@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/containers/OptionsContainer.css";
+import "../styles/containers/OptionsTabContainer.css";
 import "../styles/misc/Tab.css";
 import "../styles/misc/TabActive.css";
 import "../styles/misc/Hide.css";
 import "../styles/misc/Link.css";
 
-const OptionsContainer = ({ hideOptions, createActive, showActive }) => {
+const OptionsTabContainer = ({ hideOptions, createActive, showActive }) => {
   return (
     <div
       id="options-container"
@@ -26,4 +26,4 @@ const OptionsContainer = ({ hideOptions, createActive, showActive }) => {
   );
 };
 
-export default OptionsContainer;
+export default OptionsTabContainer;

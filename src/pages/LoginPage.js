@@ -1,11 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
-import LoginForm from "../components/LoginForm";
+import HeaderContainer from "../containers/HeaderContainer";
+import LoginFormContainer from "../containers/LoginFormContainer";
 
 const LoginPage = () => {
   return (
     <>
-      <LoginForm />
+      <HeaderContainer
+        hideOptions={true}
+        hideMenu={true}
+        hideLogin={true}
+        createActive={false}
+        showActive={false}
+      />
+      <LoginFormContainer />
     </>
   );
 };

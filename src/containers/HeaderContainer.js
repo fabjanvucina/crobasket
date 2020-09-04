@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import MenuContainer from "./MenuContainer";
 import HeaderLogo from "../components/HeaderLogo";
-import OptionsContainer from "./OptionsContainer";
-import LoginContainer from "./LoginContainer";
+import OptionsTabContainer from "./OptionsTabContainer";
+import LoginTabContainer from "./LoginTabContainer";
 import UserContext from "../contexts/UserContext";
 import "../styles/containers/HeaderContainer.css";
 import "../styles/misc/Link.css";
@@ -23,12 +23,12 @@ const HeaderContainer = ({
       <Link to={user.isAuthenticated ? "/gradovi" : "/"}>
         <HeaderLogo />
       </Link>
-      <OptionsContainer
+      <OptionsTabContainer
         hideOptions={hideOptions}
         createActive={createActive}
         showActive={showActive}
       />
-      <LoginContainer hideLogin={hideLogin} />
+      <LoginTabContainer hideLogin={hideLogin} />
     </div>
   );
 };

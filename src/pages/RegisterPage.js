@@ -1,11 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
-import RegisterForm from "../components//RegisterForm";
+import HeaderContainer from "../containers/HeaderContainer";
+import RegisterFormContainer from "../containers/RegisterFormContainer";
 
 const RegisterPage = () => {
   return (
     <>
-      <RegisterForm />
+      <HeaderContainer
+        hideOptions={true}
+        hideMenu={true}
+        hideLogin={true}
+        createActive={false}
+        showActive={false}
+      />
+      <RegisterFormContainer />
     </>
   );
 };
