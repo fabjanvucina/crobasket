@@ -47,8 +47,8 @@ const RegisterForm = () => {
         >
           <Input
             value={name}
-            onChange={(value) => setName(value.toString().trim())}
-            autoComplete="newpassword"
+            onChange={(e) => setName(e.target.value.toString())}
+            autoComplete="first-name"
           />
         </Form.Item>
 
@@ -59,8 +59,8 @@ const RegisterForm = () => {
         >
           <Input
             value={surname}
-            onChange={(value) => setSurname(value.toString().trim())}
-            autoComplete="newpassword"
+            onChange={(e) => setSurname(e.target.value.toString())}
+            autoComplete="family-name"
           />
         </Form.Item>
 
@@ -72,9 +72,9 @@ const RegisterForm = () => {
           ]}
         >
           <Input
+            type="cellphone"
             value={phoneNumber}
-            onChange={(value) => setPhoneNumber(value.toString().trim())}
-            autoComplete="off"
+            onChange={(e) => setPhoneNumber(e.target.value.toString())}
           />
         </Form.Item>
 
@@ -84,9 +84,9 @@ const RegisterForm = () => {
           rules={[{ required: true, message: "Molimo unesite email adresu!" }]}
         >
           <Input
+            type="email"
             value={email}
-            onChange={(value) => setEmail(value.toString().trim())}
-            autoComplete="off"
+            onChange={(e) => setEmail(e.target.value.toString())}
           />
         </Form.Item>
 
@@ -96,8 +96,9 @@ const RegisterForm = () => {
           rules={[{ required: true, message: "Molimo unesite lozinku!" }]}
         >
           <Input.Password
+            type="password"
             value={password}
-            onChange={(value) => setPassword(value.toString())}
+            onChange={(e) => setPassword(e.target.value.toString())}
           />
         </Form.Item>
 

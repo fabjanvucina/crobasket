@@ -48,10 +48,8 @@ export async function login(
   history
 ) {
   try {
-    console.log(email)
     await auth.signInWithEmailAndPassword(email, password);
     const currUser = await getUser(auth.currentUser.uid);
-
     localStorage.setItem("isAuthenticated", true);
     localStorage.setItem("displayName", currUser.displayName);
     localStorage.setItem("phoneNumber", currUser.phoneNumber);

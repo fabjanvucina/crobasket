@@ -31,7 +31,7 @@ export async function addUser(name, surname, phoneNumber, uid) {
 export async function getUser(uid) {
   try {
     const user = await db.collection("users").doc(uid).get();
-    return user;
+    return user.data();
   } catch (e) {
     console.log(e.message);
   }

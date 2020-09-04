@@ -6,6 +6,7 @@ import UserContext from "../contexts/UserContext";
 import { login } from "../firebase/authMethods.js";
 import "../styles/containers/LoginFormContainer.css";
 import "../styles/misc/Separator.css";
+import "../styles/misc/Link.css";
 
 const LoginForm = () => {
   let history = useHistory();
@@ -36,9 +37,8 @@ const LoginForm = () => {
             type="email"
             value={email}
             onChange={(e) => {
-              setEmail(e.target.value.toString().trim())
-            }
-            }
+              setEmail(e.target.value.toString().trim());
+            }}
           />
         </Form.Item>
 
@@ -48,6 +48,7 @@ const LoginForm = () => {
           rules={[{ required: true, message: "Molimo unesite lozinku!" }]}
         >
           <Input.Password
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value.toString())}
           />
@@ -59,6 +60,11 @@ const LoginForm = () => {
               Prijavi se
             </Button>
           </Form.Item>
+          <span className="registerLink">
+            <Link to="/registracija" className="link registerLink">
+              Nemaš račun? Izradi ga ovdje!
+            </Link>
+          </span>
         </div>
       </Form>
     </div>
