@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; //eslint-disable-line
+import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
@@ -37,11 +37,17 @@ const MenuContainer = ({ hideMenu }) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className="drawer">
-        {["TRAŽIM EKIPU", "NEDOSTAJE MI IGRAČ/I"].map((text) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} className="drawer-item" />
+        <ListItem button key="TRAŽIM EKIPU">
+          <ListItemText primary="TRAŽIM EKIPU" className="drawer-item" />
+        </ListItem>
+        <Link to="/pozivnica" className="link">
+          <ListItem button key="NEDOSTAJE MI IGRAČ/I">
+            <ListItemText
+              primary="NEDOSTAJE MI IGRAČ/I"
+              className="drawer-item"
+            />
           </ListItem>
-        ))}
+        </Link>
       </List>
     </div>
   );
