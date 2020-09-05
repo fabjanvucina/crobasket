@@ -14,10 +14,12 @@ const OptionsTabContainer = ({ hideOptions, createActive, showActive }) => {
         hideOptions === false ? "options-container" : "options-container hide"
       }
     >
-      <div className={showActive ? " option tab tab-active" : "option tab"}>
-        Tražim ekipu
-      </div>
-      <Link to="/pozivnica" className="link">
+      <Link to="/pridruzi-se-ekipi" className="link">
+        <div className={showActive ? " option tab tab-active" : "option tab"}>
+          Tražim ekipu
+        </div>
+      </Link>
+      <Link to="/organiziraj-basket" className="link">
         <div className={createActive ? " option tab tab-active" : "option tab"}>
           Nedostaju mi igrač/i
         </div>
