@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
-import CitiesContainer from "../containers/CitiesContainer";
+import CitiesListContainer from "../containers/CitiesListContainer";
 import Title from "../components/Title";
 
 const CitiesPage = () => {
@@ -15,7 +15,7 @@ const CitiesPage = () => {
         showActive={false}
       />
       <Title value="Odaberi grad" />
-      <CitiesContainer />
+      <CitiesListContainer />
     </>
   );
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
-import "../styles/components/City.css";
+import "../styles/components/CityCard.css";
 
-const City = ({ name, imgSrc, onClick }) => {
+const CityCard = ({ name, imgSrc, onClick }) => {
   return (
     <div
       role="button"
@@ -19,4 +19,4 @@ const City = ({ name, imgSrc, onClick }) => {
   );
 };
 
-export default City;
+export default CityCard;

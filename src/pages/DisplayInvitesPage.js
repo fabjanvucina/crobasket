@@ -18,6 +18,7 @@ const DisplayInvitesPage = () => {
         createActive={false}
         showActive={true}
       />
+      <InvitesFilterContainer />
     </>
   );
 };

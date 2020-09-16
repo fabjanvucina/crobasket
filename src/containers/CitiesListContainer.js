@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import City from "../components/City";
+import CityCard from "../components/CityCard";
 import HometownContext from "../contexts/HometownContext";
 import { getCities } from "../firebase/crudMethods.js";
-import "../styles/containers/CitiesContainer.css";
+import "../styles/containers/CitiesListContainer.css";
 
-const CitiesContainer = () => {
+const CitiesListContainer = () => {
   let history = useHistory();
   const [fetchedCities, setFetchedCities] = useState([]);
   const [hometown, setHometown] = useContext(HometownContext); //eslint-disable-line
@@ -14,7 +14,6 @@ const CitiesContainer = () => {
     const fetchData = async () => {
       setFetchedCities(await getCities());
     };
-
     fetchData();
   }, []);
 
@@ -26,7 +25,7 @@ const CitiesContainer = () => {
   return (
     <div className="display-cities">
       {fetchedCities.map((city) => (
-        <City
+        <CityCard
           key={city.id}
           name={city.data().displayName}
           imgSrc={city.data().imgUrl}
@@ -41,4 +40,4 @@ const CitiesContainer = () => {
   );
 };
 
-export default CitiesContainer;
+export default CitiesListContainer;
