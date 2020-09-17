@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"; //eslint-disable-line
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import InviteCard from "../components/InviteCard"; //eslint-disable-line
 import HometownContext from "../contexts/HometownContext";
 import { getAllInvites, acceptInvite } from "../firebase/crudMethods.js"; //eslint-disable-line
@@ -12,7 +12,11 @@ const InvitesListContainer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setFetchedInvites(await getAllInvites(hometown));
+      const fetchedInvites = await getAllInvites(hometown);
+      fetchedInvites.sort((a, b) => {
+        return a.data().dateTime > b.data().dateTime;
+      });
+      setFetchedInvites(fetchedInvites);
       console.log("fetched invites");
     };
 
@@ -28,12 +32,23 @@ const InvitesListContainer = () => {
           dateTime={invite.data().dateTime}
           invitees={invite.data().invitees}
           phoneNumber={invite.data().phoneNumber}
+          organiser={invite.data().organiser}
           onClick={async () => {
             //await acceptInvite(invite.id);
             history.push("/profil");
           }}
         />
       ))}
+      {fetchedInvites.length === 0 ? (
+        <div className="no-invites">
+          Nažalost, ne postoje aktivni oglasi.{" "}
+          <Link to="organiziraj-basket" className="no-invites-link">
+            <span>Budi organizator!</span>
+          </Link>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
@@ -41,9 +56,8 @@ const InvitesListContainer = () => {
 export default InvitesListContainer;
 
 /*
-TODO: 1) create more invites (10 more)
-      2) optimise InviteCard css and InviteListContainer
+TODO  1) sort invites
       3) create acceptInvite method
-      4) minor details (user cant see their invites, ..)
+      4) minor details (user cant see their invites)
       5) create getFilteredInvites method
 */

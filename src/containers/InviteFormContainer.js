@@ -18,6 +18,7 @@ const handleNewInvitation = async (
   dateTime,
   phoneNumber,
   uid,
+  displayName,
   history
 ) => {
   await createInvite(
@@ -26,7 +27,8 @@ const handleNewInvitation = async (
     invitees,
     dateTime,
     phoneNumber,
-    uid
+    uid,
+    displayName
   );
   history.push("/profil");
 };
@@ -62,6 +64,7 @@ const InviteFormContainer = () => {
             dateTime,
             user.phoneNumber,
             user.uid,
+            user.displayName,
             history
           );
         }}

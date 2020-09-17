@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
 import { Card, Button } from "antd"; //eslint-disable-line
+import InviteDetail from "../components/InviteDetail";
 import "../styles/components/InviteCard.css"; //eslint-disable-line
 import moment from "moment";
 
@@ -9,17 +10,19 @@ const InviteCard = ({
   dateTime,
   invitees,
   phoneNumber,
+  organiser,
   onClick
 }) => {
   let date = moment(dateTime).format("DD/MM/YYYY");
   let time = moment(dateTime).format("HH:mm");
   return (
     <div className="inviteCard">
-      <div className="inviteDetail">{"Kvart: " + neighbourhood}</div>
-      <div className="inviteDetail">{"Datum: " + date}</div>
-      <div className="inviteDetail">{"Vrijeme: " + time}</div>
-      <div className="inviteDetail">{"Nedostaje igrača: " + invitees}</div>
-      <div className="inviteDetail">{"Kontakt broj: " + phoneNumber}</div>
+      <InviteDetail detailName="Kvart" detailValue={neighbourhood} />
+      <InviteDetail detailName="Datum" detailValue={date} />
+      <InviteDetail detailName="Vrijeme" detailValue={time} />
+      <InviteDetail detailName="Nedostaje igrača" detailValue={invitees} />
+      <InviteDetail detailName="Organizator" detailValue={organiser} />
+      <InviteDetail detailName="Kontakt broj" detailValue={phoneNumber} />
       <Button onClick={onClick} className="acceptInviteButton">
         Dolazim!
       </Button>

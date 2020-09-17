@@ -2,6 +2,17 @@
   .display-invites {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    margin-top: 6vh;
+    margin-left: calc(280px + 5vw);
+  }
+
+  .no-invites {
+    font-size: 1.5rem;
+    margin: 30vh 10vw 0vh 0vw;
+  }
+
+  .no-invites-link {
+    color: #1890ff;
   }
 }

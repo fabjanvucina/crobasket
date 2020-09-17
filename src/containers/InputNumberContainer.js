@@ -17,7 +17,7 @@ const InputNumberContainer = ({ value, setValue }) => {
         min="0"
         max="9"
         value={value}
-        onChange={(value) => setValue(value.toString())}
+        onChange={(value) => setValue(value)}
       />
     </Form.Item>
   );

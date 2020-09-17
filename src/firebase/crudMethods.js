@@ -43,7 +43,8 @@ export async function createInvite(
   invitees,
   dateTime,
   phoneNumber,
-  uid
+  uid,
+  organiser
 ) {
   try {
     await db.collection("users").doc(uid).collection("invites").add({
@@ -51,7 +52,8 @@ export async function createInvite(
       neighbourhood: neighbourhood,
       invitees: invitees,
       dateTime: dateTime,
-      phoneNumber: phoneNumber
+      phoneNumber: phoneNumber,
+      organiser: organiser
     });
   } catch (e) {
     console.log(e.message);
@@ -71,12 +73,12 @@ export async function getNeighbourhoods(hometown) {
   }
 }
 
-export async function getAllInvites(/* hometown */) {
+export async function getAllInvites(hometown) {
   try {
     const snapshot = await db
       .collectionGroup("invites")
-      /* .where("city", "==", hometown)
-      .where("invitees", ">", 0) */
+      .where("city", "==", hometown)
+      .where("invitees", ">", 0)
       .get();
     console.log(snapshot.docs);
     return snapshot.docs;
