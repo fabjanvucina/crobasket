@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
-import InvitesFilterContainer from "../containers/InvitesFilterContainer"; //eslint-disable-line
+import InvitesFilterContainer from "../containers/InvitesFilterContainer";
+import InvitesListContainer from "../containers/InvitesListContainer";
 
 import UserContext from "../contexts/UserContext";
 
@@ -19,6 +20,7 @@ const DisplayInvitesPage = () => {
         showActive={true}
       />
       <InvitesFilterContainer />
+      <InvitesListContainer />
     </>
   );
 };

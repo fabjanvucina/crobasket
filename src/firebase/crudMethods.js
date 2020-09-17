@@ -46,12 +46,12 @@ export async function createInvite(
   uid
 ) {
   try {
-    await db.collection("cities").doc(hometown).collection("invites").add({
+    await db.collection("users").doc(uid).collection("invites").add({
+      city: hometown,
       neighbourhood: neighbourhood,
       invitees: invitees,
       dateTime: dateTime,
-      phoneNumber: phoneNumber,
-      uid: uid
+      phoneNumber: phoneNumber
     });
   } catch (e) {
     console.log(e.message);
@@ -71,14 +71,16 @@ export async function getNeighbourhoods(hometown) {
   }
 }
 
-export async function getTimeSlots() {
-  let slots = [];
-  let hour = 6;
-  for (; hour < 10; hour++) {
-    slots.push("0" + hour + ":" + "00", "0" + hour + ":" + "30");
+export async function getAllInvites(/* hometown */) {
+  try {
+    const snapshot = await db
+      .collectionGroup("invites")
+      /* .where("city", "==", hometown)
+      .where("invitees", ">", 0) */
+      .get();
+    console.log(snapshot.docs);
+    return snapshot.docs;
+  } catch (e) {
+    console.log(e.message);
   }
-  for (; hour < 23; hour++) {
-    slots.push(hour + ":" + "00", hour + ":" + "30");
-  }
-  return slots;
 }
