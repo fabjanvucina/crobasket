@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import { Form } from "antd";
 import SelectSearchableContainer from "./SelectSearchableContainer";
