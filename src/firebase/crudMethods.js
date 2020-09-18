@@ -45,7 +45,7 @@ export async function createInvite(
   dateTime,
   phoneNumber,
   uid,
-  organiser
+  organizer
 ) {
   try {
     await db.collection("users").doc(uid).collection("createdInvites").add({
@@ -54,7 +54,7 @@ export async function createInvite(
       invitees: invitees,
       dateTime: dateTime,
       phoneNumber: phoneNumber,
-      organiser: organiser,
+      organizer: organizer,
       uid: uid
     });
   } catch (e) {
@@ -62,12 +62,12 @@ export async function createInvite(
   }
 }
 
-export async function acceptInvite(organiserUID, inviteID, invitees) {
+export async function acceptInvite(organizerUID, inviteID, invitees) {
   const userUID = localStorage.getItem("uid");
   try {
     await db
       .collection("users")
-      .doc(organiserUID)
+      .doc(organizerUID)
       .collection("createdInvites")
       .doc(inviteID)
       .update({
@@ -78,7 +78,7 @@ export async function acceptInvite(organiserUID, inviteID, invitees) {
       .doc(userUID)
       .collection("acceptedInvites")
       .add({
-        organiserUID: organiserUID,
+        organizerUID: organizerUID,
         inviteID: inviteID
       });
   } catch (e) {

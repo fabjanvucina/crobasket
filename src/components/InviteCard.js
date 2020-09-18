@@ -10,7 +10,7 @@ const InviteCard = ({
   dateTime,
   invitees,
   phoneNumber,
-  organiser,
+  organizer,
   onClick
 }) => {
   let date = moment(dateTime).format("DD/MM/YYYY");
@@ -21,7 +21,7 @@ const InviteCard = ({
       <InviteDetail detailName="Datum" detailValue={date} />
       <InviteDetail detailName="Vrijeme" detailValue={time} />
       <InviteDetail detailName="Nedostaje igrača" detailValue={invitees} />
-      <InviteDetail detailName="Organizator" detailValue={organiser} />
+      <InviteDetail detailName="Organizator" detailValue={organizer} />
       <InviteDetail detailName="Kontakt broj" detailValue={phoneNumber} />
       <Button onClick={onClick} className="acceptInviteButton">
         Dolazim!

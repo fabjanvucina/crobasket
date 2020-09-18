@@ -30,7 +30,7 @@ const InvitesListContainer = () => {
           dateTime={invite.data().dateTime}
           invitees={invite.data().invitees}
           phoneNumber={invite.data().phoneNumber}
-          organiser={invite.data().organiser}
+          organizer={invite.data().organizer}
           onClick={async () => {
             await acceptInvite(
               invite.data().uid,
