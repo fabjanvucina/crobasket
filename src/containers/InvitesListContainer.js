@@ -12,9 +12,10 @@ const InvitesListContainer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const uid = localStorage.getItem("uid");
       const fetchedInvites = await getAllInvites(hometown);
       const eligibleFetchedInvites = fetchedInvites.filter((invite) => {
-        return invite.data().invitees > 0;
+        return uid != invite.data().uid && invite.data().invitees > 0;
       });
       setFetchedInvites(eligibleFetchedInvites);
     };

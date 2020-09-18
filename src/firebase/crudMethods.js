@@ -53,7 +53,8 @@ export async function createInvite(
       invitees: invitees,
       dateTime: dateTime,
       phoneNumber: phoneNumber,
-      organiser: organiser
+      organiser: organiser,
+      uid: uid
     });
   } catch (e) {
     console.log(e.message);
