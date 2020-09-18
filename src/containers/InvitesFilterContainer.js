@@ -49,7 +49,7 @@ const InvitesFilterContainer = () => {
         />
         <DateRangePickerContainer value={dateRange} setValue={setDateRange} />
         <TimeRangePickerContainer value={timeRange} setValue={setTimeRange} />
-        <FormButtonContainer value="Filtriraj" />
+        <FormButtonContainer value="Filtriraj" color="blue" />
       </Form>
     </div>
   );

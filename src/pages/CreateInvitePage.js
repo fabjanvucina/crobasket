@@ -14,8 +14,8 @@ const CreateInvitePage = () => {
         hideOptions={false}
         hideMenu={false}
         hideLogin={false}
-        createActive={true}
-        showActive={false}
+        createInvitesActive={true}
+        displayInvitesActive={false}
       />
       <InviteFormContainer />
     </>

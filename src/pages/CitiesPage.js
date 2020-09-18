@@ -11,8 +11,8 @@ const CitiesPage = () => {
         hideOptions={true}
         hideMenu={true}
         hideLogin={true}
-        createActive={false}
-        showActive={false}
+        createInvitesActive={false}
+        displayInvitesActive={false}
       />
       <Title value="Odaberi grad" />
       <CitiesListContainer />

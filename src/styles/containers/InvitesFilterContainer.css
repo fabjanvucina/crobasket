@@ -5,7 +5,7 @@
     background-color: #272121;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     margin: 0 auto;
     text-align: left;
     margin-top: 12vh;
@@ -81,6 +81,10 @@
 
   button.ant-btn.ant-btn-primary:hover {
     background-color: #bc4f1a;
+  }
+
+  button.ant-btn.blue.ant-btn-primary:hover {
+    background-color: #006ed3 !important;
   }
 
   .ant-btn {

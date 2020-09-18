@@ -16,8 +16,8 @@ const DisplayInvitesPage = () => {
         hideOptions={false}
         hideMenu={false}
         hideLogin={false}
-        createActive={false}
-        showActive={true}
+        createInvitesActive={false}
+        displayInvitesActive={true}
       />
       <InvitesFilterContainer />
       <InvitesListContainer />

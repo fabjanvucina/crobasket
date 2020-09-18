@@ -13,11 +13,10 @@ const InvitesListContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedInvites = await getAllInvites(hometown);
-      fetchedInvites.sort((a, b) => {
-        return a.data().dateTime > b.data().dateTime;
+      const eligibleFetchedInvites = fetchedInvites.filter((invite) => {
+        return invite.data().invitees > 0;
       });
-      setFetchedInvites(fetchedInvites);
-      console.log("fetched invites");
+      setFetchedInvites(eligibleFetchedInvites);
     };
 
     fetchData();
@@ -56,7 +55,7 @@ const InvitesListContainer = () => {
 export default InvitesListContainer;
 
 /*
-TODO  1) sort invites
+TODO  
       3) create acceptInvite method
       4) minor details (user cant see their invites)
       5) create getFilteredInvites method

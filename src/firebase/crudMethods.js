@@ -78,7 +78,7 @@ export async function getAllInvites(hometown) {
     const snapshot = await db
       .collectionGroup("invites")
       .where("city", "==", hometown)
-      .where("invitees", ">", 0)
+      .orderBy("dateTime")
       .get();
     console.log(snapshot.docs);
     return snapshot.docs;
