@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom";
-import InviteCard from "../components/InviteCard"; //eslint-disable-line
+import InviteCard from "../components/InviteCard";
 import HometownContext from "../contexts/HometownContext";
-import { getAllInvites, acceptInvite } from "../firebase/crudMethods.js"; //eslint-disable-line
+import { getAllInvites, acceptInvite } from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesListContainer.css";
 
 const InvitesListContainer = () => {
   let history = useHistory();
-  const [fetchedInvites, setFetchedInvites] = useState([]); //eslint-disable-line
-  const [hometown] = useContext(HometownContext); //eslint-disable-line
+  const [fetchedInvites, setFetchedInvites] = useState([]);
+  const [hometown] = useContext(HometownContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +34,11 @@ const InvitesListContainer = () => {
           phoneNumber={invite.data().phoneNumber}
           organiser={invite.data().organiser}
           onClick={async () => {
-            //await acceptInvite(invite.id);
+            await acceptInvite(
+              invite.data().uid,
+              invite.id,
+              invite.data().invitees
+            );
             history.push("/profil");
           }}
         />
@@ -58,6 +62,5 @@ export default InvitesListContainer;
 /*
 TODO  
       3) create acceptInvite method
-      4) minor details (user cant see their invites)
       5) create getFilteredInvites method
 */

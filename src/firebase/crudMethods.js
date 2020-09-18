@@ -61,6 +61,22 @@ export async function createInvite(
   }
 }
 
+export async function acceptInvite(uid, inviteID, invitees) {
+  try {
+    await db
+      .collection("users")
+      .doc(uid)
+      .collection("invites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees - 1
+      });
+    console.log("updated invitees");
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
 export async function getNeighbourhoods(hometown) {
   try {
     const snapshot = await db
