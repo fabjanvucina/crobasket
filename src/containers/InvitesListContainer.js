@@ -59,6 +59,5 @@ export default InvitesListContainer;
 
 /*
 TODO  
-      3) create acceptInvite method
       5) create getFilteredInvites method
 */

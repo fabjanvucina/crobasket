@@ -1,3 +1,4 @@
+import moment from "moment";
 import app from "./firebase.js";
 const db = app.firestore();
 
@@ -127,6 +128,7 @@ export async function getAllInvites(hometown) {
 
 export async function getAllEligibleInvites(hometown) {
   try {
+    const now = moment();
     const uid = localStorage.getItem("uid");
     const acceptedInvites = (await getAcceptedInvites(uid)).map(
       (acceptedInvite) => {
@@ -138,7 +140,8 @@ export async function getAllEligibleInvites(hometown) {
       return (
         uid != invite.data().uid &&
         invite.data().invitees > 0 &&
-        !acceptedInvites.includes(invite.id)
+        !acceptedInvites.includes(invite.id) &&
+        moment(invite.data().dateTime).isAfter(now)
       );
     });
     return eligibleFetchedInvites;
