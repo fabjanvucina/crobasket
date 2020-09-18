@@ -47,7 +47,7 @@ export async function createInvite(
   organiser
 ) {
   try {
-    await db.collection("users").doc(uid).collection("invites").add({
+    await db.collection("users").doc(uid).collection("createdInvites").add({
       city: hometown,
       neighbourhood: neighbourhood,
       invitees: invitees,
@@ -61,17 +61,38 @@ export async function createInvite(
   }
 }
 
-export async function acceptInvite(uid, inviteID, invitees) {
+export async function acceptInvite(organiserUID, inviteID, invitees) {
+  const userUID = localStorage.getItem("uid");
   try {
     await db
       .collection("users")
-      .doc(uid)
-      .collection("invites")
+      .doc(organiserUID)
+      .collection("createdInvites")
       .doc(inviteID)
       .update({
         invitees: invitees - 1
       });
-    console.log("updated invitees");
+    await db
+      .collection("users")
+      .doc(userUID)
+      .collection("acceptedInvites")
+      .add({
+        organiserUID: organiserUID,
+        inviteID: inviteID
+      });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getAcceptedInvites(uid) {
+  try {
+    const snapshot = await db
+      .collection("users")
+      .doc(uid)
+      .collection("acceptedInvites")
+      .get();
+    return snapshot.docs;
   } catch (e) {
     console.log(e.message);
   }
@@ -93,12 +114,34 @@ export async function getNeighbourhoods(hometown) {
 export async function getAllInvites(hometown) {
   try {
     const snapshot = await db
-      .collectionGroup("invites")
+      .collectionGroup("createdInvites")
       .where("city", "==", hometown)
       .orderBy("dateTime")
       .get();
     console.log(snapshot.docs);
     return snapshot.docs;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getAllEligibleInvites(hometown) {
+  try {
+    const uid = localStorage.getItem("uid");
+    const acceptedInvites = (await getAcceptedInvites(uid)).map(
+      (acceptedInvite) => {
+        return acceptedInvite.data().inviteID;
+      }
+    );
+    const fetchedInvites = await getAllInvites(hometown);
+    const eligibleFetchedInvites = fetchedInvites.filter((invite) => {
+      return (
+        uid != invite.data().uid &&
+        invite.data().invitees > 0 &&
+        !acceptedInvites.includes(invite.id)
+      );
+    });
+    return eligibleFetchedInvites;
   } catch (e) {
     console.log(e.message);
   }

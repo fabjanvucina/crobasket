@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useState } from "react"; //eslint-disable
 import { Link, useHistory } from "react-router-dom";
 import InviteCard from "../components/InviteCard";
 import HometownContext from "../contexts/HometownContext";
-import { getAllInvites, acceptInvite } from "../firebase/crudMethods.js";
+import {
+  getAllEligibleInvites,
+  acceptInvite
+} from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesListContainer.css";
 
 const InvitesListContainer = () => {
@@ -12,12 +15,7 @@ const InvitesListContainer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const uid = localStorage.getItem("uid");
-      const fetchedInvites = await getAllInvites(hometown);
-      const eligibleFetchedInvites = fetchedInvites.filter((invite) => {
-        return uid != invite.data().uid && invite.data().invitees > 0;
-      });
-      setFetchedInvites(eligibleFetchedInvites);
+      setFetchedInvites(await getAllEligibleInvites(hometown));
     };
 
     fetchData();

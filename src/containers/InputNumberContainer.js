@@ -14,7 +14,7 @@ const InputNumberContainer = ({ value, setValue }) => {
       ]}
     >
       <InputNumber
-        min="0"
+        min="1"
         max="9"
         value={value}
         onChange={(value) => setValue(value)}
