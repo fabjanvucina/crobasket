@@ -20,7 +20,6 @@ const App = () => {
     uid: isAuthenticated ? uid : ""
   });
   const hometownHook = useState(hometown ? hometown : "");
-  console.log("is authenticated: ", isAuthenticated ? true : false);
 
   return (
     <UserContext.Provider value={userHook}>

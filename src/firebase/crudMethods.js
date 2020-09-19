@@ -119,14 +119,13 @@ export async function getAllInvites(hometown) {
       .where("city", "==", hometown)
       .orderBy("dateTime")
       .get();
-    console.log(snapshot.docs);
     return snapshot.docs;
   } catch (e) {
     console.log(e.message);
   }
 }
 
-export async function getAllEligibleInvites(hometown) {
+export async function getEligibleInvites(hometown) {
   try {
     const now = moment();
     const uid = localStorage.getItem("uid");
@@ -145,6 +144,74 @@ export async function getAllEligibleInvites(hometown) {
       );
     });
     return eligibleFetchedInvites;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getFilteredInvites(
+  hometown,
+  neighbourhoods,
+  dateRange,
+  timeRange
+) {
+  try {
+    let filteredInvites = await getEligibleInvites(hometown);
+
+    if (neighbourhoods != "") {
+      const neighbourhoodsArray = neighbourhoods.split(",");
+      filteredInvites = filteredInvites.filter((invite) => {
+        return neighbourhoodsArray.includes(invite.data().neighbourhood);
+      });
+    }
+
+    if (dateRange != "") {
+      const dateRangeArray = dateRange.split(",");
+
+      if (dateRangeArray[0] != "") {
+        let startMoment = moment(dateRangeArray[0]);
+        filteredInvites = filteredInvites.filter((invite) => {
+          return (
+            startMoment.format("DD/MM/YYYY") <
+            moment(invite.data().dateTime).format("DD/MM/YYYY")
+          );
+        });
+      }
+      if (dateRangeArray[1] != "") {
+        let endMoment = moment(dateRangeArray[1]);
+        filteredInvites = filteredInvites.filter((invite) => {
+          return (
+            endMoment.format("DD/MM/YYYY") >
+            moment(invite.data().dateTime).format("DD/MM/YYYY")
+          );
+        });
+      }
+    }
+
+    if (timeRange != "") {
+      const timeRangeArray = timeRange.split(",");
+
+      if (timeRangeArray[0] != "") {
+        let startMoment = moment(timeRangeArray[0]);
+        filteredInvites = filteredInvites.filter((invite) => {
+          return (
+            startMoment.format("HH:mm") <=
+            moment(invite.data().dateTime).format("HH:mm")
+          );
+        });
+      }
+      if (timeRangeArray[1] != "") {
+        let endMoment = moment(timeRangeArray[1]);
+        filteredInvites = filteredInvites.filter((invite) => {
+          return (
+            endMoment.format("HH:mm") >=
+            moment(invite.data().dateTime).format("HH:mm")
+          );
+        });
+      }
+    }
+
+    return filteredInvites;
   } catch (e) {
     console.log(e.message);
   }

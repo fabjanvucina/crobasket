@@ -7,6 +7,7 @@ const TimeRangePickerContainer = ({ value, setValue }) => {
   return (
     <Form.Item label="Vrijeme:" name="timeRange">
       <RangePicker
+        format="HH:mm"
         placeholder=""
         value={value}
         onChange={(value) => setValue(value ? value.toString() : "")}

@@ -1,13 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import { Form } from "antd"; //eslint-disable-line
+import { Form } from "antd";
 import SelectMultipleContainer from "./SelectMultipleContainer";
 import DateRangePickerContainer from "./DateRangePickerContainer";
 import TimeRangePickerContainer from "./TimeRangePickerContainer";
 import FormButtonContainer from "./FormButtonContainer";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
-import { getNeighbourhoods } from "../firebase/crudMethods.js";
+import {
+  getNeighbourhoods,
+  getFilteredInvites
+} from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesFilterContainer.css";
 
 const InvitesFilterContainer = () => {
@@ -33,7 +36,14 @@ const InvitesFilterContainer = () => {
   return (
     <div className="filtersForm">
       <Form
-        onFinish={async () => {}}
+        onFinish={async () => {
+          await getFilteredInvites(
+            hometown,
+            neighbourhoods,
+            dateRange,
+            timeRange
+          );
+        }}
         labelCol={{
           span: 10
         }}

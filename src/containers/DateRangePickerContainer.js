@@ -10,7 +10,9 @@ const DateRangePickerContainer = ({ value, setValue }) => {
         format="DD/MM/YYYY"
         placeholder=""
         value={value}
-        onChange={(value) => setValue(value ? value.toString() : "")}
+        onChange={(value) => {
+          setValue(value ? value.toString() : "");
+        }}
       />
     </Form.Item>
   );

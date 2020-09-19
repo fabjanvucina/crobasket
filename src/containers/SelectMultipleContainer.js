@@ -15,7 +15,10 @@ const SelectMultipleContainer = ({
         onChange={(value) => setValue(value.toString())}
       >
         {fetchedNeighbourhoods.map((neighbourhood) => (
-          <Select.Option key={neighbourhood.id} value={neighbourhood.id}>
+          <Select.Option
+            key={neighbourhood.id}
+            value={neighbourhood.data().displayName}
+          >
             {neighbourhood.data().displayName}
           </Select.Option>
         ))}
