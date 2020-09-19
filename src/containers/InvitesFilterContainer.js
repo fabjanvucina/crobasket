@@ -5,7 +5,6 @@ import SelectMultipleContainer from "./SelectMultipleContainer";
 import DateRangePickerContainer from "./DateRangePickerContainer";
 import TimeRangePickerContainer from "./TimeRangePickerContainer";
 import FormButtonContainer from "./FormButtonContainer";
-import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
 import {
   getNeighbourhoods,
@@ -13,10 +12,7 @@ import {
 } from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesFilterContainer.css";
 
-const InvitesFilterContainer = () => {
-  let history = useHistory(); //eslint-disable-line
-
-  const [user] = useContext(UserContext); //eslint-disable-line
+const InvitesFilterContainer = ({ handleFilterRequest }) => {
   const [hometown] = useContext(HometownContext);
 
   const [neighbourhoods, setNeighbourhoods] = useState([]);
@@ -37,11 +33,13 @@ const InvitesFilterContainer = () => {
     <div className="filtersForm">
       <Form
         onFinish={async () => {
-          await getFilteredInvites(
-            hometown,
-            neighbourhoods,
-            dateRange,
-            timeRange
+          handleFilterRequest(
+            await getFilteredInvites(
+              hometown,
+              neighbourhoods,
+              dateRange,
+              timeRange
+            )
           );
         }}
         labelCol={{

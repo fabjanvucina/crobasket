@@ -1,22 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom";
 import InviteCard from "../components/InviteCard";
-import HometownContext from "../contexts/HometownContext";
-import { getEligibleInvites, acceptInvite } from "../firebase/crudMethods.js";
+import { acceptInvite } from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesListContainer.css";
 
-const InvitesListContainer = () => {
+const InvitesListContainer = ({ fetchedInvites }) => {
   let history = useHistory();
-  const [fetchedInvites, setFetchedInvites] = useState([]);
-  const [hometown] = useContext(HometownContext);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setFetchedInvites(await getEligibleInvites(hometown));
-    };
-
-    fetchData();
-  }, [hometown]);
 
   return (
     <div className="display-invites">

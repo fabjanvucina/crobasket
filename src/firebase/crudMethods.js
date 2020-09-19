@@ -167,48 +167,28 @@ export async function getFilteredInvites(
 
     if (dateRange != "") {
       const dateRangeArray = dateRange.split(",");
-
-      if (dateRangeArray[0] != "") {
-        let startMoment = moment(dateRangeArray[0]);
-        filteredInvites = filteredInvites.filter((invite) => {
-          return (
-            startMoment.format("DD/MM/YYYY") <
-            moment(invite.data().dateTime).format("DD/MM/YYYY")
-          );
-        });
-      }
-      if (dateRangeArray[1] != "") {
-        let endMoment = moment(dateRangeArray[1]);
-        filteredInvites = filteredInvites.filter((invite) => {
-          return (
-            endMoment.format("DD/MM/YYYY") >
-            moment(invite.data().dateTime).format("DD/MM/YYYY")
-          );
-        });
-      }
+      let startDateString = moment(dateRangeArray[0]).format("DD/MM/YYYY");
+      let endDateString = moment(dateRangeArray[1]).format("DD/MM/YYYY");
+      filteredInvites = filteredInvites.filter((invite) => {
+        return (
+          startDateString <
+            moment(invite.data().dateTime).format("DD/MM/YYYY") &&
+          endDateString > moment(invite.data().dateTime).format("DD/MM/YYYY")
+        );
+      });
     }
 
     if (timeRange != "") {
       const timeRangeArray = timeRange.split(",");
 
-      if (timeRangeArray[0] != "") {
-        let startMoment = moment(timeRangeArray[0]);
-        filteredInvites = filteredInvites.filter((invite) => {
-          return (
-            startMoment.format("HH:mm") <=
-            moment(invite.data().dateTime).format("HH:mm")
-          );
-        });
-      }
-      if (timeRangeArray[1] != "") {
-        let endMoment = moment(timeRangeArray[1]);
-        filteredInvites = filteredInvites.filter((invite) => {
-          return (
-            endMoment.format("HH:mm") >=
-            moment(invite.data().dateTime).format("HH:mm")
-          );
-        });
-      }
+      let startTimeString = moment(timeRangeArray[0]).format("HH:mm");
+      let endTimeString = moment(timeRangeArray[1]).format("HH:mm");
+      filteredInvites = filteredInvites.filter((invite) => {
+        return (
+          startTimeString <= moment(invite.data().dateTime).format("HH:mm") &&
+          endTimeString >= moment(invite.data().dateTime).format("HH:mm")
+        );
+      });
     }
 
     return filteredInvites;

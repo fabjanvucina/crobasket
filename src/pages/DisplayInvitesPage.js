@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
 import InvitesFilterContainer from "../containers/InvitesFilterContainer";
 import InvitesListContainer from "../containers/InvitesListContainer";
-
-import UserContext from "../contexts/UserContext";
+import HometownContext from "../contexts/HometownContext";
+import { getEligibleInvites } from "../firebase/crudMethods.js";
 
 const DisplayInvitesPage = () => {
-  let history = useHistory(); //eslint-disable-line
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
+  const [hometown] = useContext(HometownContext);
+
+  const [fetchedInvites, setFetchedInvites] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setFetchedInvites(await getEligibleInvites(hometown));
+    };
+
+    fetchData();
+  }, [hometown]);
 
   return (
     <>
@@ -19,8 +28,8 @@ const DisplayInvitesPage = () => {
         createInvitesActive={false}
         displayInvitesActive={true}
       />
-      <InvitesFilterContainer />
-      <InvitesListContainer />
+      <InvitesFilterContainer handleFilterRequest={setFetchedInvites} />
+      <InvitesListContainer fetchedInvites={fetchedInvites} />
     </>
   );
 };
