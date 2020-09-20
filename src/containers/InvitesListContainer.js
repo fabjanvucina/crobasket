@@ -12,7 +12,7 @@ const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
   return (
     <div className="display-invites">
       {loadingInvites ? (
-        <Spin size="large" />
+        <Spin size="large" className="invites" />
       ) : fetchedInvites.length === 0 ? (
         <div className="no-invites">
           Nažalost, ne postoje aktivni oglasi.{" "}

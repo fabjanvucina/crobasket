@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Spin } from "antd";
 import CityCard from "../components/CityCard";
 import HometownContext from "../contexts/HometownContext";
 import { getCities } from "../firebase/crudMethods.js";
@@ -8,11 +9,14 @@ import "../styles/containers/CitiesListContainer.css";
 const CitiesListContainer = () => {
   let history = useHistory();
   const [fetchedCities, setFetchedCities] = useState([]);
+  const [loadingCities, setLoadingCities] = useState(true);
+
   const [hometown, setHometown] = useContext(HometownContext); //eslint-disable-line
 
   useEffect(() => {
     const fetchData = async () => {
       setFetchedCities(await getCities());
+      setLoadingCities(false);
     };
     fetchData();
   }, []);
@@ -24,18 +28,22 @@ const CitiesListContainer = () => {
 
   return (
     <div className="display-cities">
-      {fetchedCities.map((city) => (
-        <CityCard
-          key={city.id}
-          name={city.data().displayName}
-          imgSrc={city.data().imgUrl}
-          onClick={() => {
-            localStorage.setItem("hometown", city.id);
-            setHometown(city.id);
-            history.push("/profil");
-          }}
-        />
-      ))}
+      {loadingCities ? (
+        <Spin size="large" />
+      ) : (
+        fetchedCities.map((city) => (
+          <CityCard
+            key={city.id}
+            name={city.data().displayName}
+            imgSrc={city.data().imgUrl}
+            onClick={() => {
+              localStorage.setItem("hometown", city.id);
+              setHometown(city.id);
+              history.push("/profil");
+            }}
+          />
+        ))
+      )}
     </div>
   );
 };
