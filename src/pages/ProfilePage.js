@@ -36,7 +36,7 @@ const ProfilePage = () => {
         displayInvitesActive={false}
         profileActive={true}
       />
-      <Title value={user.displayName} />
+      <Title value={user.displayName} uppercase={false} />
       <div id="logoutDiv">
         <button
           id="logoutButton"
