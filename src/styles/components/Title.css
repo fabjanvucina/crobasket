@@ -1,6 +1,6 @@
 @media only screen and (min-width: 850px) {
   .title {
-    font-size: max(min(7vh, 40px), 30px);
+    font-size: max(min(6.5vh, 40px), 30px);
     padding-right: 0;
     text-align: center;
     margin: max(min(15vh, 80px), 30px) auto;
