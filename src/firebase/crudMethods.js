@@ -55,7 +55,7 @@ export async function createInvite(
       dateTime: dateTime,
       phoneNumber: phoneNumber,
       organizer: organizer,
-      uid: uid
+      organizerUID: uid
     });
   } catch (e) {
     console.log(e.message);
@@ -137,7 +137,7 @@ export async function getEligibleInvites(hometown) {
     const fetchedInvites = await getAllInvites(hometown);
     const eligibleFetchedInvites = fetchedInvites.filter((invite) => {
       return (
-        uid != invite.data().uid &&
+        uid != invite.data().organizerUID &&
         invite.data().invitees > 0 &&
         !acceptedInvites.includes(invite.id) &&
         moment(invite.data().dateTime).isAfter(now)
