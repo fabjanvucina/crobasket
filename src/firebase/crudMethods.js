@@ -1,3 +1,4 @@
+import moment from "moment";
 import app from "./firebase.js";
 const db = app.firestore();
 
@@ -43,16 +44,56 @@ export async function createInvite(
   invitees,
   dateTime,
   phoneNumber,
-  uid
+  uid,
+  organizer
 ) {
   try {
-    await db.collection("cities").doc(hometown).collection("invites").add({
+    await db.collection("users").doc(uid).collection("createdInvites").add({
+      city: hometown,
       neighbourhood: neighbourhood,
       invitees: invitees,
       dateTime: dateTime,
       phoneNumber: phoneNumber,
-      uid: uid
+      organizer: organizer,
+      organizerUID: uid
     });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function acceptInvite(organizerUID, inviteID, invitees) {
+  const userUID = localStorage.getItem("uid");
+  try {
+    await db
+      .collection("users")
+      .doc(organizerUID)
+      .collection("createdInvites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees - 1
+      });
+    await db
+      .collection("users")
+      .doc(userUID)
+      .collection("acceptedInvites")
+      .add({
+        organizerUID: organizerUID,
+        inviteID: inviteID
+      });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getAcceptedInvites(uid) {
+  try {
+    const snapshot = await db
+      .collection("users")
+      .doc(uid)
+      .collection("acceptedInvites")
+      .get();
+    return snapshot.docs;
   } catch (e) {
     console.log(e.message);
   }
@@ -71,14 +112,87 @@ export async function getNeighbourhoods(hometown) {
   }
 }
 
-export async function getTimeSlots() {
-  let slots = [];
-  let hour = 6;
-  for (; hour < 10; hour++) {
-    slots.push("0" + hour + ":" + "00", "0" + hour + ":" + "30");
+export async function getAllInvites(hometown) {
+  try {
+    const snapshot = await db
+      .collectionGroup("createdInvites")
+      .where("city", "==", hometown)
+      .orderBy("dateTime")
+      .get();
+    return snapshot.docs;
+  } catch (e) {
+    console.log(e.message);
   }
-  for (; hour < 23; hour++) {
-    slots.push(hour + ":" + "00", hour + ":" + "30");
+}
+
+export async function getEligibleInvites(hometown) {
+  try {
+    const now = moment();
+    const uid = localStorage.getItem("uid");
+    const acceptedInvites = (await getAcceptedInvites(uid)).map(
+      (acceptedInvite) => {
+        return acceptedInvite.data().inviteID;
+      }
+    );
+    const fetchedInvites = await getAllInvites(hometown);
+    const eligibleFetchedInvites = fetchedInvites.filter((invite) => {
+      return (
+        uid != invite.data().organizerUID &&
+        invite.data().invitees > 0 &&
+        !acceptedInvites.includes(invite.id) &&
+        moment(invite.data().dateTime).isAfter(now)
+      );
+    });
+    return eligibleFetchedInvites;
+  } catch (e) {
+    console.log(e.message);
   }
-  return slots;
+}
+
+export async function getFilteredInvites(
+  hometown,
+  neighbourhoods,
+  dateRange,
+  timeRange
+) {
+  try {
+    let filteredInvites = await getEligibleInvites(hometown);
+
+    if (neighbourhoods != "") {
+      const neighbourhoodsArray = neighbourhoods.split(",");
+      filteredInvites = filteredInvites.filter((invite) => {
+        return neighbourhoodsArray.includes(invite.data().neighbourhood);
+      });
+    }
+
+    if (dateRange != "") {
+      const dateRangeArray = dateRange.split(",");
+      let startDateString = moment(dateRangeArray[0]).format("DD/MM/YYYY");
+      let endDateString = moment(dateRangeArray[1]).format("DD/MM/YYYY");
+      filteredInvites = filteredInvites.filter((invite) => {
+        return (
+          startDateString <
+            moment(invite.data().dateTime).format("DD/MM/YYYY") &&
+          endDateString > moment(invite.data().dateTime).format("DD/MM/YYYY")
+        );
+      });
+    }
+
+    if (timeRange != "") {
+      const timeRangeArray = timeRange.split(",");
+
+      let startTimeString = moment(timeRangeArray[0]).format("HH:mm");
+      let endTimeString = moment(timeRangeArray[1]).format("HH:mm");
+      filteredInvites = filteredInvites.filter((invite) => {
+        return (
+          startTimeString <= moment(invite.data().dateTime).format("HH:mm") &&
+          endTimeString >= moment(invite.data().dateTime).format("HH:mm")
+        );
+      });
+    }
+
+    return filteredInvites;
+  } catch (e) {
+    console.log(e.message);
+  }
 }
