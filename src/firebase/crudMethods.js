@@ -155,6 +155,7 @@ export async function getFilteredInvites(
   dateRange,
   timeRange
 ) {
+  //placeholder change
   try {
     let filteredInvites = await getEligibleInvites(hometown);
 
