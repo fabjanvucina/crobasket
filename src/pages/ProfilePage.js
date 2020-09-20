@@ -24,7 +24,7 @@ const handleLogout = async (setUser, history) => {
 
 const ProfilePage = () => {
   let history = useHistory();
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
+  const [user, setUser] = useContext(UserContext);
 
   return (
     <>
