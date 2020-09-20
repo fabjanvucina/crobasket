@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
-import CitiesListContainer from "../containers/CitiesListContainer";
+import CitiesContainer from "../containers/CitiesContainer";
 import Title from "../components/Title";
 
 const CitiesPage = () => {
@@ -11,11 +11,11 @@ const CitiesPage = () => {
         hideOptions={true}
         hideMenu={true}
         hideLogin={true}
-        createInvitesActive={false}
-        displayInvitesActive={false}
+        createActive={false}
+        showActive={false}
       />
       <Title value="Odaberi grad" />
-      <CitiesListContainer />
+      <CitiesContainer />
     </>
   );
 };

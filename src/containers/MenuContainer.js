@@ -37,12 +37,10 @@ const MenuContainer = ({ hideMenu }) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className="drawer">
-        <Link to="/organiziraj-basket" className="link">
-          <ListItem button key="TRAŽIM EKIPU">
-            <ListItemText primary="TRAŽIM EKIPU" className="drawer-item" />
-          </ListItem>
-        </Link>
-        <Link to="/organiziraj-basket" className="link">
+        <ListItem button key="TRAŽIM EKIPU">
+          <ListItemText primary="TRAŽIM EKIPU" className="drawer-item" />
+        </ListItem>
+        <Link to="/pozivnica" className="link">
           <ListItem button key="NEDOSTAJE MI IGRAČ/I">
             <ListItemText
               primary="NEDOSTAJE MI IGRAČ/I"

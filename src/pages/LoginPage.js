@@ -10,8 +10,8 @@ const LoginPage = () => {
         hideOptions={true}
         hideMenu={true}
         hideLogin={true}
-        createInvitesActive={false}
-        displayInvitesActive={false}
+        createActive={false}
+        showActive={false}
       />
       <LoginFormContainer />
     </>

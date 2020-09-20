@@ -5,19 +5,20 @@
     background: #272121;
     border-radius: 60px;
     transition: 0.2s;
-    border: 1.5px solid #272121;
+    border: 1px solid #272121;
   }
 
   .tab:hover::before {
     transform: scale(1.2);
     box-shadow: 0 0 15px #e16428;
-    border: 1.5px solid #e16428;
+    border: 1px solid #e16428;
   }
 
   .tab:hover {
     color: #e16428;
-
-    border: 1.5px solid #e16428;
+    box-shadow: 0 0 5px #e16428;
+    text-shadow: 0 0 5px #e16428;
+    border: 1px solid #e16428;
   }
 }
 

@@ -6,11 +6,7 @@ import "../styles/misc/TabActive.css";
 import "../styles/misc/Hide.css";
 import "../styles/misc/Link.css";
 
-const OptionsTabContainer = ({
-  hideOptions,
-  createInvitesActive,
-  displayInvitesActive
-}) => {
+const OptionsTabContainer = ({ hideOptions, createActive, showActive }) => {
   return (
     <div
       id="options-container"
@@ -18,21 +14,11 @@ const OptionsTabContainer = ({
         hideOptions === false ? "options-container" : "options-container hide"
       }
     >
-      <Link to="/pridruzi-se-ekipi" className="link">
-        <div
-          className={
-            displayInvitesActive ? " option tab tab-active" : "option tab"
-          }
-        >
-          Tražim ekipu
-        </div>
-      </Link>
-      <Link to="/organiziraj-basket" className="link">
-        <div
-          className={
-            createInvitesActive ? " option tab tab-active" : "option tab"
-          }
-        >
+      <div className={showActive ? " option tab tab-active" : "option tab"}>
+        Tražim ekipu
+      </div>
+      <Link to="/pozivnica" className="link">
+        <div className={createActive ? " option tab tab-active" : "option tab"}>
           Nedostaju mi igrač/i
         </div>
       </Link>

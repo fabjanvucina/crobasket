@@ -9,7 +9,7 @@ import "../styles/containers/LoginTabContainer.css";
 import "../styles/misc/Tab.css";
 import "../styles/misc/Hide.css";
 
-const LoginTabContainer = ({ hideLogin, profileActive }) => {
+const LoginTabContainer = ({ hideLogin }) => {
   const [user] = useContext(UserContext); //eslint-disable-line
 
   return (
@@ -18,9 +18,7 @@ const LoginTabContainer = ({ hideLogin, profileActive }) => {
         id="login-container"
         className={
           hideLogin === true
-            ? "login-container hide"
-            : profileActive === true
-            ? "login-container tab tab-active"
+            ? "login-container tab hide"
             : "login-container tab"
         }
       >
