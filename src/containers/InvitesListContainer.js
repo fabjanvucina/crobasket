@@ -9,24 +9,6 @@ const InvitesListContainer = ({ fetchedInvites }) => {
 
   return (
     <div className="display-invites">
-      {fetchedInvites.map((invite) => (
-        <InviteCard
-          key={invite.id}
-          neighbourhood={invite.data().neighbourhood}
-          dateTime={invite.data().dateTime}
-          invitees={invite.data().invitees}
-          phoneNumber={invite.data().phoneNumber}
-          organizer={invite.data().organizer}
-          onClick={async () => {
-            await acceptInvite(
-              invite.data().uid,
-              invite.id,
-              invite.data().invitees
-            );
-            history.push("/profil");
-          }}
-        />
-      ))}
       {fetchedInvites.length === 0 ? (
         <div className="no-invites">
           Nažalost, ne postoje aktivni oglasi.{" "}
@@ -35,7 +17,24 @@ const InvitesListContainer = ({ fetchedInvites }) => {
           </Link>
         </div>
       ) : (
-        <div></div>
+        fetchedInvites.map((invite) => (
+          <InviteCard
+            key={invite.id}
+            neighbourhood={invite.data().neighbourhood}
+            dateTime={invite.data().dateTime}
+            invitees={invite.data().invitees}
+            phoneNumber={invite.data().phoneNumber}
+            organizer={invite.data().organizer}
+            onClick={async () => {
+              await acceptInvite(
+                invite.data().uid,
+                invite.id,
+                invite.data().invitees
+              );
+              history.push("/profil");
+            }}
+          />
+        ))
       )}
     </div>
   );
