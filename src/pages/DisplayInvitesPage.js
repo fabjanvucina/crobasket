@@ -10,10 +10,12 @@ const DisplayInvitesPage = () => {
   const [hometown] = useContext(HometownContext);
 
   const [fetchedInvites, setFetchedInvites] = useState([]);
+  const [loadingInvites, setLoadingInvites] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setFetchedInvites(await getEligibleInvites(hometown));
+      setLoadingInvites(false);
     };
 
     fetchData();
@@ -29,7 +31,10 @@ const DisplayInvitesPage = () => {
         displayInvitesActive={true}
       />
       <InvitesFilterContainer handleFilterRequest={setFetchedInvites} />
-      <InvitesListContainer fetchedInvites={fetchedInvites} />
+      <InvitesListContainer
+        fetchedInvites={fetchedInvites}
+        loadingInvites={loadingInvites}
+      />
     </>
   );
 };

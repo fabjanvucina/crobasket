@@ -1,15 +1,19 @@
 import React, { useContext, useEffect, useState } from "react"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom";
+import { Spin } from "antd";
 import InviteCard from "../components/InviteCard";
 import { acceptInvite } from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesListContainer.css";
+import "../styles/misc/Spinner.css";
 
-const InvitesListContainer = ({ fetchedInvites }) => {
+const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
   let history = useHistory();
 
   return (
     <div className="display-invites">
-      {fetchedInvites.length === 0 ? (
+      {loadingInvites ? (
+        <Spin size="large" />
+      ) : fetchedInvites.length === 0 ? (
         <div className="no-invites">
           Nažalost, ne postoje aktivni oglasi.{" "}
           <Link to="organiziraj-basket" className="no-invites-link">
