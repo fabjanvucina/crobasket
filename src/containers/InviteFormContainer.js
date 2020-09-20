@@ -1,14 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
+import app from "../firebase/firebase.js"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import { Form } from "antd";
-import SelectSearchableContainer from "./SelectSearchableContainer";
-import InputNumberContainer from "./InputNumberContainer";
-import DateTimePickerContainer from "./DateTimePickerContainer";
-import FormButtonContainer from "./FormButtonContainer";
+import { Form, Select, DatePicker, InputNumber, Button } from "antd";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
 import { createInvite, getNeighbourhoods } from "../firebase/crudMethods.js";
 import "../styles/containers/InviteFormContainer.css";
+import moment from "moment";
 
 const handleNewInvitation = async (
   hometown,
@@ -17,7 +15,6 @@ const handleNewInvitation = async (
   dateTime,
   phoneNumber,
   uid,
-  displayName,
   history
 ) => {
   await createInvite(
@@ -26,8 +23,7 @@ const handleNewInvitation = async (
     invitees,
     dateTime,
     phoneNumber,
-    uid,
-    displayName
+    uid
   );
   history.push("/profil");
 };
@@ -35,14 +31,14 @@ const handleNewInvitation = async (
 const InviteFormContainer = () => {
   let history = useHistory();
 
-  const [user] = useContext(UserContext);
-  const [hometown] = useContext(HometownContext);
+  const [fetchedNeighbourhoods, setFetchedNeighbourhoods] = useState([]);
 
   const [neighbourhood, setNeighbourhood] = useState("");
   const [invitees, setInvitees] = useState("");
   const [dateTime, setDateTime] = useState("");
 
-  const [fetchedNeighbourhoods, setFetchedNeighbourhoods] = useState([]);
+  const [user] = useContext(UserContext);
+  const [hometown] = useContext(HometownContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +47,12 @@ const InviteFormContainer = () => {
 
     fetchData();
   }, [hometown]);
+
+  const [componentSize, setComponentSize] = useState("default");
+
+  const onFormLayoutChange = ({ size }) => {
+    setComponentSize(size);
+  };
 
   return (
     <div className="inviteForm">
@@ -63,7 +65,6 @@ const InviteFormContainer = () => {
             dateTime,
             user.phoneNumber,
             user.uid,
-            user.displayName,
             history
           );
         }}
@@ -74,15 +75,104 @@ const InviteFormContainer = () => {
           span: 15
         }}
         layout="horizontal"
+        initialValues={{
+          size: componentSize
+        }}
+        onValuesChange={onFormLayoutChange}
+        size={componentSize}
       >
-        <SelectSearchableContainer
-          value={neighbourhood}
-          setValue={setNeighbourhood}
-          fetchedNeighbourhoods={fetchedNeighbourhoods}
-        />
-        <InputNumberContainer value={invitees} setValue={setInvitees} />
-        <DateTimePickerContainer value={dateTime} setValue={setDateTime} />
-        <FormButtonContainer value="Objavi" />
+        <Form.Item
+          label="Kvart"
+          name="neighbourhood"
+          rules={[{ required: true, message: "Molimo odaberite kvart!" }]}
+        >
+          <Select
+            value={neighbourhood}
+            onChange={(value) => setNeighbourhood(value.toString())}
+          >
+            {fetchedNeighbourhoods.map((neighbourhood) => (
+              <Select.Option key={neighbourhood.id} value={neighbourhood.id}>
+                {neighbourhood.data().displayName}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+
+        <Form.Item
+          label="Nedostaje igrača"
+          name="invitees"
+          rules={[
+            {
+              required: true,
+              message: "Molimo unesite broj igrača koji Vam nedostaje!"
+            }
+          ]}
+        >
+          <InputNumber
+            min="0"
+            max="9"
+            value={invitees}
+            onChange={(value) => setInvitees(value.toString())}
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="Datum i vrijeme"
+          name="dateTime"
+          rules={[
+            {
+              required: true,
+              message: "Molimo odaberite datum i vrijeme!"
+            }
+          ]}
+        >
+          <DatePicker
+            format="DD/MM/YYYY HH:mm"
+            placeholder=""
+            value={dateTime}
+            onChange={(value) => setDateTime(value.toISOString())}
+            disabledSeconds={() => {
+              const seconds = [];
+              for (let i = 0; i < 60; i++) {
+                seconds.push(i);
+              }
+
+              return seconds;
+            }}
+            disabledMinutes={() => {
+              const minutes = [];
+              for (let i = 0; i < 60; i++) {
+                if (i !== 0 && i !== 15 && i !== 30 && i !== 45) {
+                  minutes.push(i);
+                }
+              }
+
+              return minutes;
+            }}
+            disabledHours={() => {
+              const hours = [];
+              for (let i = 0; i < 24; i++) {
+                if (i <= 6 || i == 23) {
+                  hours.push(i);
+                }
+              }
+
+              return hours;
+            }}
+            hideDisabledOptions={true}
+            showNow={false}
+            showToday={true}
+            showTime={{ defaultValue: moment("00:00", "HH:mm") }}
+          />
+        </Form.Item>
+
+        <div className="form-bottom">
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Objavi
+            </Button>
+          </Form.Item>
+        </div>
       </Form>
     </div>
   );

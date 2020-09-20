@@ -20,13 +20,16 @@ const App = () => {
     uid: isAuthenticated ? uid : ""
   });
   const hometownHook = useState(hometown ? hometown : "");
+  console.log("is authenticated: ", isAuthenticated ? true : false);
 
   return (
+    /* <React.StrictMode> */
     <UserContext.Provider value={userHook}>
       <HometownContext.Provider value={hometownHook}>
         <PageRouter />
       </HometownContext.Provider>
     </UserContext.Provider>
+    /* </React.StrictMode> */
   );
 };
 

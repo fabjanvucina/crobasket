@@ -8,8 +8,8 @@ const WelcomePage = () => {
       hideOptions={true}
       hideMenu={true}
       hideLogin={false}
-      createInvitesActive={false}
-      displayInvitesActive={false}
+      createActive={false}
+      showActive={false}
     />
   );
 };
