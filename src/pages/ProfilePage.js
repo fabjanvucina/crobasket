@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
 import Title from "../components/Title";
 import UserContext from "../contexts/UserContext";
+import HometownContext from "../contexts/HometownContext";
 import { logout } from "../firebase/authMethods.js";
 import "../styles/pages/ProfilePage.css";
 
@@ -25,6 +26,7 @@ const handleLogout = async (setUser, history) => {
 const ProfilePage = () => {
   let history = useHistory();
   const [user, setUser] = useContext(UserContext);
+  const [hometown] = useContext(HometownContext);
 
   return (
     <>
@@ -36,7 +38,8 @@ const ProfilePage = () => {
         displayInvitesActive={false}
         profileActive={true}
       />
-      <Title value={user.displayName} uppercase={false} />
+      <Title value={"Grad: " + hometown} type={"hometown"} />
+      <Title value={user.displayName} type={"userInfo"} />
       <div id="logoutDiv">
         <button
           id="logoutButton"

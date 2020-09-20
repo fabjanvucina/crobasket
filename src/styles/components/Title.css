@@ -1,5 +1,5 @@
 @media only screen and (min-width: 850px) {
-  .title {
+  .city-page {
     font-size: max(min(6.5vh, 40px), 30px);
     padding-right: 0;
     text-align: center;
@@ -7,6 +7,33 @@
     font-weight: bold;
     /* font-family: "Bangers", cursive;*/
     letter-spacing: 0.02em;
+  }
+
+  .user-display-name {
+    font-size: max(min(5.5vh, 40px), 30px);
+    padding-right: 0;
+    text-align: center;
+    margin: /* max(min(15vh, 80px), 30px) */ 0 auto;
+    font-weight: bold;
+  }
+
+  .hometown-info {
+    font-size: max(min(3.1vh, 20px), 12px);
+    padding: min(10px, max(1.3vh, 3px)) 0px;
+    text-align: center;
+    background: #272121;
+    border-radius: 60px;
+    margin: 30px 45px;
+    border: 1.5px solid #272121;
+    width: 10vw;
+    transition: 0.2s;
+    margin-left: 30px;
+  }
+
+  .hometown-info:hover {
+    /* border: 1.5px solid #006ed3; */
+    background-color: #1e1919;
+    border: 1.5px solid #1e1919;
   }
 }
 
