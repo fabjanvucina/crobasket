@@ -27,17 +27,6 @@ const ProfilePage = () => {
       <Link to="gradovi" className="link">
         <SpanTitle value={hometown} type="hometown" />
       </Link>
-
-      {/*       <div id="logoutDiv">
-        <button
-          id="logoutButton"
-          onClick={async () => {
-            await handleLogout(setUser, history);
-          }}
-        >
-          LOGOUT
-        </button>
-      </div> */}
     </>
   );
 };
