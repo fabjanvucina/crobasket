@@ -14,6 +14,6 @@
 }
 
 .logout:hover {
-  background-color: #da0038;
+  background-color: rgba(250, 0, 55, 0.5);
   color: white;
 }

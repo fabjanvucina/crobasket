@@ -25,18 +25,19 @@
     font-size: max(min(3.5vh, 30px), 12px);
     padding: /* min(12px, max(1.5vh, 3px)) 0px */ 10px 2px;
     text-align: center;
-    background: #005cb1;
+    background: #272121;
     border-radius: 60px;
     margin: 30px 45px;
-    border: 1.5px solid #005cb1;
+    border: 1.5px solid #272121;
     width: 12vw;
     margin-left: 630px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .hometown-info:hover {
     /* border: 1.5px solid #006ed3; */
-    background-color: #00427e;
-    border: 1.5px solid #00427e;
+    background-color: #1e1919;
+    border: 1.5px solid #1e1919;
   }
 }
 
