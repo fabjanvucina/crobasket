@@ -10,30 +10,33 @@
   }
 
   .user-display-name {
-    font-size: max(min(5.5vh, 40px), 30px);
+    display: inline-block;
+    font-size: max(min(7vh, 40px), 30px);
+    letter-spacing: 0.02em;
     padding-right: 0;
     text-align: center;
-    margin: /* max(min(15vh, 80px), 30px) */ 0 auto;
+    margin-top: /* max(min(15vh, 80px), 30px) */ 120px;
+    margin-left: 580px;
     font-weight: bold;
   }
 
   .hometown-info {
-    font-size: max(min(3.1vh, 20px), 12px);
-    padding: min(10px, max(1.3vh, 3px)) 0px;
+    display: inline-block;
+    font-size: max(min(3.5vh, 30px), 12px);
+    padding: /* min(12px, max(1.5vh, 3px)) 0px */ 10px 2px;
     text-align: center;
-    background: #272121;
+    background: #005cb1;
     border-radius: 60px;
     margin: 30px 45px;
-    border: 1.5px solid #272121;
-    width: 10vw;
-    transition: 0.2s;
-    margin-left: 30px;
+    border: 1.5px solid #005cb1;
+    width: 12vw;
+    margin-left: 630px;
   }
 
   .hometown-info:hover {
     /* border: 1.5px solid #006ed3; */
-    background-color: #1e1919;
-    border: 1.5px solid #1e1919;
+    background-color: #00427e;
+    border: 1.5px solid #00427e;
   }
 }
 

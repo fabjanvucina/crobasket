@@ -1,32 +1,16 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
-import Title from "../components/Title";
+import SpanTitle from "../components/SpanTitle";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
-import { logout } from "../firebase/authMethods.js";
+import ProfileOptionsContainer from "../containers/ProfileOptionsContainer";
 import "../styles/pages/ProfilePage.css";
 
-const handleLogout = async (setUser, history) => {
-  await logout();
-  localStorage.removeItem("isAuthenticated");
-  localStorage.removeItem("displayName");
-  localStorage.removeItem("hometown");
-  localStorage.removeItem("phoneNumber");
-  localStorage.removeItem("uid");
-  setUser({
-    isAuthenticated: false,
-    displayName: "",
-    phoneNumber: "",
-    uid: ""
-  });
-  history.push("/");
-};
-
 const ProfilePage = () => {
-  let history = useHistory();
-  const [user, setUser] = useContext(UserContext);
-  const [hometown] = useContext(HometownContext);
+  let history = useHistory(); //eslint-disable-line
+  const [user, setUser] = useContext(UserContext); //eslint-disable-line
+  const [hometown] = useContext(HometownContext); //eslint-disable-line
 
   return (
     <>
@@ -38,9 +22,13 @@ const ProfilePage = () => {
         displayInvitesActive={false}
         profileActive={true}
       />
-      <Title value={"Grad: " + hometown} type={"hometown"} />
-      <Title value={user.displayName} type={"userInfo"} />
-      <div id="logoutDiv">
+      <ProfileOptionsContainer />
+      <SpanTitle value={user.displayName} type="userInfo" />
+      <Link to="gradovi" className="link">
+        <SpanTitle value={hometown} type="hometown" />
+      </Link>
+
+      {/*       <div id="logoutDiv">
         <button
           id="logoutButton"
           onClick={async () => {
@@ -49,7 +37,7 @@ const ProfilePage = () => {
         >
           LOGOUT
         </button>
-      </div>
+      </div> */}
     </>
   );
 };

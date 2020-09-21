@@ -1,0 +1,19 @@
+.profile-option {
+  text-align: center;
+  font-size: 1.2rem;
+  height: 45px;
+  border-radius: 60px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  transition: 0.1s;
+}
+
+.profile-option:hover {
+  background-color: #363333;
+}
+
+.logout:hover {
+  background-color: #da0038;
+  color: white;
+}
