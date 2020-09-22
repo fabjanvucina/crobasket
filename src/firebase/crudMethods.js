@@ -14,6 +14,19 @@ export async function getCities() {
   }
 }
 
+export async function getNeighbourhoods(hometown) {
+  try {
+    const snapshot = await db
+      .collection("cities")
+      .doc(hometown)
+      .collection("regions")
+      .get();
+    return snapshot.docs;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
 export async function addUser(name, surname, phoneNumber, uid) {
   try {
     await db
@@ -86,32 +99,6 @@ export async function acceptInvite(organizerUID, inviteID, invitees) {
   }
 }
 
-export async function getAcceptedInvites(uid) {
-  try {
-    const snapshot = await db
-      .collection("users")
-      .doc(uid)
-      .collection("acceptedInvites")
-      .get();
-    return snapshot.docs;
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-export async function getNeighbourhoods(hometown) {
-  try {
-    const snapshot = await db
-      .collection("cities")
-      .doc(hometown)
-      .collection("regions")
-      .get();
-    return snapshot.docs;
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
 export async function getAllInvites(hometown) {
   try {
     const snapshot = await db
@@ -127,23 +114,22 @@ export async function getAllInvites(hometown) {
 
 export async function getEligibleInvites(hometown) {
   try {
-    const now = moment();
+    const NOW = moment();
     const uid = localStorage.getItem("uid");
-    const acceptedInvites = (await getAcceptedInvites(uid)).map(
+    /* const acceptedInvites = (await getAcceptedInvites(uid)).map(
       (acceptedInvite) => {
         return acceptedInvite.data().inviteID;
       }
-    );
-    const fetchedInvites = await getAllInvites(hometown);
-    const eligibleFetchedInvites = fetchedInvites.filter((invite) => {
+    ); */
+
+    return (await getAllInvites(hometown)).filter((invite) => {
       return (
         uid != invite.data().organizerUID &&
         invite.data().invitees > 0 &&
-        !acceptedInvites.includes(invite.id) &&
-        moment(invite.data().dateTime).isAfter(now)
+        /* !acceptedInvites.includes(invite.id) && */
+        moment(invite.data().dateTime).isAfter(NOW)
       );
     });
-    return eligibleFetchedInvites;
   } catch (e) {
     console.log(e.message);
   }
@@ -155,7 +141,6 @@ export async function getFilteredInvites(
   dateRange,
   timeRange
 ) {
-  //placeholder change
   try {
     let filteredInvites = await getEligibleInvites(hometown);
 
@@ -172,9 +157,9 @@ export async function getFilteredInvites(
       let endDateString = moment(dateRangeArray[1]).format("DD/MM/YYYY");
       filteredInvites = filteredInvites.filter((invite) => {
         return (
-          startDateString <
+          startDateString <=
             moment(invite.data().dateTime).format("DD/MM/YYYY") &&
-          endDateString > moment(invite.data().dateTime).format("DD/MM/YYYY")
+          endDateString >= moment(invite.data().dateTime).format("DD/MM/YYYY")
         );
       });
     }
@@ -193,6 +178,36 @@ export async function getFilteredInvites(
     }
 
     return filteredInvites;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getAcceptedInvites(uid) {
+  try {
+    const snapshot = await db
+      .collection("users")
+      .doc(uid)
+      .collection("acceptedInvites")
+      .get();
+    return snapshot.docs;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function isInviteAccepted(inviteID) {
+  const uid = localStorage.getItem("uid");
+  try {
+    const acceptedInvitesIdentifiers = (
+      await db.collection("users").doc(uid).collection("acceptedInvites").get()
+    ).map((acceptedInvite) => {
+      return acceptedInvite.data().inviteID;
+    });
+
+    console.log(acceptedInvitesIdentifiers);
+    console.log(inviteID);
+    return acceptedInvitesIdentifiers.includes(inviteID);
   } catch (e) {
     console.log(e.message);
   }
