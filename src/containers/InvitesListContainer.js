@@ -2,16 +2,36 @@ import React, { useContext, useEffect, useState } from "react"; //eslint-disable
 import { Link, useHistory } from "react-router-dom";
 import { Spin } from "antd";
 import InviteCardContainer from "../containers/InviteCardContainer";
-import { acceptInvite } from "../firebase/crudMethods.js";
+import {
+  acceptInvite,
+  generateInviteAcceptedStatusMap
+} from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesListContainer.css";
 import "../styles/misc/Spinner.css";
 
 const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
   let history = useHistory();
+  const [inviteAcceptedStatusMap, setInviteAcceptedStatusMap] = useState(
+    new Map()
+  );
+  const [loadingMap, setLoadingMap] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!loadingInvites) {
+        setInviteAcceptedStatusMap(
+          await generateInviteAcceptedStatusMap(fetchedInvites)
+        );
+        setLoadingMap(false);
+      }
+    };
+
+    fetchData();
+  }, [fetchedInvites, loadingInvites]);
 
   return (
     <div className="display-invites">
-      {loadingInvites ? (
+      {loadingMap ? (
         <Spin size="large" className="invites" />
       ) : fetchedInvites.length === 0 ? (
         <div className="no-invites">
@@ -29,7 +49,7 @@ const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
             invitees={invite.data().invitees}
             phoneNumber={invite.data().phoneNumber}
             organizer={invite.data().organizer}
-            inviteID={invite.id}
+            isAccepted={inviteAcceptedStatusMap.get(invite.id)}
             onClick={async () => {
               await acceptInvite(
                 invite.data().organizerUID,
@@ -46,8 +66,3 @@ const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
 };
 
 export default InvitesListContainer;
-
-/*
-TODO  
-      5) create getFilteredInvites method
-*/

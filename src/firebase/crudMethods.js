@@ -206,3 +206,21 @@ export async function isInviteAccepted(inviteID) {
     console.log(e.message);
   }
 }
+
+export async function generateInviteAcceptedStatusMap(invites) {
+  const uid = localStorage.getItem("uid");
+
+  try {
+    let inviteAcceptedStatusMap = new Map();
+    invites.forEach((invite) => {
+      inviteAcceptedStatusMap.set(invite.id, false);
+    });
+    (await getAcceptedInvites(uid)).forEach((acceptedInvite) => {
+      inviteAcceptedStatusMap.set(acceptedInvite.data().inviteID, true);
+    });
+
+    return inviteAcceptedStatusMap;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
