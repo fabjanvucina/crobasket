@@ -116,17 +116,11 @@ export async function getEligibleInvites(hometown) {
   try {
     const NOW = moment();
     const uid = localStorage.getItem("uid");
-    /* const acceptedInvites = (await getAcceptedInvites(uid)).map(
-      (acceptedInvite) => {
-        return acceptedInvite.data().inviteID;
-      }
-    ); */
 
     return (await getAllInvites(hometown)).filter((invite) => {
       return (
         uid != invite.data().organizerUID &&
         invite.data().invitees > 0 &&
-        /* !acceptedInvites.includes(invite.id) && */
         moment(invite.data().dateTime).isAfter(NOW)
       );
     });
