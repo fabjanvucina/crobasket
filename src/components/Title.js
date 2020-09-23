@@ -8,7 +8,9 @@ const Title = ({ value, type }) => {
     <div
       className={
         type === "cityPage"
-          ? "city-page uppercase"
+          ? "top uppercase"
+          : type === "userInvites"
+          ? "top"
           : type === "userInfo"
           ? "user-display-name"
           : "hometown-info"

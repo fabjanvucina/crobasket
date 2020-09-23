@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom";
 import InviteCard from "../components/InviteCard";
+import HometownContext from "../contexts/HometownContext";
 import { acceptInvite } from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesListContainer.css";
 
 const InvitesListContainer = ({ fetchedInvites }) => {
   let history = useHistory();
+  const [hometown] = useContext(HometownContext);
 
   return (
     <div className="display-invites">
@@ -21,7 +23,8 @@ const InvitesListContainer = ({ fetchedInvites }) => {
             await acceptInvite(
               invite.data().uid,
               invite.id,
-              invite.data().invitees
+              invite.data().invitees,
+              hometown
             );
             history.push("/profil");
           }}
