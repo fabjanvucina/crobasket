@@ -16,8 +16,8 @@ const InvitesFilterContainer = ({ handleFilterRequest }) => {
   const [hometown] = useContext(HometownContext);
 
   const [neighbourhoods, setNeighbourhoods] = useState([]);
-  const [dateRange, setDateRange] = useState("");
-  const [timeRange, setTimeRange] = useState("");
+  const [dateRange, setDateRange] = useState([]);
+  const [timeRange, setTimeRange] = useState([]);
 
   const [fetchedNeighbourhoods, setFetchedNeighbourhoods] = useState([]);
 

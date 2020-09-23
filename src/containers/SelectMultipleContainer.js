@@ -12,7 +12,9 @@ const SelectMultipleContainer = ({
         mode="multiple"
         allowClear
         value={value}
-        onChange={(value) => setValue(value.toString())}
+        onChange={(value) => {
+          setValue(value)
+        }}
       >
         {fetchedNeighbourhoods.map((neighbourhood) => (
           <Select.Option

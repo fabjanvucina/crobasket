@@ -106,6 +106,7 @@ export async function getAllInvites(hometown) {
       .where("city", "==", hometown)
       .orderBy("dateTime")
       .get();
+
     return snapshot.docs;
   } catch (e) {
     console.log(e.message);
@@ -129,6 +130,35 @@ export async function getEligibleInvites(hometown) {
   }
 }
 
+function convertTimeRange(dateRange, timeRange) {
+  if (dateRange.length === 2 && timeRange.length === 2) {
+    let dateFrom = moment(dateRange[0], 'DD/MM/YYYY')
+
+    let timeParsed = moment(timeRange[0], 'HH:mm');
+    if (timeParsed.isValid() == true) {
+      dateFrom = dateFrom.hour(timeParsed.hour())
+        .minute(timeParsed.minute());
+    }
+
+    let dateTo = moment(dateRange[1], 'DD/MM/YYYY')
+
+    timeParsed = moment(timeRange[1], 'HH:mm');
+    if (timeParsed.isValid() == true) {
+      dateTo = dateTo.hour(timeParsed.hour())
+        .minute(timeParsed.minute());
+    }
+
+    return {
+      dateTimeFrom: dateFrom.toDate(),
+      dateTimeTo: dateTo.toDate()
+    }
+  } else if (dateRange.length === 0 && timeRange.length === 0) {
+    return null
+  }
+
+  throw new Error('DateTimeRange not set correctly')
+}
+
 export async function getFilteredInvites(
   hometown,
   neighbourhoods,
@@ -136,42 +166,29 @@ export async function getFilteredInvites(
   timeRange
 ) {
   try {
-    let filteredInvites = await getEligibleInvites(hometown);
+    const uid = localStorage.getItem("uid");
 
-    if (neighbourhoods != "") {
-      const neighbourhoodsArray = neighbourhoods.split(",");
-      filteredInvites = filteredInvites.filter((invite) => {
-        return neighbourhoodsArray.includes(invite.data().neighbourhood);
-      });
+    let filteredInvites = db.collectionGroup("createdInvites")
+      .where("city", "==", hometown)
+
+    if (neighbourhoods.length) {
+      filteredInvites = filteredInvites.where("neighborhood", "in", neighbourhoods)
     }
 
-    if (dateRange != "") {
-      const dateRangeArray = dateRange.split(",");
-      let startDateString = moment(dateRangeArray[0]).format("DD/MM/YYYY");
-      let endDateString = moment(dateRangeArray[1]).format("DD/MM/YYYY");
-      filteredInvites = filteredInvites.filter((invite) => {
-        return (
-          startDateString <=
-            moment(invite.data().dateTime).format("DD/MM/YYYY") &&
-          endDateString >= moment(invite.data().dateTime).format("DD/MM/YYYY")
-        );
-      });
+    const dateTimeRange = convertTimeRange(dateRange, timeRange)
+
+    if (dateTimeRange) {
+      console.log(dateTimeRange)
+      filteredInvites = filteredInvites
+        .orderBy("dateTime")
+        .where("dateTime", ">=", dateTimeRange.dateTimeFrom)
+        .where("dateTime", "<=", dateTimeRange.dateTimeTo)
     }
 
-    if (timeRange != "") {
-      const timeRangeArray = timeRange.split(",");
+    return (await filteredInvites.get()).docs.filter(invite => {
+      return invite.data().organizerUID !== uid && invite.data().invitees > 0
+    });
 
-      let startTimeString = moment(timeRangeArray[0]).format("HH:mm");
-      let endTimeString = moment(timeRangeArray[1]).format("HH:mm");
-      filteredInvites = filteredInvites.filter((invite) => {
-        return (
-          startTimeString <= moment(invite.data().dateTime).format("HH:mm") &&
-          endTimeString >= moment(invite.data().dateTime).format("HH:mm")
-        );
-      });
-    }
-
-    return filteredInvites;
   } catch (e) {
     console.log(e.message);
   }

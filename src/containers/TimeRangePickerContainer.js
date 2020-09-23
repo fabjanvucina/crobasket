@@ -10,7 +10,7 @@ const TimeRangePickerContainer = ({ value, setValue }) => {
         format="HH:mm"
         placeholder=""
         value={value}
-        onChange={(value) => setValue(value ? value.toString() : "")}
+        onChange={(value) => setValue(value)}
         disabledSeconds={() => {
           const seconds = [];
           for (let i = 0; i < 60; i++) {
