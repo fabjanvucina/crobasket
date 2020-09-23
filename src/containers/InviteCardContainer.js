@@ -3,20 +3,17 @@ import { Link } from "react-router-dom"; //eslint-disable-line
 import { Card, Button } from "antd"; //eslint-disable-line
 import InviteDetail from "../components/InviteDetail";
 import "../styles/containers/InviteCardContainer.css";
-import moment from "moment";
 
 const InviteCardContainer = ({
   neighbourhood,
-  dateTime,
+  date,
+  time,
   invitees,
   phoneNumber,
   organizer,
   isAccepted,
   onClick
 }) => {
-  let date = moment(dateTime).format("DD/MM/YYYY");
-  let time = moment(dateTime).format("HH:mm");
-
   return (
     <div className={isAccepted ? "inviteCard accepted" : "inviteCard"}>
       <InviteDetail detailName="Kvart" detailValue={neighbourhood} />

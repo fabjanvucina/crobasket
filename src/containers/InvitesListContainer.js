@@ -45,7 +45,8 @@ const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
           <InviteCardContainer
             key={invite.id}
             neighbourhood={invite.data().neighbourhood}
-            dateTime={invite.data().dateTime}
+            date={invite.data().displayDate}
+            time={invite.data().displayTime}
             invitees={invite.data().invitees}
             phoneNumber={invite.data().phoneNumber}
             organizer={invite.data().organizer}
