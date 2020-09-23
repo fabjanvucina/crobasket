@@ -37,8 +37,8 @@ const CitiesListContainer = () => {
             name={city.data().displayName}
             imgSrc={city.data().imgUrl}
             onClick={() => {
-              localStorage.setItem("hometown", city.id);
-              setHometown(city.id);
+              localStorage.setItem("hometown", city.data().displayName);
+              setHometown(city.data().displayName);
               history.push("/profil");
             }}
           />
