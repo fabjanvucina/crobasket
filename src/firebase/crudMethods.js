@@ -144,32 +144,31 @@ export async function getEligibleInvites(hometown) {
 }
 
 function convertTimeRange(dateRange, timeRange) {
+  console.log(dateRange);
   if (dateRange.length === 2 && timeRange.length === 2) {
-    let dateFrom = moment(dateRange[0], 'DD/MM/YYYY')
+    let dateFrom = moment(dateRange[0], "DD/MM/YYYY");
 
-    let timeParsed = moment(timeRange[0], 'HH:mm');
+    let timeParsed = moment(timeRange[0], "HH:mm");
     if (timeParsed.isValid() == true) {
-      dateFrom = dateFrom.hour(timeParsed.hour())
-        .minute(timeParsed.minute());
+      dateFrom = dateFrom.hour(timeParsed.hour()).minute(timeParsed.minute());
     }
 
-    let dateTo = moment(dateRange[1], 'DD/MM/YYYY')
+    let dateTo = moment(dateRange[1], "DD/MM/YYYY");
 
-    timeParsed = moment(timeRange[1], 'HH:mm');
+    timeParsed = moment(timeRange[1], "HH:mm");
     if (timeParsed.isValid() == true) {
-      dateTo = dateTo.hour(timeParsed.hour())
-        .minute(timeParsed.minute());
+      dateTo = dateTo.hour(timeParsed.hour()).minute(timeParsed.minute());
     }
 
     return {
       dateTimeFrom: dateFrom.toDate(),
       dateTimeTo: dateTo.toDate()
-    }
+    };
   } else if (dateRange.length === 0 && timeRange.length === 0) {
-    return null
+    return null;
   }
 
-  throw new Error('DateTimeRange not set correctly')
+  throw new Error("DateTimeRange not set correctly");
 }
 
 export async function getFilteredInvites(
@@ -180,28 +179,33 @@ export async function getFilteredInvites(
 ) {
   try {
     const uid = localStorage.getItem("uid");
+    console.log(neighbourhoods);
 
-    let filteredInvites = db.collectionGroup("createdInvites")
-      .where("city", "==", hometown)
+    let filteredInvites = db
+      .collectionGroup("createdInvites")
+      .where("city", "==", hometown);
 
     if (neighbourhoods.length) {
-      filteredInvites = filteredInvites.where("neighborhood", "in", neighbourhoods)
+      filteredInvites = filteredInvites.where(
+        "neighbourhood",
+        "in",
+        neighbourhoods
+      );
     }
 
-    const dateTimeRange = convertTimeRange(dateRange, timeRange)
+    const dateTimeRange = convertTimeRange(dateRange, timeRange);
 
     if (dateTimeRange) {
-      console.log(dateTimeRange)
+      console.log(dateTimeRange);
       filteredInvites = filteredInvites
-        .orderBy("dateTime")
         .where("dateTime", ">=", dateTimeRange.dateTimeFrom)
         .where("dateTime", "<=", dateTimeRange.dateTimeTo)
+        .orderBy("dateTime");
     }
 
-    return (await filteredInvites.get()).docs.filter(invite => {
-      return invite.data().organizerUID !== uid && invite.data().invitees > 0
+    return (await filteredInvites.get()).docs.filter((invite) => {
+      return invite.data().organizerUID !== uid && invite.data().invitees > 0;
     });
-
   } catch (e) {
     console.log(e.message);
   }
@@ -220,7 +224,7 @@ export async function getAcceptedInvites(uid) {
   }
 }
 
-export async function isInviteAccepted(inviteID) {
+/* export async function isInviteAccepted(inviteID) {
   const uid = localStorage.getItem("uid");
   try {
     const acceptedInvitesIdentifiers = (
@@ -235,7 +239,7 @@ export async function isInviteAccepted(inviteID) {
   } catch (e) {
     console.log(e.message);
   }
-}
+} */
 
 export async function generateInviteAcceptedStatusMap(invites) {
   const uid = localStorage.getItem("uid");
