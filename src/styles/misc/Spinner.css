@@ -1,0 +1,11 @@
+div.ant-spin {
+  position: fixed;
+  top: 50vh;
+  left: 49vw;
+}
+
+div.invites {
+  position: static;
+  margin-left: 30vw;
+  margin-top: 30vh;
+}

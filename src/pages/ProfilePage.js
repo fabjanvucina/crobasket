@@ -31,9 +31,10 @@ const ProfilePage = () => {
       <HeaderContainer
         hideOptions={false}
         hideMenu={false}
-        hideLogin={true}
-        createActive={false}
-        showActive={false}
+        hideLogin={false}
+        createInvitesActive={false}
+        displayInvitesActive={false}
+        profileActive={true}
       />
       <Title value={user.displayName} />
       <div id="logoutDiv">

@@ -12,8 +12,9 @@ const HeaderContainer = ({
   hideMenu,
   hideOptions,
   hideLogin,
-  createActive,
-  showActive
+  createInvitesActive,
+  displayInvitesActive,
+  profileActive
 }) => {
   const [user] = useContext(UserContext);
 
@@ -25,10 +26,10 @@ const HeaderContainer = ({
       </Link>
       <OptionsTabContainer
         hideOptions={hideOptions}
-        createActive={createActive}
-        showActive={showActive}
+        createInvitesActive={createInvitesActive}
+        displayInvitesActive={displayInvitesActive}
       />
-      <LoginTabContainer hideLogin={hideLogin} />
+      <LoginTabContainer hideLogin={hideLogin} profileActive={profileActive} />
     </div>
   );
 };

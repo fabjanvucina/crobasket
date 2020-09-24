@@ -12,6 +12,7 @@ import RegisterPage from "../pages/RegisterPage";
 import CitiesPage from "../pages/CitiesPage";
 import ProfilePage from "../pages/ProfilePage";
 import CreateInvitePage from "../pages/CreateInvitePage";
+import DisplayInvitesPage from "../pages/DisplayInvitesPage";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
 
@@ -30,9 +31,7 @@ const PageRouter = () => {
   const [hometown] = useContext(HometownContext);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(() => {
-      console.log("auth state changed");
-    });
+    app.auth().onAuthStateChanged(() => {});
   }, [setUser]);
 
   return (
@@ -58,9 +57,17 @@ const PageRouter = () => {
           {user.isAuthenticated ? <CitiesPage /> : <Redirect to="/prijava" />}
         </Route>
 
-        <Route exact path="/pozivnica">
+        <Route exact path="/organiziraj-basket">
           {user.isAuthenticated ? (
             <CreateInvitePage />
+          ) : (
+            <Redirect to="/prijava" />
+          )}
+        </Route>
+
+        <Route exact path="/pridruzi-se-ekipi">
+          {user.isAuthenticated ? (
+            <DisplayInvitesPage />
           ) : (
             <Redirect to="/prijava" />
           )}
