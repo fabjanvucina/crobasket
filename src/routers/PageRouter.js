@@ -33,9 +33,7 @@ const PageRouter = () => {
   const [hometown] = useContext(HometownContext);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(() => {
-      console.log("auth state changed");
-    });
+    app.auth().onAuthStateChanged(() => {});
   }, [setUser]);
 
   return (

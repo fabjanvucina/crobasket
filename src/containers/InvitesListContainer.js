@@ -1,36 +1,39 @@
 import React, { useContext, useEffect, useState } from "react"; //eslint-disable-line
 import { Link, useHistory } from "react-router-dom";
-import InviteCard from "../components/InviteCard";
-import HometownContext from "../contexts/HometownContext";
-import { acceptInvite } from "../firebase/crudMethods.js";
+import { Spin } from "antd";
+import InviteCardContainer from "../containers/InviteCardContainer";
+import {
+  acceptInvite,
+  generateInviteAcceptedStatusMap
+} from "../firebase/crudMethods.js";
 import "../styles/containers/InvitesListContainer.css";
+import "../styles/misc/Spinner.css";
 
-const InvitesListContainer = ({ fetchedInvites }) => {
+const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
   let history = useHistory();
-  const [hometown] = useContext(HometownContext);
+  const [inviteAcceptedStatusMap, setInviteAcceptedStatusMap] = useState(
+    new Map()
+  );
+  const [loadingMap, setLoadingMap] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!loadingInvites) {
+        setInviteAcceptedStatusMap(
+          await generateInviteAcceptedStatusMap(fetchedInvites)
+        );
+        setLoadingMap(false);
+      }
+    };
+
+    fetchData();
+  }, [fetchedInvites, loadingInvites]);
 
   return (
     <div className="display-invites">
-      {fetchedInvites.map((invite) => (
-        <InviteCard
-          key={invite.id}
-          neighbourhood={invite.data().neighbourhood}
-          dateTime={invite.data().dateTime}
-          invitees={invite.data().invitees}
-          phoneNumber={invite.data().phoneNumber}
-          organizer={invite.data().organizer}
-          onClick={async () => {
-            await acceptInvite(
-              invite.data().uid,
-              invite.id,
-              invite.data().invitees,
-              hometown
-            );
-            history.push("/profil");
-          }}
-        />
-      ))}
-      {fetchedInvites.length === 0 ? (
+      {loadingMap ? (
+        <Spin size="large" className="invites" />
+      ) : fetchedInvites.length === 0 ? (
         <div className="no-invites">
           Nažalost, ne postoje aktivni oglasi.{" "}
           <Link to="organiziraj-basket" className="no-invites-link">
@@ -38,15 +41,29 @@ const InvitesListContainer = ({ fetchedInvites }) => {
           </Link>
         </div>
       ) : (
-        <div></div>
+        fetchedInvites.map((invite) => (
+          <InviteCardContainer
+            key={invite.id}
+            neighbourhood={invite.data().neighbourhood}
+            date={invite.data().displayDate}
+            time={invite.data().displayTime}
+            invitees={invite.data().invitees}
+            phoneNumber={invite.data().phoneNumber}
+            organizer={invite.data().organizer}
+            isAccepted={inviteAcceptedStatusMap.get(invite.id)}
+            onClick={async () => {
+              await acceptInvite(
+                invite.data().organizerUID,
+                invite.id,
+                invite.data().invitees
+              );
+              history.push("/profil");
+            }}
+          />
+        ))
       )}
     </div>
   );
 };
 
 export default InvitesListContainer;
-
-/*
-TODO  
-      5) create getFilteredInvites method
-*/

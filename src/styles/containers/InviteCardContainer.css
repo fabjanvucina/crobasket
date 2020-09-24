@@ -18,6 +18,10 @@
     transform: scale(1.1);
   }
 
+  .accepted {
+    opacity: 0.6;
+  }
+
   .acceptInviteButton {
     color: #f6e9e9 !important;
     background: #363333 !important;
@@ -30,6 +34,16 @@
 
   .acceptInviteButton:hover {
     background-color: #006ed3 !important;
+  }
+
+  .acceptedButton {
+    color: #f6e9e9 !important;
+    background: #363333 !important;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    border: none !important;
+    border-radius: 60px !important;
+    margin: 15px 0 0 75px;
   }
 
   .inviteDetail {
