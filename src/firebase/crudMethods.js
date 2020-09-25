@@ -64,6 +64,49 @@ export async function getUser(uid) {
   }
 }
 
+export async function increaseInvitees(inviteID, invitees) {
+  try {
+    let updateSnapshot = await db
+      .collectionGroup("acceptedInvites")
+      .where("inviteID", "==", inviteID)
+      .get();
+    updateSnapshot.docs.forEach((snapshot) => {
+      snapshot.ref.update({
+        invitees: invitees + 1
+      });
+    });
+    updateSnapshot = await db
+      .collectionGroup("createdInvites")
+      .where("inviteID", "==", inviteID)
+      .get();
+    updateSnapshot.docs.forEach((doc) => {
+      doc.ref.update({
+        invitees: invitees + 1
+      });
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function decreaseInvitees(inviteID, invitees) {
+  try {
+    let updateSnapshot = await db
+      .collectionGroup("acceptedInvites")
+      .where("inviteID", "==", inviteID)
+      .get();
+    updateSnapshot.docs.forEach((doc) => {
+      doc.ref.update({
+        invitees: invitees - 1
+      });
+    });
+
+    await decreaseInvitees(inviteID, invitees);
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
 export async function createInvite(
   hometown,
   neighbourhood,
@@ -132,15 +175,26 @@ export async function acceptInvite(
         organizer: organizer,
         phoneNumber: phoneNumber
       });
-    const updateSnapshot = await db
-      .collectionGroup("acceptedInvites")
+    await decreaseInvitees(inviteID, invitees);
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function cancelAcceptedInvite(inviteID, invitees) {
+  const userUID = localStorage.getItem("uid");
+
+  try {
+    let updateSnapshot = await db
+      .collection("users")
+      .doc(userUID)
       .where("inviteID", "==", inviteID)
       .get();
-    updateSnapshot.docs.forEach((snapshot) => {
-      snapshot.ref.update({
-        invitees: invitees - 1
-      });
+    updateSnapshot.docs.forEach((doc) => {
+      doc.ref.delete();
     });
+
+    await increaseInvitees(inviteID, invitees);
   } catch (e) {
     console.log(e.message);
   }

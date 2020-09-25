@@ -14,6 +14,7 @@ const UserInvitesListContainer = ({ activeInvites, expiredInvites, type }) => {
       {activeInvites.map((invite) => (
         <ActiveInviteContainer
           key={invite.id}
+          inviteID={invite.id}
           neighbourhood={invite.data().neighbourhood}
           invitees={invite.data().invitees}
           displayDate={invite.data().displayDate}

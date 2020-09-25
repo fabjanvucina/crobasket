@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
-import { Card, Button } from "antd"; //eslint-disable-line
+import CreatedInviteFunctionalityContainer from "./CreatedInviteFunctionalityContainer"; //eslint-disable-line
+import AcceptedInviteFunctionalityContainer from "./AcceptedInviteFunctionalityContainer"; //eslint-disable-line
 import InviteDetail from "../components/InviteDetail";
+import {
+  increaseInvitees,
+  decreaseInvitees,
+  cancelAcceptedInvite
+} from "../firebase/crudMethods";
 import "../styles/containers/ActiveInviteContainer.css";
 
 const ActiveInviteContainer = ({
+  inviteID,
   neighbourhood,
   displayDate,
   displayTime,
@@ -61,6 +68,22 @@ const ActiveInviteContainer = ({
         </>
       ) : (
         <></>
+      )}
+      {type === "created" ? (
+        <CreatedInviteFunctionalityContainer
+          handleIncrement={async () =>
+            await increaseInvitees(inviteID, invitees)
+          }
+          handleDecrement={async () =>
+            await decreaseInvitees(inviteID, invitees)
+          }
+        />
+      ) : (
+        <AcceptedInviteFunctionalityContainer
+          handleCancellation={async () =>
+            await cancelAcceptedInvite(inviteID, invitees)
+          }
+        />
       )}
     </div>
   );
