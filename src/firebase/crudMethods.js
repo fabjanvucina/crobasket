@@ -188,6 +188,7 @@ export async function cancelAcceptedInvite(inviteID, invitees) {
     let updateSnapshot = await db
       .collection("users")
       .doc(userUID)
+      .collection("acceptedInvites")
       .where("inviteID", "==", inviteID)
       .get();
     updateSnapshot.docs.forEach((doc) => {
