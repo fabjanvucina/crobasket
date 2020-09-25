@@ -70,8 +70,8 @@ export async function increaseInvitees(inviteID, invitees) {
       .collectionGroup("acceptedInvites")
       .where("inviteID", "==", inviteID)
       .get();
-    updateSnapshot.docs.forEach((snapshot) => {
-      snapshot.ref.update({
+    updateSnapshot.docs.forEach((doc) => {
+      doc.update({
         invitees: invitees + 1
       });
     });
@@ -80,7 +80,7 @@ export async function increaseInvitees(inviteID, invitees) {
       .where("inviteID", "==", inviteID)
       .get();
     updateSnapshot.docs.forEach((doc) => {
-      doc.ref.update({
+      doc.update({
         invitees: invitees + 1
       });
     });
@@ -96,12 +96,19 @@ export async function decreaseInvitees(inviteID, invitees) {
       .where("inviteID", "==", inviteID)
       .get();
     updateSnapshot.docs.forEach((doc) => {
-      doc.ref.update({
+      doc.update({
         invitees: invitees - 1
       });
     });
-
-    await decreaseInvitees(inviteID, invitees);
+    updateSnapshot = await db
+      .collectionGroup("createdInvites")
+      .where("inviteID", "==", inviteID)
+      .get();
+    updateSnapshot.docs.forEach((doc) => {
+      doc.update({
+        invitees: invitees - 1
+      });
+    });
   } catch (e) {
     console.log(e.message);
   }
@@ -175,7 +182,15 @@ export async function acceptInvite(
         organizer: organizer,
         phoneNumber: phoneNumber
       });
-    await decreaseInvitees(inviteID, invitees);
+    let updateSnapshot = await db
+      .collectionGroup("acceptedInvites")
+      .where("inviteID", "==", inviteID)
+      .get();
+    updateSnapshot.docs.forEach((doc) => {
+      doc.update({
+        invitees: invitees - 1
+      });
+    });
   } catch (e) {
     console.log(e.message);
   }
@@ -192,7 +207,7 @@ export async function cancelAcceptedInvite(inviteID, invitees) {
       .where("inviteID", "==", inviteID)
       .get();
     updateSnapshot.docs.forEach((doc) => {
-      doc.ref.delete();
+      doc.delete();
     });
 
     await increaseInvitees(inviteID, invitees);

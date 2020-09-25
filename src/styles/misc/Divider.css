@@ -4,12 +4,12 @@ div.ant-divider.ant-divider-horizontal {
 
 div.ant-divider.ant-divider-horizontal.ant-divider-with-text.ant-divider-with-text-left {
   font-size: 1.4em !important;
-  margin-top: 50px !important;
+  margin-top: 40px !important;
   margin-bottom: 50px !important;
 }
 
 div.ant-divider.ant-divider-horizontal.ant-divider-with-text.ant-divider-with-text-left.expired {
   font-size: 1.4em !important;
-  margin-top: 70px !important;
+  margin-top: 60px !important;
   margin-bottom: 50px !important;
 }
