@@ -5,7 +5,6 @@ import app from "../firebase/firebase.js"; //eslint-disable-line
 import UserContext from "../contexts/UserContext";
 import { register } from "../firebase/authMethods.js";
 import "../styles/containers/RegisterFormContainer.css";
-import "../styles/misc/Separator.css";
 
 const RegisterForm = () => {
   let history = useHistory();

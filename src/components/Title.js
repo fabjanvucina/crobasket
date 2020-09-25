@@ -10,7 +10,7 @@ const Title = ({ value, type }) => {
         type === "cityPage"
           ? "top uppercase"
           : type === "userInvites"
-          ? "top"
+          ? "top userInvites"
           : type === "userInfo"
           ? "user-display-name"
           : "hometown-info"

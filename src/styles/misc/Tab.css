@@ -10,14 +10,14 @@
 
   .tab:hover::before {
     transform: scale(1.2);
-    box-shadow: 0 0 15px #e16428;
-    border: 1.5px solid #e16428;
+    box-shadow: 0 0 15px #e78455;
+    border: 1.5px solid #e78455;
   }
 
   .tab:hover {
-    color: #e16428;
+    color: #e78455;
 
-    border: 1.5px solid #e16428;
+    border: 1.5px solid #e78455;
   }
 }
 

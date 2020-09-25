@@ -42,7 +42,7 @@ const AcceptedInvitesPage = () => {
         <UserInvitesListContainer
           activeInvites={activeAcceptedInvites}
           expiredInvites={expiredAcceptedInvites}
-          type="created"
+          type="accepted"
         />
       )}
     </>

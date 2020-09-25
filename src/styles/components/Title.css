@@ -8,6 +8,11 @@
     /* font-family: "Bangers", cursive;*/
     letter-spacing: 0.02em;
   }
+
+  .userInvites {
+    margin-bottom: max(min(7vh, 80px), 30px);
+  }
+
   .user-display-name {
     display: inline-block;
     font-size: max(min(7vh, 40px), 30px);

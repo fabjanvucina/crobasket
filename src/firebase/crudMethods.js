@@ -94,7 +94,18 @@ export async function createInvite(
   }
 }
 
-export async function acceptInvite(organizerUID, inviteID, invitees, hometown) {
+export async function acceptInvite(
+  organizerUID,
+  inviteID,
+  invitees,
+  city,
+  neighbourhood,
+  dateTime,
+  displayDate,
+  displayTime,
+  organizer,
+  phoneNumber
+) {
   const userUID = localStorage.getItem("uid");
   try {
     await db
@@ -112,8 +123,24 @@ export async function acceptInvite(organizerUID, inviteID, invitees, hometown) {
       .add({
         organizerUID: organizerUID,
         inviteID: inviteID,
-        city: hometown
+        city: city,
+        neighbourhood: neighbourhood,
+        invitees: invitees - 1,
+        dateTime: dateTime,
+        displayDate: displayDate,
+        displayTime: displayTime,
+        organizer: organizer,
+        phoneNumber: phoneNumber
       });
+    const updateSnapshot = await db
+      .collectionGroup("acceptedInvites")
+      .where("inviteID", "==", inviteID)
+      .get();
+    updateSnapshot.docs.forEach((snapshot) => {
+      snapshot.ref.update({
+        invitees: invitees - 1
+      });
+    });
   } catch (e) {
     console.log(e.message);
   }
@@ -277,18 +304,17 @@ export async function generateInviteAcceptedStatusMap(invites) {
 
 export async function getActiveCreatedInvites(city) {
   const uid = localStorage.getItem("uid");
-  const NOW = moment();
+  const NOW = moment().toDate();
   try {
     const snapshot = await db
       .collection("users")
       .doc(uid)
       .collection("createdInvites")
       .where("city", "==", city)
+      .where("dateTime", ">=", NOW)
       .get();
-    const activeCreatedInvites = snapshot.docs.filter((createdInvite) => {
-      return moment(createdInvite.data().dateTime).isAfter(NOW);
-    });
-    return activeCreatedInvites;
+
+    return snapshot.docs;
   } catch (e) {
     console.log(e.message);
   }
@@ -296,19 +322,17 @@ export async function getActiveCreatedInvites(city) {
 
 export async function getExpiredCreatedInvites(city) {
   const uid = localStorage.getItem("uid");
-  const NOW = moment();
+  const NOW = moment().toDate();
   try {
     const snapshot = await db
       .collection("users")
       .doc(uid)
       .collection("createdInvites")
       .where("city", "==", city)
+      .where("dateTime", "<", NOW)
       .get();
 
-    const expiredCreatedInvites = snapshot.docs.filter((createdInvite) => {
-      return moment(createdInvite.data().dateTime).isBefore(NOW);
-    });
-    return expiredCreatedInvites;
+    return snapshot.docs;
   } catch (e) {
     console.log(e.message);
   }
@@ -316,18 +340,17 @@ export async function getExpiredCreatedInvites(city) {
 
 export async function getActiveAcceptedInvites(city) {
   const uid = localStorage.getItem("uid");
-  const NOW = moment();
+  const NOW = moment().toDate();
   try {
     const snapshot = await db
       .collection("users")
       .doc(uid)
       .collection("acceptedInvites")
       .where("city", "==", city)
+      .where("dateTime", ">=", NOW)
       .get();
-    const activeCreatedInvites = snapshot.docs.filter((createdInvite) => {
-      return moment(createdInvite.data().dateTime).isAfter(NOW);
-    });
-    return activeCreatedInvites;
+
+    return snapshot.docs;
   } catch (e) {
     console.log(e.message);
   }
@@ -335,19 +358,17 @@ export async function getActiveAcceptedInvites(city) {
 
 export async function getExpiredAcceptedInvites(city) {
   const uid = localStorage.getItem("uid");
-  const NOW = moment();
+  const NOW = moment().toDate();
   try {
     const snapshot = await db
       .collection("users")
       .doc(uid)
       .collection("acceptedInvites")
       .where("city", "==", city)
+      .where("dateTime", "<", NOW)
       .get();
 
-    const expiredCreatedInvites = snapshot.docs.filter((createdInvite) => {
-      return moment(createdInvite.data().dateTime).isBefore(NOW);
-    });
-    return expiredCreatedInvites;
+    return snapshot.docs;
   } catch (e) {
     console.log(e.message);
   }

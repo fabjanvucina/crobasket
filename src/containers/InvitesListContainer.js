@@ -55,7 +55,14 @@ const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
               await acceptInvite(
                 invite.data().organizerUID,
                 invite.id,
-                invite.data().invitees
+                invite.data().invitees,
+                invite.data().city,
+                invite.data().neighbourhood,
+                invite.data().dateTime,
+                invite.data().displayDate,
+                invite.data().displayTime,
+                invite.data().organizer,
+                invite.data().phoneNumber
               );
               history.push("/profil");
             }}

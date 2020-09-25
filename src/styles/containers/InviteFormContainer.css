@@ -21,12 +21,12 @@
   div.ant-select-selector:hover,
   div.ant-picker:hover,
   div.ant-input-number:hover {
-    border-bottom: 1px solid #e16428 !important;
+    border-bottom: 1px solid #e78455 !important;
   }
 
   div.ant-picker-focused,
   div.ant-input-number-focused {
-    border-bottom: 1px solid #e16428 !important;
+    border-bottom: 1px solid #e78455 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
@@ -35,17 +35,17 @@
   button.ant-picker-year-btn:hover,
   button.ant-picker-decade-btn:hover,
   a.ant-picker-today-btn:hover {
-    color: #e16428 !important;
+    color: #e78455 !important;
   }
 
   td.ant-picker-cell.ant-picker-cell-in-view.ant-picker-cell-selected
     div.ant-picker-cell-inner {
-    background-color: #e16428;
+    background-color: #e78455;
   }
 
   td.ant-picker-cell.ant-picker-cell-in-view.ant-picker-cell-today
     div.ant-picker-cell-inner::before {
-    border-color: #e16428;
+    border-color: #e78455;
   }
 
   span.ant-input-number-handler.ant-input-number-handler-up:hover
@@ -58,7 +58,7 @@
 
   button.ant-btn.ant-btn-primary {
     color: #f6e9e9;
-    background: #e16428;
+    background: #e78455;
     padding: 0.5em 1em;
     font-size: 1.2em;
     border: none;
