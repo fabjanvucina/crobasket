@@ -4,4 +4,9 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+
+  .no-cities {
+    font-size: 1.5rem;
+    margin: 10vh 10vw 0vh 10vw;
+  }
 }
