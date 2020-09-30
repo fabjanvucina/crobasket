@@ -208,7 +208,7 @@ export async function getEligibleInvites(hometown) {
     const allInvites = await getAllInvites(hometown);
 
     return allInvites.filter((invite) => {
-      return uid != invite.data().organizerUID && invite.data().invitees > 0;
+      return uid != invite.data().organizerUID;
     });
   } catch (e) {
     console.log(e.message);
@@ -286,15 +286,12 @@ export async function getFilteredInvites(
           .where("dateTime", "<=", dateTimeRange.dateTimeTo);
 
         return (await filteredInvites.get()).docs.filter((invite) => {
-          return (
-            invite.data().organizerUID !== uid && invite.data().invitees > 0
-          );
+          return invite.data().organizerUID !== uid;
         });
       } else {
         return (await filteredInvites.get()).docs.filter((invite) => {
           return (
             invite.data().organizerUID !== uid &&
-            invite.data().invitees > 0 &&
             invite.data().displayTime > dateTimeRange.timeFrom &&
             invite.data().displayTime < dateTimeRange.timeTo
           );
@@ -302,7 +299,7 @@ export async function getFilteredInvites(
       }
     } else {
       return (await filteredInvites.get()).docs.filter((invite) => {
-        return invite.data().organizerUID !== uid && invite.data().invitees > 0;
+        return invite.data().organizerUID !== uid;
       });
     }
   } catch (e) {

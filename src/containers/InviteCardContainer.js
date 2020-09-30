@@ -15,7 +15,15 @@ const InviteCardContainer = ({
   onClick
 }) => {
   return (
-    <div className={isAccepted ? "inviteCard accepted" : "inviteCard"}>
+    <div
+      className={
+        isAccepted
+          ? "inviteCard accepted"
+          : invitees === 0
+          ? "inviteCard filled"
+          : "inviteCard"
+      }
+    >
       <InviteDetail detailName="Kvart" detailValue={neighbourhood} />
       <InviteDetail detailName="Datum" detailValue={date} />
       <InviteDetail detailName="Vrijeme" detailValue={time} />
@@ -23,7 +31,9 @@ const InviteCardContainer = ({
       <InviteDetail detailName="Organizator" detailValue={organizer} />
       <InviteDetail detailName="Kontakt broj" detailValue={phoneNumber} />
       {isAccepted ? (
-        <Button className="acceptedButton">Prihvaćeno</Button>
+        <Button className="acceptedInviteButton">Prihvaćeno</Button>
+      ) : invitees === 0 ? (
+        <Button className="filledInviteButton">Popunjeno</Button>
       ) : (
         <Button onClick={onClick} className="acceptInviteButton">
           Dolazim!
