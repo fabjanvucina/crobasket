@@ -2,7 +2,11 @@ import React from "react";
 import CreatedInviteFunctionalityContainer from "./CreatedInviteFunctionalityContainer"; //eslint-disable-line
 import AcceptedInviteFunctionalityContainer from "./AcceptedInviteFunctionalityContainer"; //eslint-disable-line
 import InviteDetail from "../components/InviteDetail";
-import { cancelAcceptedInvite } from "../firebase/crudMethods.js";
+import {
+  increaseInvitees,
+  decreaseInvitees,
+  cancelAcceptedInvite
+} from "../firebase/crudMethods.js";
 import "../styles/containers/ActiveInviteContainer.css";
 
 const ActiveInviteContainer = ({
@@ -66,7 +70,16 @@ const ActiveInviteContainer = ({
         <></>
       )}
       {type === "created" ? (
-        <CreatedInviteFunctionalityContainer />
+        <CreatedInviteFunctionalityContainer
+          handleIncrement={async () => {
+            await increaseInvitees(inviteID, invitees);
+            window.location.reload();
+          }}
+          handleDecrement={async () => {
+            await decreaseInvitees(inviteID, invitees);
+            window.location.reload();
+          }}
+        />
       ) : (
         <AcceptedInviteFunctionalityContainer
           handleCancellation={async () => {

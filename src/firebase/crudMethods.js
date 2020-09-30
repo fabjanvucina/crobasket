@@ -149,6 +149,40 @@ export async function cancelAcceptedInvite(inviteID, invitees, organizerUID) {
   }
 }
 
+export async function increaseInvitees(inviteID, invitees) {
+  const userUID = localStorage.getItem("uid");
+
+  try {
+    await db
+      .collection("users")
+      .doc(userUID)
+      .collection("createdInvites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees + 1
+      });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function decreaseInvitees(inviteID, invitees) {
+  const userUID = localStorage.getItem("uid");
+
+  try {
+    await db
+      .collection("users")
+      .doc(userUID)
+      .collection("createdInvites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees - 1
+      });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
 //display invites
 
 export async function getAllInvites(hometown) {
