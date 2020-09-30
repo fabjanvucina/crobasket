@@ -8,8 +8,6 @@ import "../styles/containers/InvitesListContainer.css";
 const UserInvitesListContainer = ({ activeInvites, expiredInvites, type }) => {
   let history = useHistory(); //eslint-disable-line
 
-  console.log(activeInvites);
-
   return (
     <div className="">
       <Divider orientation="left">Aktivne pozivnice</Divider>
@@ -22,6 +20,7 @@ const UserInvitesListContainer = ({ activeInvites, expiredInvites, type }) => {
           displayDate={invite.data().displayDate}
           displayTime={invite.data().displayTime}
           organizer={invite.data().organizer}
+          organizerUID={invite.data().organizerUID}
           phoneNumber={invite.data().phoneNumber}
           type={type}
         />

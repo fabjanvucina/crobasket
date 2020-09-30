@@ -1,17 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom"; //eslint-disable-line
 import CreatedInviteFunctionalityContainer from "./CreatedInviteFunctionalityContainer"; //eslint-disable-line
 import AcceptedInviteFunctionalityContainer from "./AcceptedInviteFunctionalityContainer"; //eslint-disable-line
 import InviteDetail from "../components/InviteDetail";
+import { cancelAcceptedInvite } from "../firebase/crudMethods.js";
 import "../styles/containers/ActiveInviteContainer.css";
 
 const ActiveInviteContainer = ({
+  inviteID,
   neighbourhood,
   displayDate,
   displayTime,
   invitees,
   phoneNumber,
   organizer,
+  organizerUID,
   type
 }) => {
   return (
@@ -66,7 +68,12 @@ const ActiveInviteContainer = ({
       {type === "created" ? (
         <CreatedInviteFunctionalityContainer />
       ) : (
-        <AcceptedInviteFunctionalityContainer />
+        <AcceptedInviteFunctionalityContainer
+          handleCancellation={async () => {
+            await cancelAcceptedInvite(inviteID, invitees, organizerUID);
+            window.location.reload();
+          }}
+        />
       )}
     </div>
   );

@@ -142,7 +142,7 @@ export async function cancelAcceptedInvite(inviteID, invitees, organizerUID) {
       .collection("createdInvites")
       .doc(inviteID)
       .update({
-        invitees: invitees - 1
+        invitees: invitees + 1
       });
   } catch (e) {
     console.log(e.message);
@@ -357,15 +357,11 @@ export async function getActiveAcceptedInvites(city) {
       }
     );
 
-    console.log("acceptedInvitesIdentifiers", acceptedInvitesIdentifiers);
-
     const expandedAcceptedInvites = await db
       .collectionGroup("createdInvites")
       .where("city", "==", city)
       .where("dateTime", ">", NOW)
       .get();
-
-    console.log("expandedAcceptedInvites", expandedAcceptedInvites);
 
     return expandedAcceptedInvites.docs.filter((expandedAcceptedInvite) => {
       return acceptedInvitesIdentifiers.includes(expandedAcceptedInvite.id);
