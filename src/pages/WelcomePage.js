@@ -14,7 +14,6 @@ const WelcomePage = () => {
         displayInvitesActive={false}
       />
       <FooterContainer />
-      <FooterContainer />
     </>
   );
 };
