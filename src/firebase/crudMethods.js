@@ -2,6 +2,8 @@ import moment from "moment";
 import app from "./firebase.js";
 const db = app.firestore();
 
+//cities methods
+
 export async function getCities() {
   try {
     const snapshot = await db
@@ -40,6 +42,8 @@ export async function getNeighbourhoods(cityDisplayName) {
   }
 }
 
+//user methods
+
 export async function addUser(name, surname, phoneNumber, uid) {
   try {
     await db
@@ -64,55 +68,7 @@ export async function getUser(uid) {
   }
 }
 
-export async function increaseInvitees(inviteID, invitees) {
-  try {
-    let updateSnapshot = await db
-      .collectionGroup("acceptedInvites")
-      .where("inviteID", "==", inviteID)
-      .get();
-    updateSnapshot.docs.forEach((doc) => {
-      doc.update({
-        invitees: invitees + 1
-      });
-    });
-    updateSnapshot = await db
-      .collectionGroup("createdInvites")
-      .where("inviteID", "==", inviteID)
-      .get();
-    updateSnapshot.docs.forEach((doc) => {
-      doc.update({
-        invitees: invitees + 1
-      });
-    });
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-export async function decreaseInvitees(inviteID, invitees) {
-  try {
-    let updateSnapshot = await db
-      .collectionGroup("acceptedInvites")
-      .where("inviteID", "==", inviteID)
-      .get();
-    updateSnapshot.docs.forEach((doc) => {
-      doc.update({
-        invitees: invitees - 1
-      });
-    });
-    updateSnapshot = await db
-      .collectionGroup("createdInvites")
-      .where("inviteID", "==", inviteID)
-      .get();
-    updateSnapshot.docs.forEach((doc) => {
-      doc.update({
-        invitees: invitees - 1
-      });
-    });
-  } catch (e) {
-    console.log(e.message);
-  }
-}
+//invite methods
 
 export async function createInvite(
   hometown,
@@ -144,18 +100,7 @@ export async function createInvite(
   }
 }
 
-export async function acceptInvite(
-  organizerUID,
-  inviteID,
-  invitees,
-  city,
-  neighbourhood,
-  dateTime,
-  displayDate,
-  displayTime,
-  organizer,
-  phoneNumber
-) {
+export async function acceptInvite(organizerUID, inviteID, invitees) {
   const userUID = localStorage.getItem("uid");
   try {
     await db
@@ -170,51 +115,41 @@ export async function acceptInvite(
       .collection("users")
       .doc(userUID)
       .collection("acceptedInvites")
-      .add({
+      .doc(inviteID)
+      .set({
         organizerUID: organizerUID,
-        inviteID: inviteID,
-        city: city,
-        neighbourhood: neighbourhood,
-        invitees: invitees - 1,
-        dateTime: dateTime,
-        displayDate: displayDate,
-        displayTime: displayTime,
-        organizer: organizer,
-        phoneNumber: phoneNumber
+        inviteID: inviteID
       });
-    let updateSnapshot = await db
-      .collectionGroup("acceptedInvites")
-      .where("inviteID", "==", inviteID)
-      .get();
-    updateSnapshot.docs.forEach((doc) => {
-      doc.update({
-        invitees: invitees - 1
-      });
-    });
   } catch (e) {
     console.log(e.message);
   }
 }
 
-export async function cancelAcceptedInvite(inviteID, invitees) {
+export async function cancelAcceptedInvite(inviteID, invitees, organizerUID) {
   const userUID = localStorage.getItem("uid");
 
   try {
-    let updateSnapshot = await db
+    await db
       .collection("users")
       .doc(userUID)
       .collection("acceptedInvites")
-      .where("inviteID", "==", inviteID)
-      .get();
-    updateSnapshot.docs.forEach((doc) => {
-      doc.delete();
-    });
+      .doc(inviteID)
+      .delete();
 
-    await increaseInvitees(inviteID, invitees);
+    await db
+      .collection("users")
+      .doc(organizerUID)
+      .collection("createdInvites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees - 1
+      });
   } catch (e) {
     console.log(e.message);
   }
 }
+
+//display invites
 
 export async function getAllInvites(hometown) {
   const NOW = moment().toDate();
@@ -341,6 +276,8 @@ export async function getFilteredInvites(
   }
 }
 
+//accepted status - display invites
+
 export async function getAcceptedInvites(uid) {
   try {
     const snapshot = await db
@@ -371,6 +308,8 @@ export async function generateInviteAcceptedStatusMap(invites) {
     console.log(e.message);
   }
 }
+
+//profile page
 
 export async function getActiveCreatedInvites(city) {
   const uid = localStorage.getItem("uid");
@@ -412,15 +351,25 @@ export async function getActiveAcceptedInvites(city) {
   const uid = localStorage.getItem("uid");
   const NOW = moment().toDate();
   try {
-    const snapshot = await db
-      .collection("users")
-      .doc(uid)
-      .collection("acceptedInvites")
+    const acceptedInvitesIdentifiers = (await getAcceptedInvites(uid)).map(
+      (acceptedInvite) => {
+        return acceptedInvite.id;
+      }
+    );
+
+    console.log("acceptedInvitesIdentifiers", acceptedInvitesIdentifiers);
+
+    const expandedAcceptedInvites = await db
+      .collectionGroup("createdInvites")
       .where("city", "==", city)
-      .where("dateTime", ">=", NOW)
+      .where("dateTime", ">", NOW)
       .get();
 
-    return snapshot.docs;
+    console.log("expandedAcceptedInvites", expandedAcceptedInvites);
+
+    return expandedAcceptedInvites.docs.filter((expandedAcceptedInvite) => {
+      return acceptedInvitesIdentifiers.includes(expandedAcceptedInvite.id);
+    });
   } catch (e) {
     console.log(e.message);
   }
@@ -430,15 +379,21 @@ export async function getExpiredAcceptedInvites(city) {
   const uid = localStorage.getItem("uid");
   const NOW = moment().toDate();
   try {
-    const snapshot = await db
-      .collection("users")
-      .doc(uid)
-      .collection("acceptedInvites")
+    const acceptedInvitesIdentifiers = (await getAcceptedInvites(uid)).map(
+      (acceptedInvite) => {
+        return acceptedInvite.id;
+      }
+    );
+
+    const expandedAcceptedInvites = await db
+      .collectionGroup("createdInvites")
       .where("city", "==", city)
       .where("dateTime", "<", NOW)
       .get();
 
-    return snapshot.docs;
+    return expandedAcceptedInvites.docs.filter((expandedAcceptedInvite) => {
+      return acceptedInvitesIdentifiers.includes(expandedAcceptedInvite.id);
+    });
   } catch (e) {
     console.log(e.message);
   }
