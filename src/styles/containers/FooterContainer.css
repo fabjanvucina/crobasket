@@ -1,6 +1,6 @@
 .footer {
   height: 15vh;
-  margin-top: 100px;
+  padding-top: 25px;
   background-color: #272121;
   box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.3), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: max(min(2.76vh, 20px), 12px);
@@ -19,7 +19,7 @@
 }
 
 .creatorContainer {
-  margin: 25px auto 0px auto;
+  margin: 0 auto;
   width: 200px;
   color: #f6e9e9;
 }
