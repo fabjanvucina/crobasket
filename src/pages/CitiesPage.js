@@ -14,7 +14,7 @@ const CitiesPage = () => {
         createInvitesActive={false}
         displayInvitesActive={false}
       />
-      <Title value="Odaberi grad" />
+      <Title value="Odaberi grad" type="cityPage" />
       <CitiesListContainer />
     </>
   );

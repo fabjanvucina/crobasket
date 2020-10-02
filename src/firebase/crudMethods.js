@@ -2,6 +2,8 @@ import moment from "moment";
 import app from "./firebase.js";
 const db = app.firestore();
 
+//cities methods
+
 export async function getCities() {
   try {
     const snapshot = await db
@@ -40,6 +42,8 @@ export async function getNeighbourhoods(cityDisplayName) {
   }
 }
 
+//user methods
+
 export async function addUser(name, surname, phoneNumber, uid) {
   try {
     await db
@@ -63,6 +67,8 @@ export async function getUser(uid) {
     console.log(e.message);
   }
 }
+
+//invite methods
 
 export async function createInvite(
   hometown,
@@ -109,7 +115,8 @@ export async function acceptInvite(organizerUID, inviteID, invitees) {
       .collection("users")
       .doc(userUID)
       .collection("acceptedInvites")
-      .add({
+      .doc(inviteID)
+      .set({
         organizerUID: organizerUID,
         inviteID: inviteID
       });
@@ -117,6 +124,66 @@ export async function acceptInvite(organizerUID, inviteID, invitees) {
     console.log(e.message);
   }
 }
+
+export async function cancelAcceptedInvite(inviteID, invitees, organizerUID) {
+  const userUID = localStorage.getItem("uid");
+
+  try {
+    await db
+      .collection("users")
+      .doc(userUID)
+      .collection("acceptedInvites")
+      .doc(inviteID)
+      .delete();
+
+    await db
+      .collection("users")
+      .doc(organizerUID)
+      .collection("createdInvites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees + 1
+      });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function increaseInvitees(inviteID, invitees) {
+  const userUID = localStorage.getItem("uid");
+
+  try {
+    await db
+      .collection("users")
+      .doc(userUID)
+      .collection("createdInvites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees + 1
+      });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function decreaseInvitees(inviteID, invitees) {
+  const userUID = localStorage.getItem("uid");
+
+  try {
+    await db
+      .collection("users")
+      .doc(userUID)
+      .collection("createdInvites")
+      .doc(inviteID)
+      .update({
+        invitees: invitees - 1
+      });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+//display invites
 
 export async function getAllInvites(hometown) {
   const NOW = moment().toDate();
@@ -141,7 +208,7 @@ export async function getEligibleInvites(hometown) {
     const allInvites = await getAllInvites(hometown);
 
     return allInvites.filter((invite) => {
-      return uid != invite.data().organizerUID && invite.data().invitees > 0;
+      return uid != invite.data().organizerUID;
     });
   } catch (e) {
     console.log(e.message);
@@ -219,15 +286,12 @@ export async function getFilteredInvites(
           .where("dateTime", "<=", dateTimeRange.dateTimeTo);
 
         return (await filteredInvites.get()).docs.filter((invite) => {
-          return (
-            invite.data().organizerUID !== uid && invite.data().invitees > 0
-          );
+          return invite.data().organizerUID !== uid;
         });
       } else {
         return (await filteredInvites.get()).docs.filter((invite) => {
           return (
             invite.data().organizerUID !== uid &&
-            invite.data().invitees > 0 &&
             invite.data().displayTime > dateTimeRange.timeFrom &&
             invite.data().displayTime < dateTimeRange.timeTo
           );
@@ -235,13 +299,15 @@ export async function getFilteredInvites(
       }
     } else {
       return (await filteredInvites.get()).docs.filter((invite) => {
-        return invite.data().organizerUID !== uid && invite.data().invitees > 0;
+        return invite.data().organizerUID !== uid;
       });
     }
   } catch (e) {
     console.log(e.message);
   }
 }
+
+//accepted status - display invites
 
 export async function getAcceptedInvites(uid) {
   try {
@@ -269,6 +335,92 @@ export async function generateInviteAcceptedStatusMap(invites) {
     });
 
     return inviteAcceptedStatusMap;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+//profile page
+
+export async function getActiveCreatedInvites(city) {
+  const uid = localStorage.getItem("uid");
+  const NOW = moment().toDate();
+  try {
+    const snapshot = await db
+      .collection("users")
+      .doc(uid)
+      .collection("createdInvites")
+      .where("city", "==", city)
+      .where("dateTime", ">=", NOW)
+      .get();
+
+    return snapshot.docs;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getExpiredCreatedInvites(city) {
+  const uid = localStorage.getItem("uid");
+  const NOW = moment().toDate();
+  try {
+    const snapshot = await db
+      .collection("users")
+      .doc(uid)
+      .collection("createdInvites")
+      .where("city", "==", city)
+      .where("dateTime", "<", NOW)
+      .get();
+
+    return snapshot.docs;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getActiveAcceptedInvites(city) {
+  const uid = localStorage.getItem("uid");
+  const NOW = moment().toDate();
+  try {
+    const acceptedInvitesIdentifiers = (await getAcceptedInvites(uid)).map(
+      (acceptedInvite) => {
+        return acceptedInvite.id;
+      }
+    );
+
+    const expandedAcceptedInvites = await db
+      .collectionGroup("createdInvites")
+      .where("city", "==", city)
+      .where("dateTime", ">", NOW)
+      .get();
+
+    return expandedAcceptedInvites.docs.filter((expandedAcceptedInvite) => {
+      return acceptedInvitesIdentifiers.includes(expandedAcceptedInvite.id);
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+export async function getExpiredAcceptedInvites(city) {
+  const uid = localStorage.getItem("uid");
+  const NOW = moment().toDate();
+  try {
+    const acceptedInvitesIdentifiers = (await getAcceptedInvites(uid)).map(
+      (acceptedInvite) => {
+        return acceptedInvite.id;
+      }
+    );
+
+    const expandedAcceptedInvites = await db
+      .collectionGroup("createdInvites")
+      .where("city", "==", city)
+      .where("dateTime", "<", NOW)
+      .get();
+
+    return expandedAcceptedInvites.docs.filter((expandedAcceptedInvite) => {
+      return acceptedInvitesIdentifiers.includes(expandedAcceptedInvite.id);
+    });
   } catch (e) {
     console.log(e.message);
   }

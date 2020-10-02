@@ -15,7 +15,7 @@
   .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
   .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
   .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
-    background: #e16428 !important;
+    background: #e78455 !important;
   }
 
   div.ant-col.ant-col-10.ant-form-item-label {
@@ -35,12 +35,12 @@
   div.ant-select-selector:active,
   div.ant-picker:hover,
   div.ant-input-number:hover {
-    border-bottom: 1px solid #e16428 !important;
+    border-bottom: 1px solid #e78455 !important;
   }
 
   div.ant-picker-focused,
   div.ant-input-number-focused {
-    border-bottom: 1px solid #e16428 !important;
+    border-bottom: 1px solid #e78455 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
@@ -49,17 +49,17 @@
   button.ant-picker-year-btn:hover,
   button.ant-picker-decade-btn:hover,
   a.ant-picker-today-btn:hover {
-    color: #e16428 !important;
+    color: #e78455 !important;
   }
 
   td.ant-picker-cell.ant-picker-cell-in-view.ant-picker-cell-selected
     div.ant-picker-cell-inner {
-    background-color: #e16428;
+    background-color: #e78455;
   }
 
   td.ant-picker-cell.ant-picker-cell-in-view.ant-picker-cell-today
     div.ant-picker-cell-inner::before {
-    border-color: #e16428;
+    border-color: #e78455;
   }
 
   span.ant-input-number-handler.ant-input-number-handler-up:hover

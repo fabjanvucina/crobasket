@@ -39,7 +39,7 @@
   span.ant-input-password.ant-input-affix-wrapper:focus,
   span.ant-input-password.ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
     border: none !important;
-    border-bottom: 1px solid #e16428 !important;
+    border-bottom: 1px solid #e78455 !important;
     border-radius: 0px;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -89,7 +89,7 @@
   }
   .form-signin form input[type="submit"] {
     color: #f6e9e9;
-    background: #e16428;
+    background: #e78455;
     padding: 1em 1.4em;
     font-size: 1.2em;
     border: none;

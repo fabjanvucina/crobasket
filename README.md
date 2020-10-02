@@ -1,6 +1,6 @@
 <img src="src/img/crobasket_logo.jpg" />
 
-# Join a pickup game. Invite players. Simple as that.
+# Invite players. Join a pickup game. Simple as that.
 
 ## Prerequisites
 

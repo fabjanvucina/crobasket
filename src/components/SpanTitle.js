@@ -3,22 +3,20 @@ import { Link } from "react-router-dom"; //eslint-disable-line
 import "../styles/components/Title.css";
 import "../styles/misc/Uppercase.css";
 
-const Title = ({ value, type }) => {
+const SpanTitle = ({ value, type }) => {
   return (
-    <div
+    <span
       className={
         type === "cityPage"
-          ? "top uppercase"
-          : type === "userInvites"
-          ? "top userInvites"
+          ? "city-page uppercase"
           : type === "userInfo"
           ? "user-display-name"
           : "hometown-info"
       }
     >
       {value}
-    </div>
+    </span>
   );
 };
 
-export default Title;
+export default SpanTitle;

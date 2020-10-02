@@ -4,7 +4,6 @@ import { Form, Input, Button } from "antd";
 import UserContext from "../contexts/UserContext";
 import { login } from "../firebase/authMethods.js";
 import "../styles/containers/LoginFormContainer.css";
-import "../styles/misc/Separator.css";
 import "../styles/misc/Link.css";
 
 const LoginForm = () => {

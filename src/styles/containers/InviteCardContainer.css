@@ -19,7 +19,11 @@
   }
 
   .accepted {
-    opacity: 0.6;
+    opacity: 0.8;
+  }
+
+  .filled {
+    opacity: 0.5;
   }
 
   .acceptInviteButton {
@@ -36,7 +40,7 @@
     background-color: #006ed3 !important;
   }
 
-  .acceptedButton {
+  .acceptedInviteButton {
     color: #f6e9e9 !important;
     background: #363333 !important;
     padding: 0.5em 1em;
@@ -46,14 +50,14 @@
     margin: 15px 0 0 75px;
   }
 
-  .inviteDetail {
-    line-height: 1.5em !important;
-    margin-left: 15px !important;
-  }
-
-  .inviteDetailValue {
-    color: #f6e9e9;
-    margin-left: 10px;
+  .filledInviteButton {
+    color: #f6e9e9 !important;
+    background: #363333 !important;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    border: none !important;
+    border-radius: 60px !important;
+    margin: 15px 0 0 75px;
   }
 }
 
