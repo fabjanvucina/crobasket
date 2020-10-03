@@ -31,6 +31,7 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@frontendmasters/pet": "^1.0.3",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",

@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; //eslint-disable-line
 import HeaderContainer from "../containers/HeaderContainer";
 import CitiesListContainer from "../containers/CitiesListContainer";
 import Title from "../components/Title";
+import { getCities } from "../firebase/crudMethods.js";
 
 const CitiesPage = () => {
+  const [fetchedCities, setFetchedCities] = useState([]);
+  const [loadingCities, setLoadingCities] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setFetchedCities(await getCities());
+      setLoadingCities(false);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <HeaderContainer
@@ -15,7 +27,10 @@ const CitiesPage = () => {
         displayInvitesActive={false}
       />
       <Title value="Odaberi grad" type="cityPage" />
-      <CitiesListContainer />
+      <CitiesListContainer
+        fetchedCities={fetchedCities}
+        loadingCities={loadingCities}
+      />
     </>
   );
 };

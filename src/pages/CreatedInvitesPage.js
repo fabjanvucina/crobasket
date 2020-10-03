@@ -40,11 +40,13 @@ const CreatedInvitesPage = () => {
       {loadingInvites ? (
         <Spin size="large" />
       ) : (
-        <UserInvitesListContainer
-          activeInvites={activeCreatedInvites}
-          expiredInvites={expiredCreatedInvites}
-          type="created"
-        />
+        <>
+          <UserInvitesListContainer
+            activeInvites={activeCreatedInvites}
+            expiredInvites={expiredCreatedInvites}
+            type="created"
+          />
+        </>
       )}
     </>
   );
