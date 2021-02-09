@@ -1,7 +1,6 @@
 .profile-options-container {
-  display: inline-block;
   position: fixed;
-  width: 280px;
+  width: 20vw;
   background-color: #272121;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;

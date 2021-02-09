@@ -1,16 +1,9 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
-import SpanTitle from "../components/Title/SpanTitle";
-import UserContext from "../contexts/UserContext";
-import HometownContext from "../contexts/HometownContext";
 import ProfileOptionsContainer from "../containers/ProfileOptionsContainer/ProfileOptionsContainer";
 import "../styles/LogoutButton.css";
 
 const ProfilePage = () => {
-  const [user] = useContext(UserContext);
-  const [hometown] = useContext(HometownContext);
-
   return (
     <>
       <HeaderContainer
@@ -22,10 +15,6 @@ const ProfilePage = () => {
         profileActive={true}
       />
       <ProfileOptionsContainer />
-      <SpanTitle value={user.displayName} type="userInfo" />
-      <Link to="gradovi" className="link">
-        <SpanTitle value={hometown} type="hometown" />
-      </Link>
     </>
   );
 };

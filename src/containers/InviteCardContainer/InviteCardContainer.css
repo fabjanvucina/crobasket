@@ -2,8 +2,8 @@
   .inviteCard {
     position: relative;
     display: inline-block;
-    width: max(220px, 20vw);
-    height: max(200px, 15vw);
+    width: 20vw;
+    height: 15vw;
     margin: 1vh 2.5vw 2.5vw 2.5vh;
     background-color: #272121;
     border-radius: 20px;
@@ -30,10 +30,10 @@
     color: #f6e9e9 !important;
     background: #363333 !important;
     padding: 0.5em 1em;
-    font-size: 1.2em;
+    font-size: max(1em, 2vh) !important;
     border: none !important;
     border-radius: 60px !important;
-    margin: 15px 0 0 75px;
+    margin: 1.2vh 0 0 6.5vw;
   }
 
   .acceptInviteButton:hover {
@@ -44,20 +44,20 @@
     color: #f6e9e9 !important;
     background: #363333 !important;
     padding: 0.5em 1em;
-    font-size: 1.2em;
+    font-size: max(1em, 2vh) !important;
     border: none !important;
     border-radius: 60px !important;
-    margin: 15px 0 0 75px;
+    margin: 1.2vh 0 0 6.5vw;
   }
 
   .filledInviteButton {
     color: #f6e9e9 !important;
     background: #363333 !important;
     padding: 0.5em 1em;
-    font-size: 1.2em;
+    font-size: max(1em, 2vh) !important;
     border: none !important;
     border-radius: 60px !important;
-    margin: 15px 0 0 75px;
+    margin: 1.2vh 0 0 6.5vw;
   }
 }
 

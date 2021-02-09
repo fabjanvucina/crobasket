@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Spin } from "antd";
 import InviteCardContainer from "../InviteCardContainer/InviteCardContainer";
 import {
@@ -34,12 +34,7 @@ const InvitesListContainer = ({ fetchedInvites, loadingInvites }) => {
       {loadingMap ? (
         <Spin size="large" className="invites" />
       ) : fetchedInvites.length === 0 ? (
-        <div className="no-invites">
-          Nažalost, ne postoje aktivni oglasi.{" "}
-          <Link to="organiziraj-basket" className="no-invites-link">
-            <span>Budi organizator!</span>
-          </Link>
-        </div>
+        <div className="no-invites">Nažalost, ne postoje aktivni oglasi.</div>
       ) : (
         fetchedInvites.map((invite) => (
           <InviteCardContainer

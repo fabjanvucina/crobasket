@@ -2,7 +2,8 @@
   height: 15vh;
   padding-top: 25px;
   background-color: #272121;
-  box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.3), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 -10px 15px 0 rgba(0, 0, 0, 0.3),
+    0 -6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: max(min(2.76vh, 20px), 12px);
 }
 

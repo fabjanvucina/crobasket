@@ -95,6 +95,7 @@ export async function createInvite(
         organizer: organizer,
         organizerUID: uid
       });
+    alert("Uspješno stvorena pozivnica!");
   } catch (e) {
     console.log(e.message);
   }
