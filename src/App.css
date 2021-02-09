@@ -6,10 +6,15 @@
 body {
   margin: 0;
   background-color: #363333;
-  color: #f6e9e9;
+  color: white;
   font-family: Roboto, sans-serif;
   min-height: 200px;
   line-height: initial;
+  background: url("./img/background.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 input:-webkit-autofill,

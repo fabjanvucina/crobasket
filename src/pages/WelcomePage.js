@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
-import WelcomeImageContainer from "../containers/WelcomeImageContainer/WelcomeImageContainer";
+import WelcomeMessage from "../components/WelcomeMessage/WelcomeMessage";
+import WelcomeLoginButtonContainer from "../containers/WelcomeLoginButtonContainer/WelcomeLoginButtonContainer";
 import FooterContainer from "../containers/FooterContainer/FooterContainer";
 
 const WelcomePage = () => {
@@ -13,7 +14,8 @@ const WelcomePage = () => {
         createInvitesActive={false}
         displayInvitesActive={false}
       />
-      <WelcomeImageContainer />
+      <WelcomeMessage />
+      <WelcomeLoginButtonContainer />
       <FooterContainer />
     </>
   );

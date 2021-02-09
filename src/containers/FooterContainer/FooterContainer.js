@@ -5,7 +5,7 @@ import "../../styles/Link.css";
 
 const FooterContainer = () => {
   return (
-    <div className="footer">
+    <div className="footer-fixed">
       <a href="https://github.com/fabjanvucina" className="link">
         <div className="creatorContainer">
           <GithubFilled />

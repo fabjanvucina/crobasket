@@ -11,8 +11,9 @@
   bottom: 0;
   right: 0;
   left: 0;
-  height: 15vh;
-  margin-top: 100px;
+  height: 10vh;
+  margin-top: 50px;
+  padding-top: 2vh;
   background-color: #272121;
   box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.3), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: max(min(2.76vh, 20px), 12px);
@@ -38,6 +39,6 @@
   display: block;
   margin: 0px auto;
   margin-top: 5px;
-  padding-left: 19px;
+  padding-left: 20px;
   width: 200px;
 }
