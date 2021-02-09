@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import HeaderContainer from "../containers/HeaderContainer";
-import SpanTitle from "../components/SpanTitle";
+import { Link } from "react-router-dom";
+import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
+import SpanTitle from "../components/Title/SpanTitle";
 import UserContext from "../contexts/UserContext";
 import HometownContext from "../contexts/HometownContext";
-import ProfileOptionsContainer from "../containers/ProfileOptionsContainer";
-import "../styles/pages/ProfilePage.css";
+import ProfileOptionsContainer from "../containers/ProfileOptionsContainer/ProfileOptionsContainer";
+import "../styles/LogoutButton.css";
 
 const ProfilePage = () => {
-  let history = useHistory(); //eslint-disable-line
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
-  const [hometown] = useContext(HometownContext); //eslint-disable-line
+  const [user] = useContext(UserContext);
+  const [hometown] = useContext(HometownContext);
 
   return (
     <>

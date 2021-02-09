@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import HeaderContainer from "../containers/HeaderContainer";
-import InvitesFilterContainer from "../containers/InvitesFilterContainer";
-import InvitesListContainer from "../containers/InvitesListContainer";
+import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
+import InvitesFilterContainer from "../containers/InvitesFilterContainer/InvitesFilterContainer";
+import InvitesListContainer from "../containers/InvitesListContainer/InvitesListContainer";
 import HometownContext from "../contexts/HometownContext";
 import { getEligibleInvites } from "../firebase/crudMethods.js";
 

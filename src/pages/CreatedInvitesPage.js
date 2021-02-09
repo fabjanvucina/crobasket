@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom"; //eslint-disable-line
 import { Spin } from "antd";
-import HeaderContainer from "../containers/HeaderContainer";
-import Title from "../components/Title";
-import UserInvitesListContainer from "../containers/UserInvitesListContainer";
+import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
+import Title from "../components/Title/Title";
+import UserInvitesListContainer from "../containers/UserInvitesListContainer/UserInvitesListContainer";
 import HometownContext from "../contexts/HometownContext";
 import {
   getActiveCreatedInvites,

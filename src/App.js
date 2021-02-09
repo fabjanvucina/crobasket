@@ -3,7 +3,7 @@ import UserContext from "./contexts/UserContext";
 import HometownContext from "./contexts/HometownContext";
 import PageRouter from "./routers/PageRouter";
 import "antd/dist/antd.dark.css";
-import "./styles/style.css";
+import "./App.css";
 
 const App = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");

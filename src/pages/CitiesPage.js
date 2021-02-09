@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; //eslint-disable-line
-import HeaderContainer from "../containers/HeaderContainer";
-import CitiesListContainer from "../containers/CitiesListContainer";
-import Title from "../components/Title";
+import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
+import CitiesListContainer from "../containers/CitiesListContainer/CitiesListContainer";
+import Title from "../components/Title/Title";
 import { getCities } from "../firebase/crudMethods.js";
 
 const CitiesPage = () => {
