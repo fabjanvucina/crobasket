@@ -1,0 +1,19 @@
+.acceptedInvite-functionality {
+  width: 150px;
+  margin: 20px auto 0px auto;
+}
+
+button.ant-btn.cancel.ant-btn-primary {
+  margin: 0 auto !important;
+  color: #f6e9e9;
+  background: #272121;
+  border: 2px solid black !important;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border: none;
+  border-radius: 60px;
+}
+
+button.ant-btn.cancel.ant-btn-primary:hover {
+  background: rgba(250, 0, 55, 0.5) !important;
+}

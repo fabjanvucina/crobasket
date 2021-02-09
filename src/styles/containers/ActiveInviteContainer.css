@@ -1,0 +1,33 @@
+.created-active-inviteCard {
+  width: 52vw;
+  margin: 5vh auto;
+  background-color: #272121;
+  border-radius: 20px;
+  padding: 15px 0px 15px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s;
+  color: #e78455;
+}
+
+.accepted-active-inviteCard {
+  width: 88vw;
+  margin: 5vh auto;
+  border-radius: 20px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s;
+  color: #e78455;
+}
+
+.created-active-inviteCard:hover,
+.accepted-active-inviteCard:hover {
+  transform: scale(1.05);
+}
+
+.green {
+  background-color: #272f21;
+}
+
+.red {
+  background-color: #2f2121;
+}

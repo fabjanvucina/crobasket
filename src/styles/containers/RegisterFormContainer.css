@@ -1,0 +1,104 @@
+@media only screen and (min-height: 700px) {
+  .form-signin {
+    margin-top: 15vh;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .registerForm {
+    width: 600px;
+    background-color: #272121;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 10vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  input#email.ant-input,
+  input#name.ant-input,
+  input#surname.ant-input,
+  input#cellNumber.ant-input,
+  span.ant-input-password.ant-input-affix-wrapper {
+    border: none !important;
+    border-bottom: 1px solid #363333 !important;
+    border-radius: 0px;
+    padding-left: 5px !important;
+  }
+
+  input#email.ant-input:hover,
+  input#email.ant-input:focus,
+  input#name.ant-input:hover,
+  input#name.ant-input:focus,
+  input#surname.ant-input:hover,
+  input#surname.ant-input:focus,
+  input#cellNumber.ant-input:hover,
+  input#cellNumber.ant-input:focus,
+  span.ant-input-password.ant-input-affix-wrapper:hover,
+  span.ant-input-password.ant-input-affix-wrapper:focus,
+  span.ant-input-password.ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
+    border: none !important;
+    border-bottom: 1px solid #e78455 !important;
+    border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .form-signin {
+    /* width: 31.25vw;
+        min-width: 400px; */
+    width: 300px;
+    background-color: #272121;
+    border: 2px solid black;
+    border-radius: 40px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 15vh;
+  }
+  .form-signin label {
+    display: block;
+    text-align: left;
+    color: #f6e9e9;
+    font-size: 0.8em;
+  }
+  .form-signin form .text-input {
+    overflow: hidden;
+    margin-bottom: 0.6em;
+  }
+  .form-signin form input[type="text"],
+  .form-signin form input[type="password"] {
+    width: 100%;
+    padding: 0.5em 0 12px;
+    padding-left: 0;
+    background: none;
+    color: #f6e9e9;
+    font-size: 1.2em;
+    font-weight: 400;
+    border: none;
+    border-bottom: 1px solid grey;
+    /*Some sibling magic happens */
+  }
+  .form-signin form input[type="text"]:focus + .separator,
+  .form-signin form input[type="password"]:focus + .separator {
+    transform: scaleX(1) translateY(-2px);
+    opacity: 1;
+  }
+  .form-signin form input[type="submit"] {
+    color: #f6e9e9;
+    background: #e78455;
+    padding: 1em 1.4em;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 60px;
+  }
+  .form-bottom-signin {
+    margin-top: 1.25em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

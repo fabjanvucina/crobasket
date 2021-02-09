@@ -1,0 +1,65 @@
+@media only screen and (min-width: 850px) {
+  .inviteCard {
+    position: relative;
+    display: inline-block;
+    width: max(220px, 20vw);
+    height: max(200px, 15vw);
+    margin: 1vh 2.5vw 2.5vw 2.5vh;
+    background-color: #272121;
+    border-radius: 20px;
+    padding-top: 15px;
+    padding-left: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: transform 0.3s;
+    color: #e78455;
+  }
+
+  .inviteCard:hover {
+    transform: scale(1.1);
+  }
+
+  .accepted {
+    opacity: 0.8;
+  }
+
+  .filled {
+    opacity: 0.5;
+  }
+
+  .acceptInviteButton {
+    color: #f6e9e9 !important;
+    background: #363333 !important;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    border: none !important;
+    border-radius: 60px !important;
+    margin: 15px 0 0 75px;
+  }
+
+  .acceptInviteButton:hover {
+    background-color: #006ed3 !important;
+  }
+
+  .acceptedInviteButton {
+    color: #f6e9e9 !important;
+    background: #363333 !important;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    border: none !important;
+    border-radius: 60px !important;
+    margin: 15px 0 0 75px;
+  }
+
+  .filledInviteButton {
+    color: #f6e9e9 !important;
+    background: #363333 !important;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    border: none !important;
+    border-radius: 60px !important;
+    margin: 15px 0 0 75px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+}
