@@ -1,8 +1,6 @@
 import React from "react";
 import { Form, Select } from "antd";
 
-/* TODO: searchable */
-
 const SelectSearchableContainer = ({
   value,
   setValue,
@@ -14,7 +12,11 @@ const SelectSearchableContainer = ({
       name="neighbourhood"
       rules={[{ required: true, message: "Molimo odaberite kvart!" }]}
     >
-      <Select value={value} onChange={(value) => setValue(value.toString())}>
+      <Select
+        showSearch={true}
+        value={value}
+        onChange={(value) => setValue(value.toString())}
+      >
         {fetchedNeighbourhoods.map((neighbourhood) => (
           <Select.Option
             key={neighbourhood.id}
