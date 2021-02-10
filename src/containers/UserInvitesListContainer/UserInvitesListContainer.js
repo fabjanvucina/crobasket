@@ -6,7 +6,7 @@ import "../InvitesListContainer/InvitesListContainer.css";
 
 const UserInvitesListContainer = ({ activeInvites, expiredInvites, type }) => {
   return (
-    <div className="">
+    <>
       <Divider orientation="left">Aktivne pozivnice</Divider>
       {activeInvites.map((invite) => (
         <ActiveInviteContainer
@@ -36,7 +36,7 @@ const UserInvitesListContainer = ({ activeInvites, expiredInvites, type }) => {
           type={type}
         />
       ))}
-    </div>
+    </>
   );
 };
 

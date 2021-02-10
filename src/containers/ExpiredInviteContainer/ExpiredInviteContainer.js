@@ -6,18 +6,11 @@ const ExpiredInviteContainer = ({
   neighbourhood,
   displayDate,
   displayTime,
-  phoneNumber,
   organizer,
   type
 }) => {
   return (
-    <div
-      className={
-        type === "created"
-          ? "created-expired-inviteCard"
-          : "accepted-expired-inviteCard"
-      }
-    >
+    <div className="inviteCard expired">
       <InviteDetail
         detailName="Datum"
         detailValue={displayDate}
@@ -38,11 +31,6 @@ const ExpiredInviteContainer = ({
           <InviteDetail
             detailName="Organizator"
             detailValue={organizer}
-            inviteType="expired"
-          />
-          <InviteDetail
-            detailName="Kontakt broj"
-            detailValue={phoneNumber}
             inviteType="expired"
           />
         </>

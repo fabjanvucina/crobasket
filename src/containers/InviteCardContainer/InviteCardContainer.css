@@ -4,7 +4,7 @@
     display: inline-block;
     width: 20vw;
     height: 15vw;
-    margin: 1vh 2.5vw 2.5vw 2.5vh;
+    margin: 1vh 2vw 2.5vw 2.5vw;
     background-color: #272121;
     border-radius: 20px;
     padding-top: 15px;
@@ -26,18 +26,22 @@
     opacity: 0.5;
   }
 
-  .acceptInviteButton {
+  .inviteButton {
     color: #f6e9e9 !important;
     background: #363333 !important;
     padding: 0.5em 1em;
     font-size: max(1em, 2vh) !important;
     border: none !important;
     border-radius: 60px !important;
-    margin: 1.2vh 0 0 6.5vw;
+    margin: 1vh 0 0 6.5vw;
   }
 
-  .acceptInviteButton:hover {
+  .inviteButton:hover {
     background-color: #006ed3 !important;
+  }
+
+  .disabled:hover {
+    background-color: #363333 !important;
   }
 
   .acceptedInviteButton {
@@ -47,17 +51,11 @@
     font-size: max(1em, 2vh) !important;
     border: none !important;
     border-radius: 60px !important;
-    margin: 1.2vh 0 0 6.5vw;
+    margin: 1vh 0 0 5vw;
   }
 
-  .filledInviteButton {
-    color: #f6e9e9 !important;
-    background: #363333 !important;
-    padding: 0.5em 1em;
-    font-size: max(1em, 2vh) !important;
-    border: none !important;
-    border-radius: 60px !important;
-    margin: 1.2vh 0 0 6.5vw;
+  .acceptedInviteButton:hover {
+    background-color: rgba(250, 0, 55, 0.5) !important;
   }
 }
 

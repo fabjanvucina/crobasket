@@ -4,11 +4,13 @@ import "./AcceptedInviteFunctionalityContainer.css";
 
 const AcceptedInviteFunctionalityContainer = ({ handleCancellation }) => {
   return (
-    <div className="acceptedInvite-functionality">
-      <Button type="primary" className="cancel" onClick={handleCancellation}>
-        Otkaži dolazak
-      </Button>
-    </div>
+    <Button
+      type="primary"
+      className="acceptedInviteButton"
+      onClick={handleCancellation}
+    >
+      Otkaži dolazak
+    </Button>
   );
 };
 

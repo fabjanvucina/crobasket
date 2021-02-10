@@ -31,11 +31,15 @@ const InviteCardContainer = ({
       <InviteDetail detailName="Organizator" detailValue={organizer} />
       <InviteDetail detailName="Kontakt broj" detailValue={phoneNumber} />
       {isAccepted ? (
-        <Button className="acceptedInviteButton">Prihvaćeno</Button>
+        <Button className="inviteButton disabled" disabled={true}>
+          Prihvaćeno
+        </Button>
       ) : invitees === 0 ? (
-        <Button className="filledInviteButton">Popunjeno</Button>
+        <Button className="inviteButton disabled" disabled={true}>
+          Popunjeno
+        </Button>
       ) : (
-        <Button onClick={onClick} className="acceptInviteButton">
+        <Button onClick={onClick} className="inviteButton">
           Dolazim!
         </Button>
       )}

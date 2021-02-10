@@ -21,17 +21,7 @@ const ActiveInviteContainer = ({
   type
 }) => {
   return (
-    <div
-      className={
-        type === "created" && invitees > 0
-          ? "created-active-inviteCard red"
-          : type === "created"
-          ? "created-active-inviteCard green"
-          : type === "accepted" && invitees > 0
-          ? "accepted-active-inviteCard red"
-          : "accepted-active-inviteCard green"
-      }
-    >
+    <div className={invitees > 0 ? "inviteCard red" : "inviteCard green"}>
       <InviteDetail
         detailName="Kvart"
         detailValue={neighbourhood}

@@ -1,4 +1,9 @@
 @media only screen and (min-width: 850px) {
+  .expired {
+    height: 20vh;
+    margin-top: 5vh;
+    opacity: 0.8;
+  }
   .created-expired-inviteCard {
     width: 41vw;
     margin: 5vh auto;
@@ -11,7 +16,7 @@
     opacity: 0.7;
   }
 
-  .accepted-expired-inviteCard {
+  .expired-inviteCard {
     width: 75vw;
     margin: 5vh auto;
     background-color: #272121;
