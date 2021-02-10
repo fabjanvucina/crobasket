@@ -1,0 +1,33 @@
+@media only screen and (min-width: 850px) {
+  .expired {
+    height: 20vh;
+    margin-top: 5vh;
+    opacity: 0.8;
+  }
+  .created-expired-inviteCard {
+    width: 41vw;
+    margin: 5vh auto;
+    background-color: #272121;
+    border-radius: 20px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: transform 0.3s;
+    color: #e78455;
+    opacity: 0.7;
+  }
+
+  .expired-inviteCard {
+    width: 75vw;
+    margin: 5vh auto;
+    background-color: #272121;
+    border-radius: 20px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: transform 0.3s;
+    color: #e78455;
+    opacity: 0.7;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+}

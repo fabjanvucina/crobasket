@@ -1,13 +1,8 @@
-import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom"; //eslint-disable-line
-import HeaderContainer from "../containers/HeaderContainer";
-import InviteFormContainer from "../containers/InviteFormContainer";
-import UserContext from "../contexts/UserContext";
+import React from "react";
+import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
+import InviteFormContainer from "../containers/InviteFormContainer/InviteFormContainer";
 
 const CreateInvitePage = () => {
-  let history = useHistory(); //eslint-disable-line
-  const [user, setUser] = useContext(UserContext); //eslint-disable-line
-
   return (
     <>
       <HeaderContainer

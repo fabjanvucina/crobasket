@@ -1,0 +1,14 @@
+.invite-detail {
+  line-height: max(3.5vh, 1.5em) !important;
+  margin-left: 1.5vw !important;
+  font-size: max(2.5vh, 1em);
+}
+
+.invite-detail-value {
+  color: #f6e9e9;
+  margin-left: 10px;
+}
+
+.expired-invite-detail-value {
+  color: #f6e9e9;
+}

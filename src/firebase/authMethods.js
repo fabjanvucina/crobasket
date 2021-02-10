@@ -1,4 +1,4 @@
-import { addUser, getUser } from "./crudMethods";
+import { addUser, getUser } from "./userMethods";
 import app from "./firebase.js";
 const auth = app.auth();
 

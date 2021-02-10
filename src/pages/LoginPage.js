@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"; //eslint-disable-line
-import HeaderContainer from "../containers/HeaderContainer";
-import LoginFormContainer from "../containers/LoginFormContainer";
+import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
+import LoginFormContainer from "../containers/LoginFormContainer/LoginFormContainer";
 
 const LoginPage = () => {
   return (
