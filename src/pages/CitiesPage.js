@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
 import CitiesListContainer from "../containers/CitiesListContainer/CitiesListContainer";
 import Title from "../components/Title/Title";
-import { getCities } from "../firebase/crudMethods.js";
+import { getCities } from "../firebase/citiesMethods.js";
 
 const CitiesPage = () => {
   const [fetchedCities, setFetchedCities] = useState([]);

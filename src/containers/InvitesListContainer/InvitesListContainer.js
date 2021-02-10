@@ -5,7 +5,7 @@ import InviteCardContainer from "../InviteCardContainer/InviteCardContainer";
 import {
   acceptInvite,
   generateInviteAcceptedStatusMap
-} from "../../firebase/crudMethods.js";
+} from "../../firebase/inviteMethods.js";
 import "./InvitesListContainer.css";
 import "../../styles/Spinner.css";
 

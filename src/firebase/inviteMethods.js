@@ -2,74 +2,6 @@ import moment from "moment";
 import app from "./firebase.js";
 const db = app.firestore();
 
-//cities methods
-
-export async function getCities() {
-  try {
-    const snapshot = await db
-      .collection("cities")
-      .orderBy("populationRank")
-      .get();
-    return snapshot.docs;
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-export async function getCityIdFromDisplayName(displayName) {
-  try {
-    const snapshot = await db
-      .collection("cities")
-      .where("displayName", "==", displayName)
-      .get();
-    return snapshot.docs[0].id;
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-export async function getNeighbourhoods(cityDisplayName) {
-  try {
-    const cityID = await getCityIdFromDisplayName(cityDisplayName);
-    const snapshot = await db
-      .collection("cities")
-      .doc(cityID)
-      .collection("regions")
-      .get();
-    return snapshot.docs;
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-//user methods
-
-export async function addUser(name, surname, phoneNumber, uid) {
-  try {
-    await db
-      .collection("users")
-      .doc(uid)
-      .set({
-        displayName: name + " " + surname,
-        phoneNumber: phoneNumber,
-        uid: uid
-      });
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-export async function getUser(uid) {
-  try {
-    const user = await db.collection("users").doc(uid).get();
-    return user.data();
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-//invite methods
-
 export async function createInvite(
   hometown,
   neighbourhood,
@@ -183,8 +115,6 @@ export async function decreaseInvitees(inviteID, invitees) {
     console.log(e.message);
   }
 }
-
-//display invites
 
 export async function getAllInvites(hometown) {
   const NOW = moment().toDate();
@@ -308,8 +238,6 @@ export async function getFilteredInvites(
   }
 }
 
-//accepted status - display invites
-
 export async function getAcceptedInvites(uid) {
   try {
     const snapshot = await db
@@ -340,8 +268,6 @@ export async function generateInviteAcceptedStatusMap(invites) {
     console.log(e.message);
   }
 }
-
-//profile page
 
 export async function getActiveCreatedInvites(city) {
   const uid = localStorage.getItem("uid");

@@ -7,7 +7,7 @@ import {
   increaseInvitees,
   decreaseInvitees,
   cancelAcceptedInvite
-} from "../../firebase/crudMethods.js";
+} from "../../firebase/inviteMethods.js";
 
 const ActiveInviteContainer = ({
   inviteID,

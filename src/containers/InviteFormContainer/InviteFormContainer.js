@@ -7,7 +7,8 @@ import DateTimePickerContainer from "../DateTimePickerContainer/DateTimePickerCo
 import FormButtonContainer from "../FormButtonContainer/FormButtonContainer";
 import UserContext from "../../contexts/UserContext";
 import HometownContext from "../../contexts/HometownContext";
-import { createInvite, getNeighbourhoods } from "../../firebase/crudMethods.js";
+import { createInvite } from "../../firebase/inviteMethods.js";
+import { getNeighbourhoods } from "../../firebase/citiesMethods.js";
 import "./InviteFormContainer.css";
 
 const handleNewInvitation = async (

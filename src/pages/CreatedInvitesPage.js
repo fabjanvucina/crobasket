@@ -7,7 +7,7 @@ import HometownContext from "../contexts/HometownContext";
 import {
   getActiveCreatedInvites,
   getExpiredCreatedInvites
-} from "../firebase/crudMethods.js";
+} from "../firebase/inviteMethods.js";
 
 const CreatedInvitesPage = () => {
   const [hometown] = useContext(HometownContext);

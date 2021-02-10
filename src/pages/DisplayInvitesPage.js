@@ -3,7 +3,7 @@ import HeaderContainer from "../containers/HeaderContainer/HeaderContainer";
 import InvitesFilterContainer from "../containers/InvitesFilterContainer/InvitesFilterContainer";
 import InvitesListContainer from "../containers/InvitesListContainer/InvitesListContainer";
 import HometownContext from "../contexts/HometownContext";
-import { getEligibleInvites } from "../firebase/crudMethods.js";
+import { getEligibleInvites } from "../firebase/inviteMethods.js";
 
 const DisplayInvitesPage = () => {
   const [hometown] = useContext(HometownContext);

@@ -5,10 +5,8 @@ import DateRangePickerContainer from "../DateRangePickerContainer/DateRangePicke
 import TimeRangePickerContainer from "../TimeRangePickerContainer/TimeRangePickerContainer";
 import FormButtonContainer from "../FormButtonContainer/FormButtonContainer";
 import HometownContext from "../../contexts/HometownContext";
-import {
-  getNeighbourhoods,
-  getFilteredInvites
-} from "../../firebase/crudMethods.js";
+import { getFilteredInvites } from "../../firebase/inviteMethods.js";
+import { getNeighbourhoods } from "../../firebase/citiesMethods.js";
 import "./InvitesFilterContainer.css";
 
 const InvitesFilterContainer = ({ handleFilterRequest }) => {
