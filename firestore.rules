@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	function signedIn() {
+      return request.auth.uid != null;
+    }
+    
+    function signedInAndOwner(userID) {
+      return signedIn() && request.auth.uid == userID;
+    }
+    
+  	match /cities/{documents=**} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+    
+    //collection group matching
+     match /{path=**}/createdInvites/{createdInvite} {
+      allow read: if signedIn();
+    }
+    
+    //login and registration
+    match /users/{userID} {
+      allow read, create;
+    
+      match /acceptedInvites/{acceptedInvite} {
+      	allow read, write: if signedInAndOwner(userID);
+    	}
+      
+      match /createdInvites/{createdInvite}{
+        allow delete: if false;
+      	allow create: if signedInAndOwner(userID) && request.resource.data.organizerUID == request.auth.uid;
+      	allow update: if signedIn() && request.resource.data.invitees < 10; 										
+    	}
+    } 
+  }	
+}
