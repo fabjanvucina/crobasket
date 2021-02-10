@@ -4,7 +4,7 @@
 
 ## About
 
-Crobasket is a web application built with React and Firebase which connects basketball players and creates pickup games in local communities througout Croatia.
+Crobasket is a web application built with React and Firebase which connects basketball players and creates pickup games in local communities throughout Croatia.
 
 It is available in all major cities:
 - Zagreb
