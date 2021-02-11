@@ -18,7 +18,7 @@ body {
 }
 
 .dark {
-  background: url("./img/image.png") no-repeat center center fixed;
+  background: url("./img/background_dark.png") no-repeat center center fixed;
 }
 
 input:-webkit-autofill,
