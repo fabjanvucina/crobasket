@@ -14,6 +14,8 @@ const CitiesPage = () => {
       setLoadingCities(false);
     };
     fetchData();
+
+    document.body.classList.add("dark");
   }, []);
 
   return (
