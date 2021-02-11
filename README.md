@@ -35,7 +35,7 @@ Every user can either create an invite for a new pickup game or accept an invite
 - in the terminal, position yourself in the project directory
 - run command `npm install` to install all project dependencies
 - run command `npm start` to create local version of the app
-- the app should be running on `localhost:1234`
+- the app should be running on `localhost:3000`
 
 ## Other
 
